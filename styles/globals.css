@@ -18,3 +18,17 @@ a {
   color: inherit;
   text-decoration: none;
 }
+
+.ant-table-thead > tr > th,
+.ant-table-tbody > tr > td {
+  background: none !important;
+  padding: 12px 0px !important;
+}
+
+.ant-table-thead
+  > tr
+  > th:not(:last-child):not(.ant-table-selection-column):not(
+    .ant-table-row-expand-icon-cell
+  ):not([colspan])::before {
+  content: none !important;
+}
