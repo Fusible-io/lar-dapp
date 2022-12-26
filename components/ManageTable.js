@@ -51,7 +51,7 @@ const data = [
 
 const loadMore = (
   <div className="flex justify-center items-center absolute left-0 right-0 -bottom-5">
-    <button className="bg-[#080B11] border-2 border-[#254134] py-[3px] px-[9px] rounded-lg text-[#8FFFAF] text-lg font-medium">
+    <button className="bg-darkBg border-2 border-darkBorder py-[3px] px-[9px] rounded-lg text-lightGreen text-lg font-medium">
       See more
     </button>
   </div>
@@ -68,37 +68,37 @@ const ManageTable = () => {
         <List
           header={
             <div className="flex">
-              <h1 className="font-medium text-sm font-jakarta text-[#C7D8C9] text-left w-3/12">
+              <h1 className="font-medium text-sm font-jakarta text-gTextColor text-left w-3/12">
                 Items
               </h1>
 
-              <h1 className="font-medium text-sm font-jakarta text-[#C7D8C9] text-right w-1/12">
+              <h1 className="font-medium text-sm font-jakarta text-gTextColor text-right w-1/12">
                 Principal
               </h1>
 
-              <h1 className="font-medium text-sm font-jakarta text-[#C7D8C9] text-right w-1/12">
+              <h1 className="font-medium text-sm font-jakarta text-gTextColor text-right w-1/12">
                 Duration
               </h1>
 
-              <h1 className="font-medium text-sm font-jakarta text-[#C7D8C9] text-right w-1/12">
+              <h1 className="font-medium text-sm font-jakarta text-gTextColor text-right w-1/12">
                 Payoff
               </h1>
 
-              <h1 className="font-medium text-sm font-jakarta text-[#C7D8C9] text-right w-1/12 pr-5">
+              <h1 className="font-medium text-sm font-jakarta text-gTextColor text-right w-1/12 pr-5">
                 APR
               </h1>
 
-              <h1 className="font-medium text-sm font-jakarta text-[#C7D8C9] text-right w-1/12">
+              <h1 className="font-medium text-sm font-jakarta text-gTextColor text-right w-1/12">
                 Status
               </h1>
 
-              <h1 className="font-medium text-sm font-jakarta text-[#C7D8C9] text-right w-2/12 pr-10">
+              <h1 className="font-medium text-sm font-jakarta text-gTextColor text-right w-2/12 pr-10">
                 Expires
               </h1>
 
-              <h1 className="font-medium text-sm font-jakarta text-[#C7D8C9] text-right w-1/12"></h1>
+              <h1 className="font-medium text-sm font-jakarta text-gTextColor text-right w-1/12"></h1>
 
-              <h1 className="font-medium text-sm font-jakarta text-[#C7D8C9] text-right w-1/12"></h1>
+              <h1 className="font-medium text-sm font-jakarta text-gTextColor text-right w-1/12"></h1>
             </div>
           }
           bordered
@@ -109,31 +109,31 @@ const ManageTable = () => {
               <div className="flex justify-between items-center">
                 <div className="flex items-center w-3/12 my-2">
                   <Image src={Avatar} alt="Avatar" className="rounded" />
-                  <p className="font-semibold font-jakarta text-base text-[#F2F2F2] ml-2">
+                  <p className="font-semibold font-jakarta text-base text-lightTextC ml-2">
                     {item.items}
                   </p>
                 </div>
 
                 <div className="w-1/12">
-                  <p className="font-semibold font-jakarta text-base text-[#F2F2F2] text-right ">
+                  <p className="font-semibold font-jakarta text-base text-lightTextC text-right ">
                     {item.principal}
                   </p>
                 </div>
 
                 <div className="w-1/12">
-                  <p className="font-semibold font-jakarta text-base text-[#F2F2F2] text-right ">
+                  <p className="font-semibold font-jakarta text-base text-lightTextC text-right ">
                     {item.duration}
                   </p>
                 </div>
 
                 <div className="w-1/12">
-                  <p className="font-semibold font-jakarta text-base text-[#F2F2F2] text-right ">
+                  <p className="font-semibold font-jakarta text-base text-lightTextC text-right ">
                     {item.payoff}
                   </p>
                 </div>
 
                 <div className="w-1/12 pr-5">
-                  <p className="font-semibold font-jakarta text-base text-[#F2F2F2] text-right ">
+                  <p className="font-semibold font-jakarta text-base text-lightTextC text-right ">
                     {item.apr}
                   </p>
                 </div>
@@ -143,7 +143,7 @@ const ManageTable = () => {
                 </div>
 
                 <div className="w-2/12 pr-10">
-                  <p className="font-semibold font-jakarta text-base text-[#F2F2F2] text-right">
+                  <p className="font-semibold font-jakarta text-base text-lightTextC text-right">
                     {item.expires}
                   </p>
                 </div>
@@ -153,7 +153,7 @@ const ManageTable = () => {
                 </div>
 
                 <div className="flex items-center justify-end w-1/12">
-                  <button className="border-[#DDDDDD] border rounded-lg px-2 py-1 font-jakarta font-normal text-base text-[#DDDDDD]">
+                  <button className="border-lightBorder border rounded-lg px-2 py-1 font-jakarta font-normal text-base text-lightBorder">
                     Repay
                   </button>
                 </div>

@@ -18,7 +18,7 @@ const Navbar = () => {
           className={
             router.pathname == "/"
               ? "mr-10 font-bold text-base font-jakarta"
-              : "mr-10 font-normal text-base font-jakarta text-[#CFD1D1]"
+              : "mr-10 font-normal text-base font-jakarta text-headTextC"
           }
         >
           <Link href="/">Dashboard</Link>
@@ -27,7 +27,7 @@ const Navbar = () => {
           className={
             router.pathname == "/borrow"
               ? "mr-10 font-bold text-base font-jakarta"
-              : "mr-10 font-normal text-base font-jakarta text-[#CFD1D1]"
+              : "mr-10 font-normal text-base font-jakarta text-headTextC"
           }
         >
           <Link href="/borrow">Borrow</Link>
@@ -36,7 +36,7 @@ const Navbar = () => {
           className={
             router.pathname == "/list"
               ? "mr-10 font-bold text-base font-jakarta"
-              : "mr-10 font-normal text-base font-jakarta text-[#CFD1D1]"
+              : "mr-10 font-normal text-base font-jakarta text-headTextC"
           }
         >
           <Link href="/list">List</Link>

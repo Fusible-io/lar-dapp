@@ -4,8 +4,8 @@ const Status = ({ status }) => {
   if (status === "Soon") {
     return (
       <div className="flex justify-end items-center">
-        <span className="px-[5px] bg-[#F1A33B] rounded-full mr-2 h-[10px] mb-0"></span>
-        <p className="font-semibold font-jakarta text-base text-[#F2F2F2]">
+        <span className="px-[5px] bg-soonBg rounded-full mr-2 h-[10px] mb-0"></span>
+        <p className="font-semibold font-jakarta text-base text-lightTextC">
           {status}
         </p>
       </div>
@@ -13,8 +13,8 @@ const Status = ({ status }) => {
   } else if (status === "Active") {
     return (
       <div className="flex justify-end items-center">
-        <span className="px-[5px] bg-[#16B57F] rounded-full mr-2 h-[10px] mb-0"></span>
-        <p className="font-semibold font-jakarta text-base text-[#F2F2F2]">
+        <span className="px-[5px] bg-activeBg rounded-full mr-2 h-[10px] mb-0"></span>
+        <p className="font-semibold font-jakarta text-base text-lightTextC">
           {status}
         </p>
       </div>
@@ -22,8 +22,8 @@ const Status = ({ status }) => {
   } else if (status === "Closed") {
     return (
       <div className="flex justify-end items-center">
-        <span className="px-[5px] bg-[#4F4F4F] rounded-full mr-2 h-[10px] mb-0"></span>
-        <p className="font-semibold font-jakarta text-base text-[#F2F2F2]">
+        <span className="px-[5px] bg-closeBg rounded-full mr-2 h-[10px] mb-0"></span>
+        <p className="font-semibold font-jakarta text-base text-lightTextC">
           {status}
         </p>
       </div>
@@ -31,8 +31,8 @@ const Status = ({ status }) => {
   } else {
     return (
       <div className="flex justify-end items-center">
-        <span className="px-[5px] bg-[#E45555] rounded-full mr-2 h-[10px] mb-0"></span>
-        <p className="font-semibold font-jakarta text-[#E45555] text-base">
+        <span className="px-[5px] bg-defaultBg rounded-full mr-2 h-[10px] mb-0"></span>
+        <p className="font-semibold font-jakarta text-defaultBg text-base">
           {status}
         </p>
       </div>
