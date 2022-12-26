@@ -1,173 +1,167 @@
-import { Table } from "antd";
+import { List } from "antd";
 import Image from "next/image";
 import React from "react";
 
 import Avatar from "../public/assets/avatar.jpg";
 import nftfi from "../public/assets/nftfi.jpg";
+import Status from "./Status";
 
 const data = [
   {
     key: "1",
     items: "DigiDaigaku #2004",
     principal: "9.23 WETH",
-    duration: "30 days",
+    duration: "30 d",
     payoff: "3.82 WETH",
     apr: "46% ",
-    status: ["48h max"],
+    status: "48h",
     expires: "12 Nov 22 19:35",
   },
   {
     key: "2",
     items: "DigiDaigaku #1319",
     principal: "5.34 WETH",
-    duration: "30 days",
+    duration: "30 d",
     payoff: "3.82 WETH",
     apr: "46% ",
-    status: ["Close soon"],
+    status: "Soon",
     expires: "12 Nov 22 19:35",
   },
   {
     key: "3",
     items: "Renga #234",
     principal: "0.62 WETH",
-    duration: "30 days",
+    duration: "30 d",
     payoff: "3.82 WETH",
     apr: "46% ",
-    status: ["Active"],
+    status: "Active",
     expires: "12 Nov 22 19:35",
   },
   {
     key: "4",
     items: "Bored Ape Yacht Club...",
     principal: "56.23 WETH",
-    duration: "30 days",
+    duration: "30 d",
     payoff: "3.82 WETH",
     apr: "46% ",
-    status: ["Closed"],
+    status: "Closed",
     expires: "12 Nov 22 19:35",
   },
 ];
 
-const columns = [
-  {
-    title: <h1 className="font-bold text-sm font-jakarta">Items</h1>,
-    dataIndex: "items",
-    key: "items",
-    width: "15%",
-    render: (text) => (
-      <div className="flex items-center">
-        <Image src={Avatar} alt="Avatar" />
-        <p className="font-semibold font-jakarta text-xs ml-2">{text}</p>
-      </div>
-    ),
-  },
-  {
-    title: <h1 className="font-bold text-sm font-jakarta">Principal</h1>,
-    dataIndex: "principal",
-    key: "principal",
-    width: "10%",
-    render: (text) => (
-      <p className="font-semibold font-jakarta text-xs">{text}</p>
-    ),
-  },
-  {
-    title: <h1 className="font-bold text-sm font-jakarta">Duration</h1>,
-    dataIndex: "duration",
-    key: "duration",
-    width: "10%",
-    render: (text) => (
-      <p className="font-semibold font-jakarta text-xs">{text}</p>
-    ),
-  },
-  {
-    title: <h1 className="font-bold text-sm font-jakarta">Payoff</h1>,
-    dataIndex: "payoff",
-    key: "payoff",
-    width: "10%",
-    render: (text) => (
-      <p className="font-semibold font-jakarta text-xs">{text}</p>
-    ),
-  },
-  {
-    title: <h1 className="font-bold text-sm font-jakarta">APR</h1>,
-    dataIndex: "apr",
-    key: "apr",
-    width: "8%",
-    render: (text) => (
-      <p className="font-semibold font-jakarta text-xs">{text}</p>
-    ),
-  },
-  {
-    title: <h1 className="font-bold text-sm font-jakarta">Status</h1>,
-    key: "status",
-    dataIndex: "status",
-    width: "10%",
-    render: (_, { status }) => (
-      <>
-        {/* {status.map((tag) => {
-          let color = tag.length > 5 ? "geekblue" : "green";
-          if (tag === "loser") {
-            color = "volcano";
-          }
-          return (
-            <>
-              <Tag color={color} key={tag}>
-                {tag.toUpperCase()}
-              </Tag>
-            </>
-          );
-        })} */}
-        <div className="flex items-center">
-          <span className="px-[5px] bg-[#E45555] rounded-full mr-1 h-[10px] mb-0"></span>
-          <p className="font-semibold font-jakarta text-xs">{status}</p>
-        </div>
-      </>
-    ),
-  },
-  {
-    title: <h1 className="font-bold text-sm font-jakarta">Expires</h1>,
-    dataIndex: "expires",
-    key: "expires",
-    width: "10%",
-    render: (text) => (
-      <p className="font-semibold font-jakarta text-xs">{text}</p>
-    ),
-  },
-  {
-    title: <h1 className="font-bold text-sm font-jakarta">Source</h1>,
-    dataIndex: "source",
-    key: "source",
-    width: "10%",
-    render: () => (
-      <div>
-        <Image src={nftfi} alt="nftfi" />
-      </div>
-    ),
-  },
-  {
-    title: <h1 className="font-bold text-sm font-jakarta"></h1>,
-    key: "action",
-    width: "10%",
-    render: (_, record) => (
-      <div className="flex items-end justify-end">
-        <button className="border-black border px-2 py-1 font-jakarta font-medium text-xs text-black">
-          Repay
-        </button>
-      </div>
-    ),
-  },
-];
+const loadMore = (
+  <div className="flex justify-center items-center absolute left-0 right-0 -bottom-5">
+    <button className="bg-[#080B11] border-2 border-[#254134] py-[3px] px-[9px] rounded-lg text-[#8FFFAF] text-lg font-medium">
+      See more
+    </button>
+  </div>
+);
 
 const ManageTable = () => {
   return (
-    <div className="mx-10 mt-9 ">
-      <div className="border-b-[1px] border-black py-4 px-5 bg-[#F2F2F2] mb-7 rounded-t">
-        <h1 className="font-bold text-lg font-jakarta">
-          Manage. <i className="font-extralight">Deal with your loans.</i>
-        </h1>
-      </div>
+    <div className="mx-10 mt-14">
+      <h1 className="font-semibold text-[28px] leading-[44px] font-jakarta mb-5 text-white">
+        Manage your loans
+      </h1>
 
-      <Table columns={columns} dataSource={data} pagination={false} />
+      <div>
+        <List
+          header={
+            <div className="flex">
+              <h1 className="font-medium text-sm font-jakarta text-[#C7D8C9] text-left w-3/12">
+                Items
+              </h1>
+
+              <h1 className="font-medium text-sm font-jakarta text-[#C7D8C9] text-right w-1/12">
+                Principal
+              </h1>
+
+              <h1 className="font-medium text-sm font-jakarta text-[#C7D8C9] text-right w-1/12">
+                Duration
+              </h1>
+
+              <h1 className="font-medium text-sm font-jakarta text-[#C7D8C9] text-right w-1/12">
+                Payoff
+              </h1>
+
+              <h1 className="font-medium text-sm font-jakarta text-[#C7D8C9] text-right w-1/12 pr-5">
+                APR
+              </h1>
+
+              <h1 className="font-medium text-sm font-jakarta text-[#C7D8C9] text-right w-1/12">
+                Status
+              </h1>
+
+              <h1 className="font-medium text-sm font-jakarta text-[#C7D8C9] text-right w-2/12 pr-10">
+                Expires
+              </h1>
+
+              <h1 className="font-medium text-sm font-jakarta text-[#C7D8C9] text-right w-1/12"></h1>
+
+              <h1 className="font-medium text-sm font-jakarta text-[#C7D8C9] text-right w-1/12"></h1>
+            </div>
+          }
+          bordered
+          dataSource={data}
+          loadMore={loadMore}
+          renderItem={(item) => {
+            return (
+              <div className="flex justify-between items-center">
+                <div className="flex items-center w-3/12 my-2">
+                  <Image src={Avatar} alt="Avatar" className="rounded" />
+                  <p className="font-semibold font-jakarta text-base text-[#F2F2F2] ml-2">
+                    {item.items}
+                  </p>
+                </div>
+
+                <div className="w-1/12">
+                  <p className="font-semibold font-jakarta text-base text-[#F2F2F2] text-right ">
+                    {item.principal}
+                  </p>
+                </div>
+
+                <div className="w-1/12">
+                  <p className="font-semibold font-jakarta text-base text-[#F2F2F2] text-right ">
+                    {item.duration}
+                  </p>
+                </div>
+
+                <div className="w-1/12">
+                  <p className="font-semibold font-jakarta text-base text-[#F2F2F2] text-right ">
+                    {item.payoff}
+                  </p>
+                </div>
+
+                <div className="w-1/12 pr-5">
+                  <p className="font-semibold font-jakarta text-base text-[#F2F2F2] text-right ">
+                    {item.apr}
+                  </p>
+                </div>
+
+                <div className="w-1/12">
+                  <Status status={item.status} />
+                </div>
+
+                <div className="w-2/12 pr-10">
+                  <p className="font-semibold font-jakarta text-base text-[#F2F2F2] text-right">
+                    {item.expires}
+                  </p>
+                </div>
+
+                <div className="flex justify-center items-center w-1/12">
+                  <Image src={nftfi} alt="nftfi" className="rounded-full" />
+                </div>
+
+                <div className="flex items-center justify-end w-1/12">
+                  <button className="border-[#DDDDDD] border rounded-lg px-2 py-1 font-jakarta font-normal text-base text-[#DDDDDD]">
+                    Repay
+                  </button>
+                </div>
+              </div>
+            );
+          }}
+        />
+      </div>
     </div>
   );
 };

@@ -1,5 +1,4 @@
 import Head from "next/head";
-import Navbar from "../components/Navbar";
 import LoanDetails from "../components/LoanDetails";
 import ManageTable from "../components/ManageTable";
 import BorrowTable from "../components/BorrowTable";
@@ -15,7 +14,6 @@ export default function Home() {
       </Head>
 
       <main className="mb-20">
-        <Navbar />
         <LoanDetails />
         <ManageTable />
         <BorrowTable />

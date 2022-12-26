@@ -1,3 +1,4 @@
+import Navbar from "../components/Navbar";
 import "../styles/globals.css";
 import { Plus_Jakarta_Sans } from "@next/font/google";
 
@@ -11,6 +12,7 @@ const plusJakartaSans = Plus_Jakarta_Sans({
 export default function App({ Component, pageProps }) {
   return (
     <main className={`${plusJakartaSans.variable} font-sans`}>
+      <Navbar />
       <Component {...pageProps} />
     </main>
   );

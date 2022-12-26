@@ -1,135 +1,157 @@
-import { Table } from "antd";
+import { List } from "antd";
+import Image from "next/image";
 import React from "react";
 
 import Avatar from "../public/assets/avatar.jpg";
 import nftfi from "../public/assets/nftfi.jpg";
-import Image from "next/image";
+import DownArrow from "../public/assets/downArrow.svg";
 
 const data = [
   {
     key: "1",
     items: "DigiDaigaku #2004",
     principal: "9.23 WETH",
-    duration: "30 days",
+    duration: "30 d",
     payoff: "3.82 WETH",
     apr: "46% ",
+    status: "48h",
+    expires: "12 Nov 22 19:35",
   },
   {
     key: "2",
     items: "DigiDaigaku #1319",
     principal: "5.34 WETH",
-    duration: "30 days",
+    duration: "30 d",
     payoff: "3.82 WETH",
     apr: "46% ",
+    status: "Soon",
+    expires: "12 Nov 22 19:35",
   },
   {
     key: "3",
     items: "Renga #234",
     principal: "0.62 WETH",
-    duration: "30 days",
+    duration: "30 d",
     payoff: "3.82 WETH",
     apr: "46% ",
+    status: "Active",
+    expires: "12 Nov 22 19:35",
   },
   {
     key: "4",
     items: "Bored Ape Yacht Club...",
     principal: "56.23 WETH",
-    duration: "30 days",
+    duration: "30 d",
     payoff: "3.82 WETH",
     apr: "46% ",
+    status: "Closed",
+    expires: "12 Nov 22 19:35",
   },
 ];
 
-const columns = [
-  {
-    title: <h1 className="font-bold text-sm font-jakarta">Items</h1>,
-    dataIndex: "items",
-    key: "items",
-    width: "15%",
-    render: (text) => (
-      <div className="flex items-center">
-        <Image src={Avatar} alt="Avatar" />
-        <p className="font-semibold font-jakarta text-xs ml-2">{text}</p>
-      </div>
-    ),
-  },
-  {
-    title: <h1 className="font-bold text-sm font-jakarta">Principal</h1>,
-    dataIndex: "principal",
-    key: "principal",
-    width: "10%",
-    render: (text) => (
-      <p className="font-semibold font-jakarta text-xs">{text}</p>
-    ),
-  },
-  {
-    title: <h1 className="font-bold text-sm font-jakarta">Duration</h1>,
-    dataIndex: "duration",
-    key: "duration",
-    width: "10%",
-    render: (text) => (
-      <p className="font-semibold font-jakarta text-xs">{text}</p>
-    ),
-  },
-  {
-    title: <h1 className="font-bold text-sm font-jakarta">Payoff</h1>,
-    dataIndex: "payoff",
-    key: "payoff",
-    width: "10%",
-    render: (text) => (
-      <p className="font-semibold font-jakarta text-xs">{text}</p>
-    ),
-  },
-  {
-    title: <h1 className="font-bold text-sm font-jakarta">APR</h1>,
-    dataIndex: "apr",
-    key: "apr",
-    width: "8%",
-    render: (text) => (
-      <p className="font-semibold font-jakarta text-xs">{text}</p>
-    ),
-  },
-  {
-    title: <h1 className="font-bold text-sm font-jakarta">Source</h1>,
-    dataIndex: "source",
-    key: "source",
-    width: "10%",
-    render: () => (
-      <div>
-        <Image src={nftfi} alt="nftfi" />
-      </div>
-    ),
-  },
-  {
-    title: <h1 className="font-bold text-sm font-jakarta"></h1>,
-    key: "action",
-    width: "30%",
-    render: (_, record) => (
-      <div className="flex items-center justify-end">
-        <button className="font-semibold font-jakarta text-xs underline mr-[14px]">
-          View offers (9)
-        </button>
-        <button className="border-black border px-2 py-1 font-jakarta font-medium text-xs text-black">
-          Repay
-        </button>
-      </div>
-    ),
-  },
-];
+const loadMore = (
+  <div className="flex justify-center items-center absolute left-0 right-0 -bottom-5">
+    <button className="bg-[#080B11] border-2 border-[#254134] py-[3px] px-[9px] rounded-lg text-[#8FFFAF] text-lg font-medium">
+      See more
+    </button>
+  </div>
+);
 
 const BorrowTable = () => {
   return (
-    <div className="mx-10 mt-9 ">
-      <div className="border-b-[1px] border-black py-4 px-5 bg-[#F2F2F2] mb-7 rounded-t">
-        <h1 className="font-bold text-lg font-jakarta">
-          Instant borrow.{" "}
-          <i className="font-extralight">
-            Accept the offer that suits you the most.
-          </i>
-        </h1>
-      </div>
+    <div className="mx-10 mt-14">
+      <h1 className="font-semibold text-[28px] leading-[44px] font-jakarta mb-5 text-white">
+        Borrow instantly
+      </h1>
 
-      <Table columns={columns} dataSource={data} pagination={false} />
+      <div>
+        <List
+          header={
+            <div className="flex">
+              <h1 className="font-medium text-sm font-jakarta text-[#C7D8C9] text-left w-3/12">
+                Items
+              </h1>
+
+              <h1 className="font-medium text-sm font-jakarta text-[#C7D8C9] text-right w-1/12">
+                Principal
+              </h1>
+
+              <h1 className="font-medium text-sm font-jakarta text-[#C7D8C9] text-right w-1/12">
+                Duration
+              </h1>
+
+              <h1 className="font-medium text-sm font-jakarta text-[#C7D8C9] text-right w-1/12">
+                Payoff
+              </h1>
+
+              <h1 className="font-medium text-sm font-jakarta text-[#C7D8C9] text-right w-1/12">
+                APR
+              </h1>
+
+              <h1 className="font-medium text-sm font-jakarta text-[#C7D8C9] text-right w-1/12"></h1>
+
+              <h1 className="font-medium text-sm font-jakarta text-[#C7D8C9] text-right w-4/12"></h1>
+            </div>
+          }
+          bordered
+          dataSource={data}
+          loadMore={loadMore}
+          renderItem={(item) => {
+            return (
+              <div className="flex justify-between items-center">
+                <div className="flex items-center w-3/12 my-2">
+                  <Image src={Avatar} alt="Avatar" className="rounded" />
+                  <p className="font-semibold font-jakarta text-base text-[#F2F2F2] ml-2">
+                    {item.items}
+                  </p>
+                </div>
+
+                <div className="w-1/12">
+                  <p className="font-semibold font-jakarta text-base text-[#F2F2F2] text-right ">
+                    {item.principal}
+                  </p>
+                </div>
+
+                <div className="w-1/12">
+                  <p className="font-semibold font-jakarta text-base text-[#F2F2F2] text-right ">
+                    {item.duration}
+                  </p>
+                </div>
+
+                <div className="w-1/12">
+                  <p className="font-semibold font-jakarta text-base text-[#F2F2F2] text-right ">
+                    {item.payoff}
+                  </p>
+                </div>
+
+                <div className="w-1/12">
+                  <p className="font-semibold font-jakarta text-base text-[#F2F2F2] text-right ">
+                    {item.apr}
+                  </p>
+                </div>
+
+                <div className="flex justify-center items-center w-1/12">
+                  <Image src={nftfi} alt="nftfi" className="rounded-full" />
+                </div>
+
+                <div className="flex items-center justify-end w-4/12">
+                  <button className="flex justify-center items-center font-normal font-jakarta text-base text-[#F2F2F2] mr-5 border-b border-[#DDDDDD]">
+                    View 9 offers{" "}
+                    <Image
+                      src={DownArrow}
+                      alt="DownArrow"
+                      className="ml-[6px]"
+                    />
+                  </button>
+                  <button className="border-[#DDDDDD] border rounded-lg px-2 py-1 font-jakarta font-normal text-base text-[#DDDDDD]">
+                    Accept
+                  </button>
+                </div>
+              </div>
+            );
+          }}
+        />
+      </div>
     </div>
   );
 };
