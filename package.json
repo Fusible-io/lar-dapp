@@ -10,7 +10,7 @@
   },
   "dependencies": {
     "@next/font": "13.0.7",
-    "@nftfi/js": "github:NFTfi-Genesis/nftfi.js",
+    "@nftfi/js": "github:elviric/nftfi.js",
     "antd": "^5.1.0",
     "dotenv": "^16.0.3",
     "eslint": "8.30.0",
