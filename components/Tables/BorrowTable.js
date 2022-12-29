@@ -23,6 +23,18 @@ const BorrowTable = () => {
   const [data, setData] = useState([]);
   const [list, setList] = useState([]);
 
+  const [activeKey, setActiveKey] = useState();
+
+
+  const handleCollapseActiveKey = (key) => {
+    if (key === activeKey) {
+      setActiveKey(null);
+    }
+    else {
+      setActiveKey(key);
+    }
+  }
+
   useEffect(() => {
     fetch("/api/api")
       .then((res) => res.json())
@@ -30,7 +42,6 @@ const BorrowTable = () => {
         setInitLoading(false);
         setData(res);
         setList(res);
-        console.log(res, "ressssss");
       });
   }, []);
 
@@ -141,9 +152,12 @@ const BorrowTable = () => {
                       className="ml-[6px]"
                     />
                   )}
+                  collapsible="icon"
                   ghost
+                  activeKey={activeKey}
                 >
                   <Panel
+                  showArrow={false}
                     header={
                       <div className="flex justify-between items-center">
                         <div className="flex items-center w-3/12 my-2">
@@ -190,7 +204,11 @@ const BorrowTable = () => {
                         </div>
 
                         <div className="flex items-center justify-end w-4/12">
-                          <button className="flex justify-center items-center font-normal font-jakarta text-base text-lightTextC mr-5 border-b border-lightBorder">
+                          <button
+                            onClick={() => {
+                              handleCollapseActiveKey(item.key);
+                            }}
+                          className="flex justify-center items-center font-normal font-jakarta text-base text-lightTextC mr-5 border-b border-lightBorder">
                             View 9 offers{" "}
                             <Image
                               src={DownArrow}
@@ -204,9 +222,8 @@ const BorrowTable = () => {
                         </div>
                       </div>
                     }
-                    key="1"
+                    key={item.key}
                   >
-                    <p>Heyaaaaa</p>
                   </Panel>
                 </Collapse>
               );
