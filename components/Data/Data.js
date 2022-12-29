@@ -69,6 +69,22 @@ export const ListData = [
     apr: "46% ",
     status: "48h",
     expires: "12 Nov 22 19:35",
+    offerData: [
+      {
+        id: 1,
+        principal: "9.23 WETH",
+        duration: "30 d",
+        payoff: "3.82 WETH",
+        apr: "46% ",
+      },
+      {
+        id: 2,
+        principal: "9.23 WETH",
+        duration: "30 d",
+        payoff: "3.82 WETH",
+        apr: "46% ",
+      },
+    ],
   },
   {
     key: "2",
@@ -79,6 +95,22 @@ export const ListData = [
     apr: "46% ",
     status: "Soon",
     expires: "12 Nov 22 19:35",
+    offerData: [
+      {
+        id: 1,
+        principal: "5.34 WETH",
+        duration: "30 d",
+        payoff: "3.82 WETH",
+        apr: "46% ",
+      },
+      {
+        id: 2,
+        principal: "5.34 WETH",
+        duration: "30 d",
+        payoff: "3.82 WETH",
+        apr: "46% ",
+      },
+    ],
   },
   {
     key: "3",
@@ -89,6 +121,22 @@ export const ListData = [
     apr: "46% ",
     status: "Active",
     expires: "12 Nov 22 19:35",
+    offerData: [
+      {
+        id: 1,
+        principal: "0.62 WETH",
+        duration: "30 d",
+        payoff: "3.82 WETH",
+        apr: "46% ",
+      },
+      {
+        id: 2,
+        principal: "0.62 WETH",
+        duration: "30 d",
+        payoff: "3.82 WETH",
+        apr: "46% ",
+      },
+    ],
   },
   {
     key: "4",
@@ -99,5 +147,21 @@ export const ListData = [
     apr: "46% ",
     status: "Closed",
     expires: "12 Nov 22 19:35",
+    offerData: [
+      {
+        id: 1,
+        principal: "56.23 WETH",
+        duration: "30 d",
+        payoff: "3.82 WETH",
+        apr: "46% ",
+      },
+      {
+        id: 2,
+        principal: "56.23 WETH",
+        duration: "30 d",
+        payoff: "3.82 WETH",
+        apr: "46% ",
+      },
+    ],
   },
 ];

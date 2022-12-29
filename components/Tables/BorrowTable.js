@@ -25,15 +25,13 @@ const BorrowTable = () => {
 
   const [activeKey, setActiveKey] = useState();
 
-
   const handleCollapseActiveKey = (key) => {
     if (key === activeKey) {
       setActiveKey(null);
-    }
-    else {
+    } else {
       setActiveKey(key);
     }
-  }
+  };
 
   useEffect(() => {
     fetch("/api/api")
@@ -143,21 +141,9 @@ const BorrowTable = () => {
             loading={initLoading}
             renderItem={(item) => {
               return (
-                <Collapse
-                  expandIconPosition="end"
-                  expandIcon={() => (
-                    <Image
-                      src={DownArrow}
-                      alt="DownArrow"
-                      className="ml-[6px]"
-                    />
-                  )}
-                  collapsible="icon"
-                  ghost
-                  activeKey={activeKey}
-                >
+                <Collapse ghost activeKey={activeKey}>
                   <Panel
-                  showArrow={false}
+                    showArrow={false}
                     header={
                       <div className="flex justify-between items-center">
                         <div className="flex items-center w-3/12 my-2">
@@ -204,18 +190,36 @@ const BorrowTable = () => {
                         </div>
 
                         <div className="flex items-center justify-end w-4/12">
-                          <button
-                            onClick={() => {
-                              handleCollapseActiveKey(item.key);
-                            }}
-                          className="flex justify-center items-center font-normal font-jakarta text-base text-lightTextC mr-5 border-b border-lightBorder">
-                            View 9 offers{" "}
-                            <Image
-                              src={DownArrow}
-                              alt="DownArrow"
-                              className="ml-[6px]"
-                            />
-                          </button>
+                          {item.key === activeKey ? (
+                            <button
+                              onClick={() => {
+                                handleCollapseActiveKey(item.key);
+                              }}
+                              className="flex justify-center items-center font-normal font-jakarta text-base text-lightTextC mr-5 border-b border-lightBorder"
+                            >
+                              View less{" "}
+                              <Image
+                                src={DownArrow}
+                                alt="DownArrow"
+                                className="ml-[6px]"
+                              />
+                            </button>
+                          ) : (
+                            <button
+                              onClick={() => {
+                                handleCollapseActiveKey(item.key);
+                              }}
+                              className="flex justify-center items-center font-normal font-jakarta text-base text-lightTextC mr-5 border-b border-lightBorder"
+                            >
+                              View 9 offers{" "}
+                              <Image
+                                src={DownArrow}
+                                alt="DownArrow"
+                                className="ml-[6px]"
+                              />
+                            </button>
+                          )}
+
                           <button className="border-lightBorder border rounded-lg px-2 py-1 font-jakarta font-normal text-base text-lightBorder">
                             Accept
                           </button>
@@ -223,7 +227,57 @@ const BorrowTable = () => {
                       </div>
                     }
                     key={item.key}
+                    style={{
+                      backgroundColor:
+                        item.key === activeKey ? "#121A21" : "transparent",
+                    }}
                   >
+                    {item.offerData?.map((item) => (
+                      <div
+                        className="flex justify-between items-center pb-3 first:pt-2"
+                        key={item.id}
+                      >
+                        <div className="flex items-center w-3/12 my-2"></div>
+
+                        <div className="w-1/12">
+                          <p className="font-semibold font-jakarta text-base text-lightTextC text-right ">
+                            {item.principal}
+                          </p>
+                        </div>
+
+                        <div className="w-1/12">
+                          <p className="font-semibold font-jakarta text-base text-lightTextC text-right ">
+                            {item.duration}
+                          </p>
+                        </div>
+
+                        <div className="w-1/12">
+                          <p className="font-semibold font-jakarta text-base text-lightTextC text-right ">
+                            {item.payoff}
+                          </p>
+                        </div>
+
+                        <div className="w-1/12">
+                          <p className="font-semibold font-jakarta text-base text-lightTextC text-right ">
+                            {item.apr}
+                          </p>
+                        </div>
+
+                        <div className="flex justify-center items-center w-1/12">
+                          <Image
+                            src={nftfi}
+                            alt="nftfi"
+                            className="rounded-full"
+                          />
+                        </div>
+
+                        <div className="flex items-center justify-end w-4/12">
+                          <button className="border-lightBorder border rounded-lg px-2 py-1 font-jakarta font-normal text-base text-lightBorder">
+                            Accept
+                          </button>
+                        </div>
+                      </div>
+                    ))}
                   </Panel>
                 </Collapse>
               );

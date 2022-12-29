@@ -19,7 +19,6 @@ const ManageTable = () => {
         setInitLoading(false);
         setData(res);
         setList(res);
-        console.log(res, "ressssss");
       });
   }, []);
 

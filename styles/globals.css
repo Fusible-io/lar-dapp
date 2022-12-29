@@ -123,8 +123,21 @@ a {
   background-color: #005538 !important;
 }
 
-.ant-collapse > .ant-collapse-item > .ant-collapse-header {
+.ant-collapse > .ant-collapse-item > .ant-collapse-header,
+.ant-collapse .ant-collapse-content > .ant-collapse-content-box {
   padding: 0px !important;
+}
+
+.ant-collapse .ant-collapse-item:last-child > .ant-collapse-content {
+  border: none !important;
+}
+
+.ant-collapse > .ant-collapse-item {
+  margin-left: -52px !important;
+  margin-right: -52px !important;
+  margin-top: -17px !important;
+  padding: 17px 52px 0px !important;
+  margin-bottom: 0px !important;
 }
 
 .CardDiv {
