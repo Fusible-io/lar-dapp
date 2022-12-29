@@ -5,6 +5,7 @@ import React, { useState, useEffect } from "react";
 import Avatar from "/public/assets/avatar.jpg";
 import nftfi from "/public/assets/nftfi.jpg";
 import DownArrow from "/public/assets/downArrow.svg";
+import UpArrow from "/public/assets/upArrow.svg";
 import ListView from "/public/assets/listIcon.svg";
 import GridView from "/public/assets/gridIcon.svg";
 import ListActiveIcon from "/public/assets/listActiveIcon.svg";
@@ -25,12 +26,10 @@ const BorrowTable = () => {
 
   const [activeKey, setActiveKey] = useState([]);
 
-
   const handleCollapseActiveKey = (key) => {
     if (activeKey.includes(key)) {
       setActiveKey(activeKey.filter((item) => item !== key));
-    }
-    else {
+    } else {
       setActiveKey([...activeKey, key]);
     }
   };
@@ -192,7 +191,7 @@ const BorrowTable = () => {
                         </div>
 
                         <div className="flex items-center justify-end w-4/12">
-                          {item.key === activeKey ? (
+                          {activeKey.includes(item.key) ? (
                             <button
                               onClick={() => {
                                 handleCollapseActiveKey(item.key);
@@ -201,8 +200,8 @@ const BorrowTable = () => {
                             >
                               View less{" "}
                               <Image
-                                src={DownArrow}
-                                alt="DownArrow"
+                                src={UpArrow}
+                                alt="UpArrow"
                                 className="ml-[6px]"
                               />
                             </button>
@@ -230,8 +229,9 @@ const BorrowTable = () => {
                     }
                     key={item.key}
                     style={{
-                      backgroundColor:
-                        item.key === activeKey ? "#121A21" : "transparent",
+                      backgroundColor: activeKey.includes(item.key)
+                        ? "#121A21"
+                        : "transparent",
                     }}
                   >
                     {item.offerData?.map((item) => (
