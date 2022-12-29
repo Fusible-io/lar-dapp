@@ -23,15 +23,15 @@ const BorrowTable = () => {
   const [data, setData] = useState([]);
   const [list, setList] = useState([]);
 
-  const [activeKey, setActiveKey] = useState();
+  const [activeKey, setActiveKey] = useState([]);
 
 
   const handleCollapseActiveKey = (key) => {
-    if (key === activeKey) {
-      setActiveKey(null);
+    if (activeKey.includes(key)) {
+      setActiveKey(activeKey.filter((item) => item !== key));
     }
     else {
-      setActiveKey(key);
+      setActiveKey([...activeKey, key]);
     }
   }
 
