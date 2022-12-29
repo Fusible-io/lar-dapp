@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { useRouter } from "next/router";
 import React from "react";
-import Logo from "../public/assets/logo.svg";
+import Logo from "/public/assets/logo.svg";
 import Image from "next/image";
 
 const Navbar = () => {

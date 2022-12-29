@@ -1,7 +1,7 @@
 import Head from "next/head";
-import LoanDetails from "../components/LoanDetails";
-import ManageTable from "../components/ManageTable";
-import BorrowTable from "../components/BorrowTable";
+import LoanDetails from "../components/LoanStatics/LoanDetails";
+import ManageTable from "../components/Tables/ManageTable";
+import BorrowTable from "../components/Tables/BorrowTable";
 
 export default function Home() {
   return (

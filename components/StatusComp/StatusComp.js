@@ -1,6 +1,6 @@
 import React from "react";
 
-const Status = ({ status }) => {
+const StatusComp = ({ status }) => {
   if (status === "Soon") {
     return (
       <div className="flex justify-end items-center">
@@ -40,4 +40,4 @@ const Status = ({ status }) => {
   }
 };
 
-export default Status;
+export default StatusComp;
