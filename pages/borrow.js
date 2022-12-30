@@ -5,7 +5,9 @@ import Head from "next/head";
 import { Card, Checkbox } from "antd";
 import Image from "next/image";
 
-const borrow = () => {
+import AllStarCardImg from "../public/assets/AllStarCardImg.png";
+
+const borrow = (disabled = true) => {
   
   return (
     <>
