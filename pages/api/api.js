@@ -24,20 +24,20 @@ async function run() {
   });
   console.log(`[INFO] found ${listings.length} listing(s).`);
   // Proceed if we find listings
-  if (listings.length > 0) {
-    for (var i = 0; i < listings.length; i++) {
-      const listing = listings[i];
-      console.log(`[INFO] listing #${i + 1}: ${JSON.stringify(listing)}`);
-    }
-  }
+  // if (listings.length > 0) {
+  //   for (var i = 0; i < listings.length; i++) {
+  //     const listing = listings[i];
+  //     console.log(`[INFO] listing #${i + 1}: ${JSON.stringify(listing)}`);
+  //   }
+  // }
   return listings;
 }
 
-run().catch(error => {
-  console.error(error);
-  //process.exitCode = 1;
-  return {error:'Broke'}
-});
+// run().catch(error => {
+//   console.error(error);
+//   //process.exitCode = 1;
+//   return {error:'Broke'}
+// });
 export default function handler(req, res) {
   run().then(r=>{
     res.status(200).json(r);

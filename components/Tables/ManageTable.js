@@ -1,63 +1,51 @@
 import { List } from "antd";
 import Image from "next/image";
-import React from "react";
+import React, { useEffect, useState } from "react";
 
-import Avatar from "../public/assets/avatar.jpg";
-import nftfi from "../public/assets/nftfi.jpg";
-import Status from "./Status";
-
-const data = [
-  {
-    key: "1",
-    items: "DigiDaigaku #2004",
-    principal: "9.23 WETH",
-    duration: "30 d",
-    payoff: "3.82 WETH",
-    apr: "46% ",
-    status: "48h",
-    expires: "12 Nov 22 19:35",
-  },
-  {
-    key: "2",
-    items: "DigiDaigaku #1319",
-    principal: "5.34 WETH",
-    duration: "30 d",
-    payoff: "3.82 WETH",
-    apr: "46% ",
-    status: "Soon",
-    expires: "12 Nov 22 19:35",
-  },
-  {
-    key: "3",
-    items: "Renga #234",
-    principal: "0.62 WETH",
-    duration: "30 d",
-    payoff: "3.82 WETH",
-    apr: "46% ",
-    status: "Active",
-    expires: "12 Nov 22 19:35",
-  },
-  {
-    key: "4",
-    items: "Bored Ape Yacht Club...",
-    principal: "56.23 WETH",
-    duration: "30 d",
-    payoff: "3.82 WETH",
-    apr: "46% ",
-    status: "Closed",
-    expires: "12 Nov 22 19:35",
-  },
-];
-
-const loadMore = (
-  <div className="flex justify-center items-center absolute left-0 right-0 -bottom-5">
-    <button className="bg-darkBg border-2 border-darkBorder py-[3px] px-[9px] rounded-lg text-lightGreen text-lg font-medium">
-      See more
-    </button>
-  </div>
-);
+import Avatar from "/public/assets/avatar.jpg";
+import nftfi from "/public/assets/nftfi.jpg";
+import StatusComp from "../StatusComp/StatusComp";
 
 const ManageTable = () => {
+  const [initLoading, setInitLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
+  const [data, setData] = useState([]);
+  const [list, setList] = useState([]);
+
+  useEffect(() => {
+    fetch("/api/api")
+      .then((res) => res.json())
+      .then((res) => {
+        setInitLoading(false);
+        setData(res);
+        setList(res);
+      });
+  }, []);
+
+  const onLoadMore = () => {
+    setLoading(true);
+    fetch("/api/api")
+      .then((res) => res.json())
+      .then((res) => {
+        const newData = data.concat(res);
+        setData(newData);
+        setList(newData);
+        setLoading(false);
+      });
+  };
+
+  const loadMore =
+    !initLoading && !loading ? (
+      <div className="flex justify-center items-center absolute left-0 right-0 -bottom-5">
+        <button
+          onClick={onLoadMore}
+          className="bg-darkBg border-2 border-darkBorder py-[3px] px-[9px] rounded-lg text-lightGreen text-lg font-medium"
+        >
+          See more
+        </button>
+      </div>
+    ) : null;
+
   return (
     <div className="mx-10 mt-14">
       <h1 className="font-semibold text-[28px] leading-[44px] font-jakarta mb-5 text-white">
@@ -102,8 +90,9 @@ const ManageTable = () => {
             </div>
           }
           bordered
-          dataSource={data}
+          dataSource={list}
           loadMore={loadMore}
+          loading={initLoading}
           renderItem={(item) => {
             return (
               <div className="flex justify-between items-center">
@@ -139,7 +128,7 @@ const ManageTable = () => {
                 </div>
 
                 <div className="w-1/12">
-                  <Status status={item.status} />
+                  <StatusComp status={item.status} />
                 </div>
 
                 <div className="w-2/12 pr-10">

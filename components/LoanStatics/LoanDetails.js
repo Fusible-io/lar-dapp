@@ -1,5 +1,5 @@
 import React from "react";
-import ethIcon from "../public/assets/eth_icon.svg";
+import ethIcon from "/public/assets/eth_icon.svg";
 import Image from "next/image";
 
 const LoanDetails = () => {

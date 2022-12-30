@@ -84,3 +84,62 @@ a {
 .ant-card-body {
   padding: 7px 11px !important;
 }
+
+.ant-btn-primary:disabled {
+  cursor: not-allowed;
+  border-color: none !important;
+  color: #ffffff !important;
+  background-color: #005538 !important;
+  opacity: 0.4 !important;
+}
+
+.ant-btn-primary:not(:disabled):hover {
+  color: #fff;
+  background-color: #005538 !important;
+}
+
+.ant-btn-default:not(:disabled):hover {
+  color: #88e890 !important;
+  border-color: #073a0b !important;
+}
+
+.ant-btn-default:disabled {
+  cursor: not-allowed;
+  border-color: #073a0b !important;
+  color: #88e890 !important;
+  opacity: 0.4 !important;
+}
+
+.ant-checkbox .ant-checkbox-inner {
+  background-color: #4f4f4f !important;
+  border: none !important;
+}
+
+.ant-checkbox .ant-checkbox-input:focus-visible + .ant-checkbox-inner {
+  outline: 4px solid #073a0b !important;
+}
+
+.ant-spin .ant-spin-dot-item {
+  background-color: #005538 !important;
+}
+
+.ant-collapse > .ant-collapse-item > .ant-collapse-header,
+.ant-collapse .ant-collapse-content > .ant-collapse-content-box {
+  padding: 0px !important;
+}
+
+.ant-collapse .ant-collapse-item:last-child > .ant-collapse-content {
+  border: none !important;
+}
+
+.ant-collapse > .ant-collapse-item {
+  margin-left: -52px !important;
+  margin-right: -52px !important;
+  margin-top: -17px !important;
+  padding: 17px 52px 0px !important;
+  margin-bottom: 0px !important;
+}
+
+.CardDiv {
+  filter: drop-shadow(0px 12px 120px rgba(143, 255, 175, 0.08));
+}
