@@ -10,9 +10,13 @@ const alchemy = new Alchemy(config);
 
 
 const getAllNFTS = async () => {
-  // Get all NFTs
-  const nfts = await alchemy.nft.getNftsForOwner("0xB71C355d2F672C679d13778D41e51de0D291f229");
-  return nfts
+  try {
+    const nfts = await alchemy.nft.getNftsForOwner("0x898C148439e6E1F53EC4565662841b1B62AF8687");
+    return nfts
+  }
+  catch (error) {
+    console.log(error)
+  }
 };
 
 

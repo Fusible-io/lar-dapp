@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import CardComp from "../components/CardComp/CardComp";
 import { CardData } from "../components/Data/Data";
 import Head from "next/head";
@@ -7,8 +7,24 @@ import Image from "next/image";
 
 import AllStarCardImg from "../public/assets/AllStarCardImg.png";
 
-const borrow = (disabled = true) => {
-  
+const Borrow = (disabled = true) => {
+  const [ownedNFTs, setOwnedNFTs] = useState([]);
+
+  const getCannotBeUsedAsCollateralNFTsList = () => {
+    // call api endpoint nft which will return all the list of nfts which are currenlty owned by the wallet address
+
+    // filter out the nfts which are not whitelisted
+  };
+
+  useEffect(() => {
+    fetch("/api/nft")
+      .then((res) => res.json())
+      .then((res) => {
+        setOwnedNFTs(res.ownedNfts);
+        console.log(res.ownedNfts)
+      });
+  }, []);
+
   return (
     <>
       <Head>
@@ -75,49 +91,60 @@ const borrow = (disabled = true) => {
           </Card>
         </div>
 
+
+        {/* Logic to filter out nfts of address's which are not whitelisted */}
+
         <h1 className="font-semibold text-[28px] leading-[44px] font-jakarta mb-5 text-white">
           Can’t be used as collateral
         </h1>
 
         <div className="mb-14 flex gap-4">
-          <Card
-            style={
-              disabled
-                ? {
-                    pointerEvents: "none",
-                    opacity: "0.4",
-                    width: 185,
-                    cursor: "not-allowed",
+          {
+            ownedNFTs && ownedNFTs.length > 0 ? <>
+              {
+                ownedNFTs.map(nft => <Card
+                  style={
+                    disabled
+                      ? {
+                        pointerEvents: "none",
+                        opacity: "0.4",
+                        width: 185,
+                        cursor: "not-allowed",
+                      }
+                      : { width: 185 }
                   }
-                : { width: 185 }
-            }
-            cover={<Image src={AllStarCardImg} alt="img" />}
-            bordered={false}
-          >
-            <div className="mb-[6px] flex justify-between items-center">
-              <p className="font-jakarta font-normal text-[10px] text-white leading-5">
-                AllStarz #8946
-              </p>
+                  cover={<Image src={nft?.rawMetadata?.image} alt="img" width="200" height={200} />}
+                  bordered={false}
+                >
+                  <div className="mb-[6px] flex justify-between items-center">
+                    <p className="font-jakarta font-normal text-[10px] text-white leading-5">
+                      {nft.title} #{nft.tokenId}
+                    </p>
 
-              <Checkbox />
-            </div>
-            <div className="flex justify-between items-center">
-              <p className="font-jakarta font-extralight text-[10px] text-white leading-3">
-                Borrow
-              </p>
-            </div>
-            <div className="flex justify-between items-center mb-1">
-              <span className="w-[71px] h-1 rounded-[4px] bg-closeBg"></span>
+                    <Checkbox />
+                  </div>
+                  <div className="flex justify-between items-center">
+                    <p className="font-jakarta font-extralight text-[10px] text-white leading-3">
+                      Borrow
+                    </p>
+                  </div>
+                  <div className="flex justify-between items-center mb-1">
+                    <span className="w-[71px] h-1 rounded-[4px] bg-closeBg"></span>
 
-              <button className="px-[5px] py-[3px] rounded-lg bg-transparent text-xs font-jakarta font-medium text-white border border-darkBorderG">
-                List
-              </button>
-            </div>
-          </Card>
+                    <button className="px-[5px] py-[3px] rounded-lg bg-transparent text-xs font-jakarta font-medium text-white border border-darkBorderG">
+                      List
+                    </button>
+                  </div>
+                </Card>)
+              }
+
+            </> : null
+          }
+
         </div>
       </div>
     </>
   );
 };
 
-export default borrow;
+export default Borrow;
