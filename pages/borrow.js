@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import CardComp from "../components/CardComp/CardComp";
 import { CardData } from "../components/Data/Data";
 import Head from "next/head";
@@ -6,8 +6,17 @@ import { Card, Checkbox } from "antd";
 import Image from "next/image";
 
 import AllStarCardImg from "../public/assets/AllStarCardImg.png";
+import ModalComp from "../components/Modal/ModalComp";
+import ListingSummary from "../components/ListingSummary/ListingSummary";
+import LoanSummary from "../components/LoanSummary/LoanSummary";
 
-const borrow = (disabled = true) => {
+const Borrow = (disabled = true) => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const showModal = () => {
+    setIsModalOpen(true);
+  };
+
   return (
     <>
       <Head>
@@ -67,7 +76,10 @@ const borrow = (disabled = true) => {
             <div className="flex justify-between items-center mb-1">
               <span className="w-[71px] h-1 rounded-[4px] bg-closeBg"></span>
 
-              <button className="px-[5px] py-[3px] rounded-lg bg-transparent text-xs font-jakarta font-medium text-white border border-darkBorderG">
+              <button
+                onClick={showModal}
+                className="px-[5px] py-[3px] rounded-lg bg-transparent text-xs font-jakarta font-medium text-white border border-darkBorderG"
+              >
                 List
               </button>
             </div>
@@ -115,8 +127,15 @@ const borrow = (disabled = true) => {
           </Card>
         </div>
       </div>
+
+      <ModalComp
+        isModalOpen={isModalOpen}
+        setIsModalOpen={setIsModalOpen}
+        // content={<LoanSummary setIsModalOpen={setIsModalOpen} />}
+        content={<ListingSummary />}
+      />
     </>
   );
 };
 
-export default borrow;
+export default Borrow;
