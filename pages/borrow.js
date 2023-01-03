@@ -4,6 +4,7 @@ import { CardData } from "../components/Data/Data";
 import Head from "next/head";
 import { Card, Checkbox } from "antd";
 import Image from "next/image";
+import { useAccount } from "wagmi";
 
 import AllStarCardImg from "../public/assets/AllStarCardImg.png";
 import ModalComp from "../components/Modal/ModalComp";
@@ -12,6 +13,7 @@ import LoanSummary from "../components/LoanSummary/LoanSummary";
 
 const Borrow = (disabled = true) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const { address } = useAccount();
 
   const showModal = () => {
     setIsModalOpen(true);
@@ -25,14 +27,30 @@ const Borrow = (disabled = true) => {
   };
 
 
+
+
+
   useEffect(() => {
-    fetch("/api/nft")
-      .then((res) => res.json())
-      .then((res) => {
-        setOwnedNFTs(res.ownedNfts);
-        console.log(res.ownedNfts)
-      });
-  }, []);
+    if (address) {
+      fetch('/api/nft',
+        {
+          method: 'POST', // or 'PUT'
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            address,
+          }),
+        }
+      )
+        .then((res) => res.json())
+        .then((res) => {
+          setOwnedNFTs(res.ownedNfts);
+          console.log(res.ownedNfts)
+        });
+    }
+
+  }, [address]);
 
   return (
     <>

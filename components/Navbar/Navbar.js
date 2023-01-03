@@ -1,8 +1,10 @@
 import Link from "next/link";
 import { useRouter } from "next/router";
-import React from "react";
+import React, { useEffect } from "react";
 import Logo from "/public/assets/logo.svg";
 import Image from "next/image";
+import { ConnectButton } from '@rainbow-me/rainbowkit';
+
 
 const Navbar = () => {
   const router = useRouter();
@@ -43,10 +45,11 @@ const Navbar = () => {
         </li>
       </ul>
 
-      <button className="font-semibold text-base flex font-jakarta">
+      {/* <button className="font-semibold text-base flex font-jakarta">
         <span className="bg-slate-600 w-6 h-6 rounded-full mr-2"></span>
         0x23...251
-      </button>
+      </button> */}
+      <ConnectButton showBalance={false} />
     </div>
   );
 };

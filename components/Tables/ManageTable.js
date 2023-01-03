@@ -5,12 +5,14 @@ import React, { useEffect, useState } from "react";
 import Avatar from "/public/assets/avatar.jpg";
 import nftfi from "/public/assets/nftfi.jpg";
 import StatusComp from "../StatusComp/StatusComp";
+import { useAccount } from 'wagmi';
 
 const ManageTable = () => {
   const [initLoading, setInitLoading] = useState(true);
   const [loading, setLoading] = useState(false);
   const [data, setData] = useState([]);
   const [list, setList] = useState([]);
+  const { address } = useAccount();
 
   useEffect(() => {
     fetch("/api/api")
@@ -21,6 +23,14 @@ const ManageTable = () => {
         setList(res);
       });
   }, []);
+
+  useEffect(() => {
+    if(address) {
+      console.log({address})
+    }
+  }, [
+    address
+  ]);
 
   const onLoadMore = () => {
     setLoading(true);

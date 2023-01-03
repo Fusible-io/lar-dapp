@@ -9,9 +9,9 @@ const config = {
 const alchemy = new Alchemy(config);
 
 
-const getAllNFTS = async () => {
+const getAllNFTS = async (address) => {
   try {
-    const nfts = await alchemy.nft.getNftsForOwner("0x898C148439e6E1F53EC4565662841b1B62AF8687");
+    const nfts = await alchemy.nft.getNftsForOwner(address);
     return nfts
   }
   catch (error) {
@@ -21,10 +21,17 @@ const getAllNFTS = async () => {
 
 
 export default function handler(req, res) {
-  // call alechmy to get all nft for the wallet, and send it's data as json
-  getAllNFTS().then(r=>{
-    res.status(200).json(r);
-  })
+  if (req.method === 'GET') {
 
+  }
+  if (req.method === 'POST') {
 
+    const { address } = req.body;
+    if (!address) {
+      res.status(400).json({ message: 'Address is required' });
+    }
+    getAllNFTS(address).then(r => {
+      res.status(200).json(r);
+    })
+  }
 }
