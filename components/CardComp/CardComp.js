@@ -19,7 +19,6 @@ const CardComp = ({
       style={{ width: 185 }}
       cover={<Image src={img} alt="img" />}
       bordered={false}
-      // className="CardDiv"
     >
       <span className="text-white bg-tagColor rounded absolute top-[14px] font-semibold font-jakarta text-[10px] px-[3px] py-[1px]">
         {listed}

@@ -140,6 +140,15 @@ a {
   margin-bottom: 0px !important;
 }
 
-.CardDiv {
+.ant-modal .ant-modal-content {
+  background: #0d151c !important;
+  border: 1px solid #2e3a35 !important;
+  box-shadow: 0px 12px 120px rgba(143, 255, 175, 0.08) !important;
+  border-radius: 12px !important;
+  padding: 101px 86px !important;
+  color: #fff !important;
+}
+
+.filterCustom {
   filter: drop-shadow(0px 12px 120px rgba(143, 255, 175, 0.08));
 }

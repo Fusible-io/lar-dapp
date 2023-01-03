@@ -29,10 +29,19 @@ module.exports = {
       activeBg: "#16B57F",
       closeBg: "#4F4F4F",
       defaultBg: "#E45555",
+      darkBgBlack: "#0F171E",
+      white80: "rgba(255, 255, 255, 0.8)",
+      borderGreen: "#284637",
+      borderRed: "#E45555",
+      borderGRGB: "rgba(143, 255, 175, 0.24)",
+    },
+    boxShadow: {
+      list: "0px 12px 120px rgba(143, 255, 175, 0.08)",
     },
     extend: {
       fontFamily: {
         jakarta: ["var(--font-plusJakartaSans)", ...fontFamily.sans],
+        inter: ["var(--font-inter)", ...fontFamily.sans],
       },
     },
   },
