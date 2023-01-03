@@ -68,11 +68,13 @@ a {
 
 .ant-list-header {
   border-block-end: 1px solid #42444a !important;
-  padding: 16px 52px !important;
+  /* padding: 16px 52px !important; */
+  padding: 16px 34px !important;
 }
 
 .ant-list-items {
-  padding: 16px 52px 32px !important;
+  /* padding: 16px 52px 32px !important; */
+  padding: 16px 34px !important;
 }
 
 .ant-card {
@@ -147,6 +149,24 @@ a {
   border-radius: 12px !important;
   padding: 101px 86px !important;
   color: #fff !important;
+}
+
+.ant-select-selector {
+  border-radius: 12px !important;
+  background: #293249 !important;
+  border: none !important;
+  height: 44px !important;
+  padding: 9px 11px !important;
+}
+
+.ant-select-dropdown {
+  background: #293249 !important;
+  color: #fff !important;
+}
+
+.ant-select-dropdown
+  .ant-select-item-option-selected:not(.ant-select-item-option-disabled) {
+  background: #0e1119 !important;
 }
 
 .filterCustom {

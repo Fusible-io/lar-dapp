@@ -3,7 +3,7 @@ import Image from "next/image";
 import React, { useState, useEffect } from "react";
 
 import Avatar from "/public/assets/avatar.jpg";
-import nftfi from "/public/assets/nftfi.jpg";
+import nftfi from "/public/assets/nftfi.png";
 import DownArrow from "/public/assets/downArrow.svg";
 import UpArrow from "/public/assets/upArrow.svg";
 import ListView from "/public/assets/listIcon.svg";
@@ -110,7 +110,7 @@ const BorrowTable = () => {
         {listView === true ? (
           <List
             header={
-              <div className="flex">
+              <div className="flex px-[18px]">
                 <h1 className="font-medium text-sm font-jakarta text-gTextColor text-left w-3/12">
                   Items
                 </h1>
@@ -146,7 +146,7 @@ const BorrowTable = () => {
                   <Panel
                     showArrow={false}
                     header={
-                      <div className="flex justify-between items-center">
+                      <div className="flex justify-between items-center px-[18px] pb-4">
                         <div className="flex items-center w-3/12 my-2">
                           <Image
                             src={Avatar}
@@ -187,6 +187,8 @@ const BorrowTable = () => {
                             src={nftfi}
                             alt="nftfi"
                             className="rounded-full"
+                            width={20}
+                            height={20}
                           />
                         </div>
 
