@@ -84,6 +84,7 @@ const loaner = async (sLoad,sList,sData)=>{
   
 }
 
+import { useAccount } from 'wagmi';
 
 const ManageTable = () => {
   const [initLoading, setInitLoading] = useState(true);
@@ -122,6 +123,14 @@ const ManageTable = () => {
   
   }, [
     address,provider,signer
+  ]);
+
+  useEffect(() => {
+    if(address) {
+      console.log({address})
+    }
+  }, [
+    address
   ]);
 
   const onLoadMore = () => {

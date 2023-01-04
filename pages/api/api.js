@@ -47,6 +47,14 @@ async function run() {
   return listings;
 }
 
+// run().catch(error => {
+//   console.error(error);
+//   //process.exitCode = 1;
+//   return {error:'Broke'}
+// });
 export default function handler(req, res) {
-  res.status(200).json(ListData);
+  run().then(r=>{
+    res.status(200).json(r);
+  });
+  
 }
