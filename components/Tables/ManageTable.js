@@ -5,33 +5,135 @@ import React, { useEffect, useState } from "react";
 import Avatar from "/public/assets/avatar.jpg";
 import nftfi from "/public/assets/nftfi.jpg";
 import StatusComp from "../StatusComp/StatusComp";
+import { useAccount,useProvider,useSigner } from 'wagmi';
+// //* Import NFTFI below *//
+import NFTfi from "@nftfi/js";
+
+const nftFi = async(a,s,p)=>{
+  //sLoad(true);
+  //console.log(process.env.NFTFI_SDK_API_KEY);
+  const initNFTFI = await NFTfi.init({
+
+  //   //   account: { privateKey: process.env.NFTFI_SDK_ETHEREUM_LENDER_ACCOUNT_PRIVATE_KEY },
+  //      account: {address:wallet.address},
+  //       provider: { url: process.env.NFTFI_SDK_ETHEREUM_PROVIDER_URL },
+  // //      web3:{provider:provider}
+      config: { api: { key: 'AIzaSyC7ZjZ4mYLoyVmkl-Ch9yzfbMTgHqpy5iM' } },
+      ethereum: {
+        account: { signer: s,address:a },
+        provider: { url: 'https://goerli.infura.io/v3/d5a371cc71304b32ac4bf5c01281d388'}
+      },
+      web3:{provider:p},
+      logging:{verbose:true}
+});
+window.initNFTFI = initNFTFI;
+return;
+
+}
+const listor = async (sLoad,sList,sData)=>{
+
+  //sLoad(true);
+  const listings = await window.initNFTFI.listings.get({
+    pagination: {
+      limit: 5,
+      page: 1
+    }
+  });
+  console.log(`[INFO] found ${listings.length} listing(s).`);
+  // Proceed if we find listings
+  // if (listings.length > 0) {
+  //   for (var i = 0; i < listings.length; i++) {
+  //     const listing = listings[i];
+  //     console.log(`[INFO] listing #${i + 1}: ${JSON.stringify(listing)}`);
+  //   }
+  // }
+  //return listings;
+  sLoad(false);
+  sList(listings);
+  sData(listings);
+  console.log(listings);
+  console.log(`[INFO] found ${listings.length} active loan(s) for account ${initNFTFI.account.getAddress()}.`);
+  // Proceed if we find loans
+  
+}
+const loaner = async (sLoad,sList,sData)=>{
+
+ 
+
+  const loans = await window.initNFTFI.loans.get({
+    filters: {
+      counterparty: 'lender',
+      status: 'escrow'
+    }
+  });
+  console.log(`[INFO] found ${loans.length} listing(s).`);
+  // Proceed if we find listings
+  // if (listings.length > 0) {
+  //   for (var i = 0; i < listings.length; i++) {
+  //     const listing = listings[i];
+  //     console.log(`[INFO] listing #${i + 1}: ${JSON.stringify(listing)}`);
+  //   }
+  // }
+  //return listings;
+  sLoad(false);
+  sList(loans);
+  sData(loans);
+  console.log(loans);
+  console.log(`[INFO] found ${loans.length} active loan(s) for account ${initNFTFI.account.getAddress()}.`);
+  // Proceed if we find loans
+  
+}
+
 
 const ManageTable = () => {
   const [initLoading, setInitLoading] = useState(true);
   const [loading, setLoading] = useState(false);
   const [data, setData] = useState([]);
   const [list, setList] = useState([]);
+  const { address } = useAccount();
+  const provider = useProvider();
+  const {data:signer} = useSigner();
+  
+ // useEffect(() => {
+  //   fetch("/api/api")
+  //     .then((res) => res.json())
+  //     .then((res) => {
+  //       setInitLoading(false);
+  //       setData(res);
+  //       setList(res);
+  //     });
+
+//  }, []);
 
   useEffect(() => {
-    fetch("/api/api")
-      .then((res) => res.json())
-      .then((res) => {
-        setInitLoading(false);
-        setData(res);
-        setList(res);
-      });
-  }, []);
+    
+    //  console.log({address,signer,provider});
+    if(address,signer,provider){
+    if(typeof window != undefined){
+      nftFi(address,signer,provider);
+    if(typeof window.initNFTFI != undefined)
+        {
+          //listor(setLoading,setList,setData);
+          loaner(setLoading,setList,setData);
+        
+        }
+      }
+    }
+  
+  }, [
+    address,provider,signer
+  ]);
 
   const onLoadMore = () => {
     setLoading(true);
-    fetch("/api/api")
-      .then((res) => res.json())
-      .then((res) => {
-        const newData = data.concat(res);
-        setData(newData);
-        setList(newData);
-        setLoading(false);
-      });
+    // fetch("/api/api")
+    //   .then((res) => res.json())
+    //   .then((res) => {
+    //     const newData = data.concat(res);
+    //     setData(newData);
+    //     setList(newData);
+    //     setLoading(false);
+    //   });
   };
 
   const loadMore =

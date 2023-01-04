@@ -35,25 +35,25 @@ const BorrowTable = () => {
   };
 
   useEffect(() => {
-    fetch("/api/api")
-      .then((res) => res.json())
-      .then((res) => {
-        setInitLoading(false);
-        setData(res);
-        setList(res);
-      });
+    // fetch("/api/api")
+    //   .then((res) => res.json())
+    //   .then((res) => {
+    //     setInitLoading(false);
+    //     setData(res);
+    //     setList(res);
+    //   });
   }, []);
 
   const onLoadMore = () => {
-    setLoading(true);
-    fetch("/api/api")
-      .then((res) => res.json())
-      .then((res) => {
-        const newData = data.concat(res);
-        setData(newData);
-        setList(newData);
-        setLoading(false);
-      });
+    // setLoading(true);
+    // fetch("/api/api")
+    //   .then((res) => res.json())
+    //   .then((res) => {
+    //     const newData = data.concat(res);
+    //     setData(newData);
+    //     setList(newData);
+    //     setLoading(false);
+    //   });
   };
 
   const loadMore =
