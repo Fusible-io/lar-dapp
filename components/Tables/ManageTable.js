@@ -84,7 +84,6 @@ const loaner = async (sLoad,sList,sData)=>{
   
 }
 
-import { useAccount } from 'wagmi';
 
 const ManageTable = () => {
   const [initLoading, setInitLoading] = useState(true);
@@ -114,8 +113,8 @@ const ManageTable = () => {
       nftFi(address,signer,provider);
     if(typeof window.initNFTFI != undefined)
         {
-          //listor(setLoading,setList,setData);
-          loaner(setLoading,setList,setData);
+          listor(setLoading,setList,setData);
+          //loaner(setLoading,setList,setData);
         
         }
       }
@@ -125,13 +124,6 @@ const ManageTable = () => {
     address,provider,signer
   ]);
 
-  useEffect(() => {
-    if(address) {
-      console.log({address})
-    }
-  }, [
-    address
-  ]);
 
   const onLoadMore = () => {
     setLoading(true);
