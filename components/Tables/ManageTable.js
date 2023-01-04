@@ -26,14 +26,15 @@ const nftFi = async(a,s,p)=>{
       web3:{provider:p},
       logging:{verbose:true}
 });
-window.initNFTFI = initNFTFI;
-return;
+ window.initNFTFI = initNFTFI;
+ return initNFTFI;
 
 }
-const listor = async (sLoad,sList,sData)=>{
-
+const listor = async (address,signer,provider,sLoad,sList,sData)=>{
+  const initNFTFI = await nftFi(address,signer,provider);
   //sLoad(true);
-  const listings = await window.initNFTFI.listings.get({
+  if(typeof window.initNFTFI == undefined) return;
+  const listings = await initNFTFI.listings.get({
     pagination: {
       limit: 5,
       page: 1
@@ -56,9 +57,9 @@ const listor = async (sLoad,sList,sData)=>{
   // Proceed if we find loans
   
 }
-const loaner = async (sLoad,sList,sData)=>{
+const loaner = async (address,signer,provider,sLoad,sList,sData)=>{
 
- 
+  nftFi(address,signer,provider);
 
   const loans = await window.initNFTFI.loans.get({
     filters: {
@@ -110,10 +111,10 @@ const ManageTable = () => {
     //  console.log({address,signer,provider});
     if(address,signer,provider){
     if(typeof window != undefined){
-      nftFi(address,signer,provider);
+     // nftFi(address,signer,provider);
     if(typeof window.initNFTFI != undefined)
         {
-          listor(setLoading,setList,setData);
+          listor(address,signer,provider,setLoading,setList,setData);
           //loaner(setLoading,setList,setData);
         
         }
@@ -135,6 +136,7 @@ const ManageTable = () => {
     //     setList(newData);
     //     setLoading(false);
     //   });
+
   };
 
   const loadMore =
