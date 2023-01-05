@@ -10,11 +10,6 @@ let provider = ethersjs.getDefaultProvider();
 let wallet = randomWallet.connect(provider);
 
 const nftfi = await NFTfi.init({
-
-  //   //   account: { privateKey: process.env.NFTFI_SDK_ETHEREUM_LENDER_ACCOUNT_PRIVATE_KEY },
-  //      account: {address:wallet.address},
-  //       provider: { url: process.env.NFTFI_SDK_ETHEREUM_PROVIDER_URL },
-  // //      web3:{provider:provider}
       config: { api: { key: process.env.NFTFI_SDK_API_KEY } },
       ethereum: {
         account: { signer: wallet,address:wallet.address },
@@ -36,22 +31,13 @@ async function run() {
       page: 1
     }
   });
+  console.log({
+    listings
+  })
   console.log(`[INFO] found ${listings.length} listing(s).`);
-  // Proceed if we find listings
-  // if (listings.length > 0) {
-  //   for (var i = 0; i < listings.length; i++) {
-  //     const listing = listings[i];
-  //     console.log(`[INFO] listing #${i + 1}: ${JSON.stringify(listing)}`);
-  //   }
-  // }
   return listings;
 }
 
-// run().catch(error => {
-//   console.error(error);
-//   //process.exitCode = 1;
-//   return {error:'Broke'}
-// });
 export default function handler(req, res) {
   run().then(r=>{
     res.status(200).json(r);
