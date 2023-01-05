@@ -1,5 +1,6 @@
 import { Button, Card } from "antd";
 import Image from "next/image";
+import Link from "next/link";
 import React from "react";
 
 const CardComp = ({
@@ -47,13 +48,15 @@ const CardComp = ({
         </h4>
       </div>
 
-      <Button
-        disabled={acceptD}
-        type="primary"
-        className="h-[33px] rounded-lg bg-greenBtn w-full text-xs font-jakarta font-bold text-white mb-[6px] border-none"
-      >
-        Accept
-      </Button>
+      <Link href="/cardDetail">
+        <Button
+          disabled={acceptD}
+          type="primary"
+          className="h-[33px] rounded-lg bg-greenBtn w-full text-xs font-jakarta font-bold text-white mb-[6px] border-none"
+        >
+          Accept
+        </Button>
+      </Link>
 
       <Button
         disabled={offerD}
