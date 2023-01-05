@@ -101,7 +101,7 @@ const ManageTable = () => {
       }
     }
   }, [
-    address, provider, signer, window
+    address, provider, signer
   ]);
 
   useEffect(() => {

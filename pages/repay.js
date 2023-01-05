@@ -5,7 +5,7 @@ import React, { useEffect, useState } from "react";
 import CardImage from "/public/assets/CardImage.png";
 import Verify from "/public/assets/Verify.svg";
 import AllStarCardImg from "/public/assets/AllStarCardImg.png";
-import nftfi from "/public/assets/nftfi.png";
+import LOGO_nftfi from "/public/assets/nftfi.png";
 import ethIcon from "/public/assets/eth_icon.svg";
 
 import ModalComp from "../components/Modal/ModalComp";
@@ -61,6 +61,27 @@ const Repay = () => {
     provider,
     signer,
   ])
+
+  const onRepayAndClose = async () => {
+    try {
+      const result = await window.initNFTFI.loans.repay({
+        loan: {
+          id: loan?.id,
+        },
+        nftfi: {
+          contract: {
+            name: loan?.nftfi?.contract?.name
+          }
+        }
+      });
+      console.log({
+        result
+      })
+    }
+    catch (e) {
+      console.log("e", e);
+    }
+  }
 
   return (
     <>
@@ -215,7 +236,7 @@ const Repay = () => {
                   </div>
                   <div className="flex justify-center items-center bg-darkBgBlack px-[17px] py-[18px] rounded-[20px] shadow-list w-[82px] h-[82px]">
                     <Image
-                      src={nftfi}
+                      src={LOGO_nftfi}
                       alt="nftfi"
                       className="rounded-xl"
                       width={41}
@@ -227,12 +248,13 @@ const Repay = () => {
                   type="primary"
                   className="h-[59px] rounded-lg bg-greenBtn w-full text-base font-jakarta font-bold text-white mb-[6px] border-none"
                   onClick={() => {
-                    setIsModalOpen(false);
-                    setCloseLoan(false);
-                    setApprove(false);
+                    onRepayAndClose();
+                    // setIsModalOpen(false);
+                    // setCloseLoan(false);
+                    // setApprove(false);
                   }}
                 >
-                  Reapy and close loan
+                  Repay and close loan
                 </Button>
               </div>
             </div>
