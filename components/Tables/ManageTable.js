@@ -1,6 +1,7 @@
 import { List } from "antd";
 import Image from "next/image";
 import React, { useEffect, useState } from "react";
+import Router from 'next/router'
 
 import Avatar from "/public/assets/avatar.jpg";
 import nftfi from "/public/assets/nftfi.png";
@@ -9,6 +10,7 @@ import { useAccount, useProvider, useSigner } from 'wagmi';
 import moment from "moment";
 
 import NFTfi from "@nftfi/js";
+import { useLoan } from "../core/store/store";
 
 const nftFi = async (a, s, p) => {
   const initNFTFI = await NFTfi.init({
@@ -63,19 +65,19 @@ const getOffersOnNFTs = async (address, signer, provider, ownedNFTs) => {
       nft
     })
     const offers = await window.initNFTFI.offers.get(
-    //   {
-    //   filters: {
-    //     nft: {
-    //       contract: nft.contract.address,
-    //       id: nft.tokenId
-    //     }
-    //   }
-    // }
+      //   {
+      //   filters: {
+      //     nft: {
+      //       contract: nft.contract.address,
+      //       id: nft.tokenId
+      //     }
+      //   }
+      // }
     );
     console.log({ offers });
   }
 
-  
+
 }
 
 import Link from "next/link";
@@ -87,6 +89,7 @@ const ManageTable = () => {
   const { address } = useAccount();
   const provider = useProvider();
   const { data: signer } = useSigner();
+  const { setLoan } = useLoan();
 
 
   useEffect(() => {
@@ -95,14 +98,13 @@ const ManageTable = () => {
     if ((address, signer, provider) && typeof window != undefined) {
       if (typeof window.initNFTFI != undefined) {
         getActiveLoans(address, signer, provider, setLoading, setActiveLoansList);
-        //loaner(setLoading,setList,setData);
       }
     }
   }, [
-    address, provider, signer
+    address, provider, signer, window
   ]);
 
-  useEffect(async () => {
+  useEffect(() => {
     if (address) {
       fetch('/api/nft',
         {
@@ -141,6 +143,12 @@ const ManageTable = () => {
       setLoading(false);
     }, 1000);
   };
+
+  const onRepay = (loan) => {
+    setLoan(loan);
+    // navigate to repay page
+    Router.push('/repay');
+  }
 
   const loadMore =
     !loading && !loading ? (
@@ -272,11 +280,13 @@ const ManageTable = () => {
                 </div>
 
                 <div className="flex items-center justify-end w-1/12">
-                  <Link href="/repay">
-                    <button className="border-lightBorder border rounded-lg px-2 py-1 font-jakarta font-normal text-base text-lightBorder">
+                  {/* <Link href="/repay"> */}
+                    <button
+                    onClick={ () => onRepay(item)}
+                    className="border-lightBorder border rounded-lg px-2 py-1 font-jakarta font-normal text-base text-lightBorder">
                       Repay
                     </button>
-                  </Link>
+                  {/* </Link> */}
                 </div>
               </div>
             );

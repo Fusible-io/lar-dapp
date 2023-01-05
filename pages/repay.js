@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import CardImage from "/public/assets/CardImage.png";
 import Verify from "/public/assets/Verify.svg";
@@ -12,13 +12,55 @@ import ModalComp from "../components/Modal/ModalComp";
 import ListingSummary from "../components/ListingSummary/ListingSummary";
 import { Button } from "antd";
 import Head from "next/head";
+import NFTfi from "@nftfi/js";
+import { useAccount, useProvider, useSigner } from 'wagmi';
+import moment from "moment";
+
+
+
+
+import { useLoan } from "../components/core/store/store";
+
+const nftFi = async (a, s, p) => {
+  const initNFTFI = await NFTfi.init({
+    config: { api: { key: 'AIzaSyC7ZjZ4mYLoyVmkl-Ch9yzfbMTgHqpy5iM' } },
+    ethereum: {
+      account: { signer: s, address: a },
+      provider: { url: 'https://goerli.infura.io/v3/d5a371cc71304b32ac4bf5c01281d388' }
+    },
+    web3: { provider: p },
+    logging: { verbose: true }
+  });
+  window.initNFTFI = initNFTFI;
+}
 
 const Repay = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
+  const { loan } = useLoan();
+
+  const { address } = useAccount();
+  const provider = useProvider();
+  const { data: signer } = useSigner();
+
+
   const showModal = () => {
     setIsModalOpen(true);
   };
+
+  useEffect(() => {
+    console.log("loan", loan);
+  }, [loan]);
+
+  useEffect(() => {
+    if (address && signer && provider) {
+      nftFi(address, signer, provider);
+    }
+  }, [
+    address,
+    provider,
+    signer,
+  ])
 
   return (
     <>
@@ -37,140 +79,166 @@ const Repay = () => {
             </button>
           </Link>
         </div>
-        <div>
-          <div className="flex gap-[46px] mb-10">
-            <div className="relative">
-              <Image
-                src={CardImage}
-                alt="CardImage"
-                className="rounded-xl"
-                style={{ height: "435px", width: "395px" }}
-              />
-              <span className="text-white bg-tagColor rounded absolute top-[18px] left-[17px] font-semibold font-jakarta text-[11px] px-[3px] py-[1px]">
-                Listed 1/3
-              </span>
-            </div>
-            <div style={{ width: "429px" }}>
-              <h3 className="flex items-center font-jakarta text-base font-normal mb-2">
-                DigiDaigaku Genesis <Image src={Verify} alt="Verify" />
-              </h3>
-              <h1 className="font-jakarta text-[28px] font-medium mb-4">
-                DigiDaigaku #935
-              </h1>
-              <div className="flex flex-wrap gap-[8px] mb-5">
-                <div className="flex justify-between items-center bg-darkBgBlack px-[17px] py-[18px] rounded-[20px] shadow-list w-[251px] h-[82px]">
-                  <div>
-                    <h2 className="font-inter font-semibold text-base text-white80 mb-1">
-                      Collateral
-                    </h2>
-                    <p className="font-inter font-normal text-base text-white80">
-                      Daigaiku #132
-                    </p>
-                  </div>
-                  <Image
-                    src={AllStarCardImg}
-                    alt="AllStarCardImg"
-                    className="rounded-xl"
-                    width={55}
-                    height={60}
-                  />
-                </div>
-                <div className="flex justify-between items-center bg-darkBgBlack px-[17px] py-[18px] rounded-[20px] shadow-list w-[168px] h-[82px]">
-                  <div>
-                    <h2 className="font-inter font-semibold text-base text-white80 mb-1">
-                      Principal
-                    </h2>
-                    <div className="flex mt-2 items-center">
-                      <h1 className="font-normal text-base mr-1 font-inter text-white80">
-                        5.25
-                      </h1>
-                      <Image
-                        src={ethIcon}
-                        alt="ethIcon"
-                        width={12}
-                        height={19}
-                      />
-                      <span className="font-normal text-xs ml-2 -mb-[3px] font-inter text-white80">
-                        $7,239
-                      </span>
-                    </div>
-                  </div>
-                </div>
-                <div className="flex justify-between items-center bg-darkBgBlack px-[17px] py-[18px] rounded-[20px] shadow-list w-[168px] h-[82px]">
-                  <div>
-                    <h2 className="font-inter font-semibold text-base text-white80 mb-1">
-                      Repayment
-                    </h2>
-                    <div className="flex mt-2 items-center">
-                      <h1 className="font-normal text-base mr-1 font-inter text-white80">
-                        5.25
-                      </h1>
-                      <Image
-                        src={ethIcon}
-                        alt="ethIcon"
-                        width={12}
-                        height={19}
-                      />
-                      <span className="font-normal text-xs ml-2 -mb-[3px] font-inter text-white80">
-                        $7,239
-                      </span>
-                    </div>
-                  </div>
-                </div>
-                <div className="flex justify-between items-center bg-darkBgBlack px-[17px] py-[18px] rounded-[20px] shadow-list w-[107px] h-[82px]">
-                  <div>
-                    <h2 className="font-inter font-semibold text-base text-white80 mb-1">
-                      APR
-                    </h2>
-                    <p className="font-inter font-normal text-base text-white80">
-                      12%
-                    </p>
-                  </div>
-                </div>
-                <div className="flex justify-between items-center bg-darkBgBlack px-[17px] py-[18px] rounded-[20px] shadow-list w-[134px] h-[82px]">
-                  <div>
-                    <h2 className="font-inter font-semibold text-base text-white80 mb-1">
-                      Duration
-                    </h2>
-                    <p className="font-inter font-normal text-base text-white80">
-                      30 days
-                    </p>
-                  </div>
-                </div>
-                <div className="flex justify-between items-center bg-darkBgBlack px-[17px] py-[18px] rounded-[20px] shadow-list w-[337px] h-[82px]">
-                  <div>
-                    <h2 className="font-inter font-semibold text-base text-white80 mb-1">
-                      Due (UTC)
-                    </h2>
-                    <p className="font-inter font-normal text-base text-white80">
-                      12th November 2023 at 4:20pm
-                    </p>
-                  </div>
-                </div>
-                <div className="flex justify-center items-center bg-darkBgBlack px-[17px] py-[18px] rounded-[20px] shadow-list w-[82px] h-[82px]">
-                  <Image
-                    src={nftfi}
-                    alt="nftfi"
-                    className="rounded-xl"
-                    width={41}
-                    height={41}
-                  />
-                </div>
+        {
+          loan && window.initNFTFI && <div>
+            <div className="flex gap-[46px] mb-10">
+              <div className="relative">
+                <Image
+                  src={CardImage}
+                  alt="CardImage"
+                  className="rounded-xl"
+                  style={{ height: "435px", width: "395px" }}
+                />
+                <span className="text-white bg-tagColor rounded absolute top-[18px] left-[17px] font-semibold font-jakarta text-[11px] px-[3px] py-[1px]">
+                  Listed 1/3
+                </span>
               </div>
-              <Button
-                type="primary"
-                className="h-[59px] rounded-lg bg-greenBtn w-full text-base font-jakarta font-bold text-white mb-[6px] border-none"
-                onClick={() => {
-                  setIsModalOpen(false);
-                  setCloseLoan(false);
-                  setApprove(false);
-                }}
-              >
-                Reapy and close loan
-              </Button>
+              <div style={{ width: "429px" }}>
+                <h3 className="flex items-center font-jakarta text-base font-normal mb-2">
+                  {
+                    loan?.nft?.project?.name
+                  }
+                </h3>
+                <h1 className="font-jakarta text-[28px] font-medium mb-4">
+                  {
+                    loan?.nft?.name
+                  }
+                  {
+                    '#'
+                  }
+                  {
+                    loan?.nft?.id
+                  }
+                </h1>
+                <div className="flex flex-wrap gap-[8px] mb-5">
+                  <div className="flex justify-between items-center bg-darkBgBlack px-[17px] py-[18px] rounded-[20px] shadow-list w-[251px] h-[82px]">
+                    <div>
+                      <h2 className="font-inter font-semibold text-base text-white80 mb-1">
+                        Collateral
+                      </h2>
+                      <p className="font-inter font-normal text-base text-white80">
+                        Daigaiku #132
+                      </p>
+                    </div>
+                    <Image
+                      src={AllStarCardImg}
+                      alt="AllStarCardImg"
+                      className="rounded-xl"
+                      width={55}
+                      height={60}
+                    />
+                  </div>
+                  <div className="flex justify-between items-center bg-darkBgBlack px-[17px] py-[18px] rounded-[20px] shadow-list w-[168px] h-[82px]">
+                    <div>
+                      <h2 className="font-inter font-semibold text-base text-white80 mb-1">
+                        Principal
+                      </h2>
+                      <div className="flex mt-2 items-center">
+                        <h1 className="font-normal text-base mr-1 font-inter text-white80">
+                          {
+                            (window.initNFTFI.utils.formatEther(loan?.terms?.loan?.principal
+                            )).toString().substring(0, 5)
+                          }
+                        </h1>
+                        <Image
+                          src={ethIcon}
+                          alt="ethIcon"
+                          width={12}
+                          height={19}
+                        />
+                        <span className="font-normal text-xs ml-2 -mb-[3px] font-inter text-white80">
+                          $7,239
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="flex justify-between items-center bg-darkBgBlack px-[17px] py-[18px] rounded-[20px] shadow-list w-[168px] h-[82px]">
+                    <div>
+                      <h2 className="font-inter font-semibold text-base text-white80 mb-1">
+                        Repayment
+                      </h2>
+                      <div className="flex mt-2 items-center">
+                        <h1 className="font-normal text-base mr-1 font-inter text-white80">
+                          {
+                            (window.initNFTFI.utils.formatEther(loan?.terms?.loan?.repayment
+                            )).toString().substring(0, 5)
+                          }
+                        </h1>
+                        <Image
+                          src={ethIcon}
+                          alt="ethIcon"
+                          width={12}
+                          height={19}
+                        />
+                        <span className="font-normal text-xs ml-2 -mb-[3px] font-inter text-white80">
+                          $7,239
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="flex justify-between items-center bg-darkBgBlack px-[17px] py-[18px] rounded-[20px] shadow-list w-[107px] h-[82px]">
+                    <div>
+                      <h2 className="font-inter font-semibold text-base text-white80 mb-1">
+                        APR
+                      </h2>
+                      <p className="font-inter font-normal text-base text-white80">
+                        {
+                          (window.initNFTFI.utils.calcApr(loan?.terms?.loan?.principal, loan?.terms?.loan?.repayment, (loan?.terms?.loan?.duration / (24 * 60 * 60)))).toString().substring(0, 5)
+                        }
+                        {
+                          ' %'
+                        }
+                      </p>
+                    </div>
+                  </div>
+                  <div className="flex justify-between items-center bg-darkBgBlack px-[17px] py-[18px] rounded-[20px] shadow-list w-[134px] h-[82px]">
+                    <div>
+                      <h2 className="font-inter font-semibold text-base text-white80 mb-1">
+                        Duration
+                      </h2>
+                      <p className="font-inter font-normal text-base text-white80">
+                        {moment.duration(loan?.terms?.loan?.duration, 'second').humanize()}
+                      </p>
+                    </div>
+                  </div>
+                  <div className="flex justify-between items-center bg-darkBgBlack px-[17px] py-[18px] rounded-[20px] shadow-list w-[337px] h-[82px]">
+                    <div>
+                      <h2 className="font-inter font-semibold text-base text-white80 mb-1">
+                        Due (UTC)
+                      </h2>
+                      <p className="font-inter font-normal text-base text-white80">
+                        {
+                          moment(loan?.date?.started).add(loan?.terms?.loan?.duration, 'seconds').format('Do MMMM YYYY [at]  hh:mm a').toString()
+                        }
+                      </p>
+                    </div>
+                  </div>
+                  <div className="flex justify-center items-center bg-darkBgBlack px-[17px] py-[18px] rounded-[20px] shadow-list w-[82px] h-[82px]">
+                    <Image
+                      src={nftfi}
+                      alt="nftfi"
+                      className="rounded-xl"
+                      width={41}
+                      height={41}
+                    />
+                  </div>
+                </div>
+                <Button
+                  type="primary"
+                  className="h-[59px] rounded-lg bg-greenBtn w-full text-base font-jakarta font-bold text-white mb-[6px] border-none"
+                  onClick={() => {
+                    setIsModalOpen(false);
+                    setCloseLoan(false);
+                    setApprove(false);
+                  }}
+                >
+                  Reapy and close loan
+                </Button>
+              </div>
             </div>
           </div>
-        </div>
+        }
+
         <div>
           <button
             onClick={showModal}
