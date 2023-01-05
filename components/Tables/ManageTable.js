@@ -33,12 +33,9 @@ const listor = async (address, signer, provider, sLoad, sList) => {
       page: 1
     }
   });
-  console.log(`[INFO] found ${listings.length} listing(s).`);
   sLoad(false);
   sList(listings);
-  console.log(listings);
-  console.log(`[INFO] found ${listings.length} active loan(s) for account ${initNFTFI.account.getAddress()}.`);
-  // Proceed if we find loans
+  console.log({ listings });
 
 }
 const getActiveLoans = async (address, signer, provider, sLoad, sList) => {
@@ -51,21 +48,41 @@ const getActiveLoans = async (address, signer, provider, sLoad, sList) => {
       status: 'escrow'
     }
   });
-  console.log(`[INFO] found ${loans.length} listing(s).`);
   sLoad(false);
   sList(loans);
-  console.log(loans);
-  console.log(`[INFO] found ${loans.length} active loan(s) for account ${initNFTFI.account.getAddress()}.`);
+  console.log({ loans });
 }
 
-const getMyOffers = async (address, signer, provider, sLoad, sList) => {
+const getOffersOnNFTs = async (address, signer, provider, ownedNFTs) => {
+  await nftFi(address, signer, provider);
+  if (typeof window.initNFTFI == undefined) return;
 
+  for (var i = 0; i < ownedNFTs.length; i++) {
+    const nft = ownedNFTs[i];
+    console.log({
+      nft
+    })
+    const offers = await window.initNFTFI.offers.get(
+    //   {
+    //   filters: {
+    //     nft: {
+    //       contract: nft.contract.address,
+    //       id: nft.tokenId
+    //     }
+    //   }
+    // }
+    );
+    console.log({ offers });
+  }
+
+  
 }
 
 
 const ManageTable = () => {
   const [loading, setLoading] = useState(false);
   const [activeLoansList, setActiveLoansList] = useState([]);
+  const [ownedNFTs, setOwnedNFTs] = useState([]);
   const { address } = useAccount();
   const provider = useProvider();
   const { data: signer } = useSigner();
@@ -74,17 +91,46 @@ const ManageTable = () => {
   useEffect(() => {
 
     //  console.log({address,signer,provider});
-    if (address, signer, provider) {
-      if (typeof window != undefined) {
-        // nftFi(address,signer,provider);
-        if (typeof window.initNFTFI != undefined) {
-          getActiveLoans(address, signer, provider, setLoading, setActiveLoansList);
-          //loaner(setLoading,setList,setData);
-        }
+    if ((address, signer, provider) && typeof window != undefined) {
+      if (typeof window.initNFTFI != undefined) {
+        getActiveLoans(address, signer, provider, setLoading, setActiveLoansList);
+        //loaner(setLoading,setList,setData);
       }
     }
   }, [
     address, provider, signer
+  ]);
+
+  useEffect(async () => {
+    if (address) {
+      fetch('/api/nft',
+        {
+          method: 'POST', // or 'PUT'
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            address,
+          }),
+        }
+      )
+        .then((res) => res.json())
+        .then((res) => {
+          setOwnedNFTs(res.ownedNfts);
+          console.log({
+            'ownedNFts': res.ownedNfts,
+          })
+        });
+    }
+
+  }, [address]);
+
+  useEffect(() => {
+    if (address, signer, provider, ownedNFTs) {
+      getOffersOnNFTs(address, signer, provider, ownedNFTs);
+    }
+  }, [
+    address, signer, provider, ownedNFTs,
   ]);
 
 
