@@ -16,10 +16,11 @@ import NFTfi from "@nftfi/js";
 import { useAccount, useProvider, useSigner } from 'wagmi';
 import moment from "moment";
 
-
-
-
 import { useLoan } from "../components/core/store/store";
+import { formatCurrency } from "../components/core/utils/formatCurrency";
+import { ERC20_MAP } from "../components/core/constant/nftFiConfig";
+import Router from 'next/router'
+
 
 const nftFi = async (a, s, p) => {
   const initNFTFI = await NFTfi.init({
@@ -42,6 +43,7 @@ const Repay = () => {
   const { address } = useAccount();
   const provider = useProvider();
   const { data: signer } = useSigner();
+  const { clearLoan } = useLoan();
 
 
   const showModal = () => {
@@ -64,19 +66,44 @@ const Repay = () => {
 
   const onRepayAndClose = async () => {
     try {
-      const result = await window.initNFTFI.loans.repay({
-        loan: {
-          id: loan?.id,
-        },
-        nftfi: {
-          contract: {
-            name: loan?.nftfi?.contract?.name
-          }
-        }
-      });
       console.log({
-        result
+        loan
       })
+
+      const tx = await window.initNFTFI.erc20.approve({
+        amount: loan?.terms?.loan?.repayment,
+        token: { address: loan?.terms?.loan?.currency },
+        nftfi: { contract: { name: loan?.nftfi?.contract?.name } }
+      })
+
+      if (tx) {
+        console.log({
+          tx
+        })
+        const response = await window.initNFTFI.loans.repay({
+          loan: {
+            id: loan?.id,
+          },
+          nftfi: {
+            contract: {
+              name: loan?.nftfi?.contract?.name
+            }
+          }
+        })
+
+        if (response) {
+          Router.push('/')
+        }
+
+        console.log({
+          response
+        })
+        clearLoan();
+
+      }
+
+
+
     }
     catch (e) {
       console.log("e", e);
@@ -101,7 +128,7 @@ const Repay = () => {
           </Link>
         </div>
         {
-          loan && window.initNFTFI && <div>
+          loan && <div>
             <div className="flex gap-[46px] mb-10">
               <div className="relative">
                 <Image
@@ -157,10 +184,19 @@ const Repay = () => {
                       <div className="flex mt-2 items-center">
                         <h1 className="font-normal text-base mr-1 font-inter text-white80">
                           {
-                            (window.initNFTFI.utils.formatEther(loan?.terms?.loan?.principal
-                            )).toString().substring(0, 5)
+                            formatCurrency(loan.terms.loan.principal, loan.terms.loan.currency)
                           }
+                          {
+                            ' '
+                          }
+
                         </h1>
+                        <p>
+                          {
+                            ERC20_MAP[loan.terms.loan.currency].symbol
+                          }
+                        </p>
+
                         <Image
                           src={ethIcon}
                           alt="ethIcon"
@@ -181,10 +217,17 @@ const Repay = () => {
                       <div className="flex mt-2 items-center">
                         <h1 className="font-normal text-base mr-1 font-inter text-white80">
                           {
-                            (window.initNFTFI.utils.formatEther(loan?.terms?.loan?.repayment
-                            )).toString().substring(0, 5)
+                            formatCurrency(loan.terms.loan.repayment, loan.terms.loan.currency)
+                          }
+                          {
+                            ' '
                           }
                         </h1>
+                        <p>
+                          {
+                            ERC20_MAP[loan.terms.loan.currency].symbol
+                          }
+                        </p>
                         <Image
                           src={ethIcon}
                           alt="ethIcon"

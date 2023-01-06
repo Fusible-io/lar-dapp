@@ -23,6 +23,11 @@ export const useAllNfts = create(
             allNfts: null,
             setAllNfts: (allNfts) => set({ allNfts }),
             clearAllNfts: () => set({ allNfts: null }),
+            getOneNft: (contractAddress, tokenId) => {
+                const allNfts = get().allNfts;
+                if (!allNfts) return null;
+                return allNfts.find((nft) => nft.contractAddress === contractAddress && nft.tokenId === tokenId);
+            }
         }),
         {
             name: LOCAL_STORAGE_KEYS.ALL_NFTS,

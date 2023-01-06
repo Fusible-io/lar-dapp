@@ -10,7 +10,11 @@ import { useAccount, useProvider, useSigner } from 'wagmi';
 import moment from "moment";
 
 import NFTfi from "@nftfi/js";
-import { useLoan } from "../core/store/store";
+import { useLoan, useAllNfts } from "../core/store/store";
+
+import { formatCurrency } from "../core/utils/formatCurrency";
+import { ERC20_MAP } from "../core/constant/nftFiConfig";
+
 
 const nftFi = async (a, s, p) => {
   const initNFTFI = await NFTfi.init({
@@ -50,6 +54,43 @@ const getActiveLoans = async (address, signer, provider, sLoad, sList) => {
       status: 'escrow'
     }
   });
+
+  for (var i = 0; i < loans.length; i++) {
+    const loan = loans[i];
+    // console.log({
+    //   'single loan': loan
+    // })
+    const response = formatCurrency(loan.terms.loan.principal, loan.terms.currency);
+    console.log({
+      response
+    })
+  }
+
+  // for (var i = 0; i < loans.length; i++) {
+  //   const loan = loans[i];
+  //   // fetch single nft details from single_nft endpoint and add it to the loan object
+  //   const nft = await fetch('/api/single_nft',
+  //     {
+  //       method: 'POST', // or 'PUT'
+  //       headers: {
+  //         'Content-Type': 'application/json',
+  //       },
+  //       body: JSON.stringify({
+  //         contractAddress: loan.nft.address,
+  //         tokenId: loan.nft.id
+  //       }),
+
+
+  //     }
+  //   ).then(response => response.json())
+  //     .then(data => {
+  //       console.log(data)
+  //       return data
+  //     }
+  //     );
+  //   loan.nft = nft;
+  // }
+
   sLoad(false);
   sList(loans);
   console.log({ loans });
@@ -76,11 +117,8 @@ const getOffersOnNFTs = async (address, signer, provider, ownedNFTs) => {
     );
     console.log({ offers });
   }
-
-
 }
 
-import Link from "next/link";
 
 const ManageTable = () => {
   const [loading, setLoading] = useState(false);
@@ -90,11 +128,10 @@ const ManageTable = () => {
   const provider = useProvider();
   const { data: signer } = useSigner();
   const { setLoan } = useLoan();
+  const { setAllNfts } = useAllNfts();
 
 
   useEffect(() => {
-
-    //  console.log({address,signer,provider});
     if ((address, signer, provider) && typeof window != undefined) {
       if (typeof window.initNFTFI != undefined) {
         getActiveLoans(address, signer, provider, setLoading, setActiveLoansList);
@@ -120,6 +157,7 @@ const ManageTable = () => {
         .then((res) => res.json())
         .then((res) => {
           setOwnedNFTs(res.ownedNfts);
+          setAllNfts(res.ownedNFTs);
           console.log({
             'ownedNFts': res.ownedNfts,
           })
@@ -146,8 +184,31 @@ const ManageTable = () => {
 
   const onRepay = (loan) => {
     setLoan(loan);
-    // navigate to repay page
     Router.push('/repay');
+  }
+
+  const fetchSingleNFTImage = async (contractAddress, tokenId) => {
+    // call single_nft api POST with contractAddress and tokenId to get image
+    const response = await fetch(
+      '/api/single_nft',
+      {
+        method: 'POST', // or 'PUT'
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          contractAddress,
+          tokenId,
+        }),
+      }
+    );
+
+    const image = await response.json();
+    console.log({
+      image
+    })
+
+    return image;
   }
 
   const loadMore =
@@ -213,7 +274,7 @@ const ManageTable = () => {
             return (
               <div className="flex justify-between items-center px-[18px] pb-4">
                 <div className="flex items-center w-3/12 my-2">
-                  <Image src={Avatar} alt="Avatar" className="rounded" />
+                  <Image src={() => fetchSingleNFTImage(item.nft.address, item.nft.id)} alt="Avatar" className="rounded" />
                   <p className="font-semibold font-jakarta text-base text-lightTextC ml-2">
                     {item?.nft?.name}
                   </p>
@@ -222,11 +283,13 @@ const ManageTable = () => {
                 <div className="w-1/12">
                   <p className="font-semibold font-jakarta text-base text-lightTextC text-right ">
                     {
-                      (window.initNFTFI.utils.formatEther(item?.terms?.loan?.principal
-                      )).toString().substring(0, 5)
+                      formatCurrency(item.terms.loan.principal, item.terms.loan.currency)
                     }
                     {
-                      ' wETH'
+                      ' '
+                    }
+                    {
+                      ERC20_MAP[item.terms.loan.currency].symbol
                     }
                   </p>
                 </div>
@@ -240,11 +303,13 @@ const ManageTable = () => {
                 <div className="w-1/12">
                   <p className="font-semibold font-jakarta text-base text-lightTextC text-right ">
                     {
-                      (window.initNFTFI.utils.formatEther(item?.terms?.loan?.repayment
-                      )).toString().substring(0, 5)
+                      formatCurrency(item.terms.loan.repayment, item.terms.loan.currency)
                     }
                     {
-                      ' wETH'
+                      ' '
+                    }
+                    {
+                      ERC20_MAP[item.terms.loan.currency].symbol
                     }
                   </p>
                 </div>
@@ -281,11 +346,11 @@ const ManageTable = () => {
 
                 <div className="flex items-center justify-end w-1/12">
                   {/* <Link href="/repay"> */}
-                    <button
-                    onClick={ () => onRepay(item)}
+                  <button
+                    onClick={() => onRepay(item)}
                     className="border-lightBorder border rounded-lg px-2 py-1 font-jakarta font-normal text-base text-lightBorder">
-                      Repay
-                    </button>
+                    Repay
+                  </button>
                   {/* </Link> */}
                 </div>
               </div>
