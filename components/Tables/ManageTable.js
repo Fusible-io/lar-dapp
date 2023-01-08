@@ -1,14 +1,20 @@
 import { List } from "antd";
 import Image from "next/image";
 import React, { useEffect, useState } from "react";
+import Router from 'next/router'
 
 import Avatar from "/public/assets/avatar.jpg";
-import nftfi from "/public/assets/nftfi.jpg";
+import nftfi from "/public/assets/nftfi.png";
 import StatusComp from "../StatusComp/StatusComp";
 import { useAccount, useProvider, useSigner } from 'wagmi';
 import moment from "moment";
 
 import NFTfi from "@nftfi/js";
+import { useLoan, useAllNfts } from "../core/store/store";
+
+import { formatCurrency } from "../core/utils/formatCurrency";
+import { ERC20_MAP } from "../core/constant/nftFiConfig";
+
 
 const nftFi = async (a, s, p) => {
   const initNFTFI = await NFTfi.init({
@@ -118,15 +124,14 @@ const ManageTable = () => {
   const { address } = useAccount();
   const provider = useProvider();
   const { data: signer } = useSigner();
+  const { setLoan } = useLoan();
+  const { setAllNfts } = useAllNfts();
 
 
   useEffect(() => {
-
-    //  console.log({address,signer,provider});
     if ((address, signer, provider) && typeof window != undefined) {
       if (typeof window.initNFTFI != undefined) {
         getActiveLoans(address, signer, provider, setLoading, setActiveLoansList);
-        //loaner(setLoading,setList,setData);
       }
     }
   }, [
@@ -224,7 +229,7 @@ const ManageTable = () => {
       <div>
         <List
           header={
-            <div className="flex">
+            <div className="flex px-[18px]">
               <h1 className="font-medium text-sm font-jakarta text-gTextColor text-left w-3/12">
                 Items
               </h1>
@@ -264,9 +269,9 @@ const ManageTable = () => {
           loading={loading}
           renderItem={(item) => {
             return (
-              <div className="flex justify-between items-center">
+              <div className="flex justify-between items-center px-[18px] pb-4">
                 <div className="flex items-center w-3/12 my-2">
-                  <Image src={Avatar} alt="Avatar" className="rounded" />
+                  <Image src={() => fetchSingleNFTImage(item.nft.address, item.nft.id)} alt="Avatar" className="rounded" />
                   <p className="font-semibold font-jakarta text-base text-lightTextC ml-2">
                     {item?.nft?.name}
                   </p>
@@ -275,11 +280,13 @@ const ManageTable = () => {
                 <div className="w-1/12">
                   <p className="font-semibold font-jakarta text-base text-lightTextC text-right ">
                     {
-                      (window.initNFTFI.utils.formatEther(item?.terms?.loan?.principal
-                      )).toString().substring(0, 5)
+                      formatCurrency(item.terms.loan.principal, item.terms.loan.currency)
                     }
                     {
-                      ' wETH'
+                      ' '
+                    }
+                    {
+                      ERC20_MAP[item.terms.loan.currency].symbol
                     }
                   </p>
                 </div>
@@ -293,11 +300,13 @@ const ManageTable = () => {
                 <div className="w-1/12">
                   <p className="font-semibold font-jakarta text-base text-lightTextC text-right ">
                     {
-                      (window.initNFTFI.utils.formatEther(item?.terms?.loan?.repayment
-                      )).toString().substring(0, 5)
+                      formatCurrency(item.terms.loan.repayment, item.terms.loan.currency)
                     }
                     {
-                      ' wETH'
+                      ' '
+                    }
+                    {
+                      ERC20_MAP[item.terms.loan.currency].symbol
                     }
                   </p>
                 </div>
@@ -323,13 +332,23 @@ const ManageTable = () => {
                 </div>
 
                 <div className="flex justify-center items-center w-1/12">
-                  <Image src={nftfi} alt="nftfi" className="rounded-full" />
+                  <Image
+                    src={nftfi}
+                    alt="nftfi"
+                    className="rounded-full"
+                    width={20}
+                    height={20}
+                  />
                 </div>
 
                 <div className="flex items-center justify-end w-1/12">
-                  <button className="border-lightBorder border rounded-lg px-2 py-1 font-jakarta font-normal text-base text-lightBorder">
+                  {/* <Link href="/repay"> */}
+                  <button
+                    onClick={() => onRepay(item)}
+                    className="border-lightBorder border rounded-lg px-2 py-1 font-jakarta font-normal text-base text-lightBorder">
                     Repay
                   </button>
+                  {/* </Link> */}
                 </div>
               </div>
             );

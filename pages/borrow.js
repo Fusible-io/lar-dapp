@@ -228,8 +228,8 @@ const Borrow = (disabled = true) => {
       <ModalComp
         isModalOpen={isModalOpen}
         setIsModalOpen={setIsModalOpen}
-        // content={<LoanSummary setIsModalOpen={setIsModalOpen} />}
-        content={<ListingSummary />}
+        content={<LoanSummary setIsModalOpen={setIsModalOpen} />}
+        // content={<ListingSummary />}
       />
     </>
   );
