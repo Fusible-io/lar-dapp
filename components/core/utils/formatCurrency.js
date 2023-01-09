@@ -18,6 +18,9 @@ export function getUnit(currencyAddress) {
 }
 
 export function formatCurrency(amount, currencyAddress) {
+    if (!amount || amount == "") {
+        return 
+    }
     const unit = getUnit(currencyAddress);
     const formattedAmount = ethers.utils.formatUnits(amount, unit);
     return formattedAmount;
