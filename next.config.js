@@ -30,6 +30,7 @@ const nextConfig = {
   },
 
   reactStrictMode: false,
+  ignoreDuringBuilds: true,
 
   webpack(config) {
     config.experiments = { ...config.experiments, topLevelAwait: true };
