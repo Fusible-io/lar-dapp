@@ -163,7 +163,7 @@ const CardDetail = () => {
                   <div className="flex justify-between items-center mb-4">
                     <div className="flex items-end mr-12">
                       <h1 className="font-jakarta text-2xl font-semibold mr-2">
-                        {
+                        {/* {
                           formatCurrency(offer?.offer?.terms?.loan?.principal, offer?.offer?.terms?.loan?.currency)
                         }
                         {
@@ -171,7 +171,7 @@ const CardDetail = () => {
                         }
                         {
                           ERC20_MAP[offer?.offer?.terms?.loan?.currency].symbol
-                        }
+                        } */}
                       </h1>
                       <span className="font-jakarta text-sm font-normal text-[#5D6785]">
                         $10,084.83
@@ -184,7 +184,7 @@ const CardDetail = () => {
                     <br /> <span className="text-[#5D6785]">
                       You repay
                     </span>{" "}
-                    {
+                    {/* {
                       formatCurrency(offer?.offer?.terms.loan.repayment, offer?.offer?.terms.loan.currency)
                     }
                     {
@@ -192,7 +192,7 @@ const CardDetail = () => {
                     }
                     {
                       ERC20_MAP[offer?.offer?.terms.loan.currency].symbol
-                    }
+                    } */}
                   </p>
                   <Button
                     onClick={() => onIssueLoan()}
