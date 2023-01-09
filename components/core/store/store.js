@@ -50,6 +50,16 @@ export const useOffer = create(
     )
 )
 
+// Do no persist nftfi instance
+
+export const useNFTFi = create(
+    (set, get) => ({
+        nftfi: null,
+        setNFTFi: (nftfi) => set({ nftfi }),
+        clearNFTFi: () => set({ nftfi: null }),
+    })
+)
+
 
 // export const useMatch = create(
 //     persist(

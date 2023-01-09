@@ -12,7 +12,7 @@ import { ListData } from "../components/Data/Data";
 import ModalComp from "../components/Modal/ModalComp";
 import ListingSummary from "../components/ListingSummary/ListingSummary";
 import Head from "next/head";
-import { useOffer } from "../components/core/store/store";
+import { useOffer, useNFTFi } from "../components/core/store/store";
 import { formatCurrency } from "../components/core/utils/formatCurrency";
 import { ERC20_MAP } from "../components/core/constant/nftFiConfig";
 import moment from "moment";
@@ -21,6 +21,7 @@ import moment from "moment";
 const CardDetail = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const { offer } = useOffer();
+  const { nftfi } = useNFTFi();
 
   const showModal = () => {
     setIsModalOpen(true);
@@ -60,7 +61,7 @@ const CardDetail = () => {
     // });
 
 
-    const result = await window.initNFTFI.loans.begin({
+    const result = await nftfi.loans.begin({
       offer: {
         ...offer.offer,
         nft: {
@@ -163,7 +164,7 @@ const CardDetail = () => {
                   <div className="flex justify-between items-center mb-4">
                     <div className="flex items-end mr-12">
                       <h1 className="font-jakarta text-2xl font-semibold mr-2">
-                        {/* {
+                        {
                           formatCurrency(offer?.offer?.terms?.loan?.principal, offer?.offer?.terms?.loan?.currency)
                         }
                         {
@@ -171,7 +172,7 @@ const CardDetail = () => {
                         }
                         {
                           ERC20_MAP[offer?.offer?.terms?.loan?.currency].symbol
-                        } */}
+                        }
                       </h1>
                       <span className="font-jakarta text-sm font-normal text-[#5D6785]">
                         $10,084.83
@@ -184,7 +185,7 @@ const CardDetail = () => {
                     <br /> <span className="text-[#5D6785]">
                       You repay
                     </span>{" "}
-                    {/* {
+                    {
                       formatCurrency(offer?.offer?.terms.loan.repayment, offer?.offer?.terms.loan.currency)
                     }
                     {
@@ -192,7 +193,7 @@ const CardDetail = () => {
                     }
                     {
                       ERC20_MAP[offer?.offer?.terms.loan.currency].symbol
-                    } */}
+                    }
                   </p>
                   <Button
                     onClick={() => onIssueLoan()}

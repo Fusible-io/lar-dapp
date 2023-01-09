@@ -3,7 +3,6 @@ import Link from "next/link";
 import React, { useEffect, useState } from "react";
 
 import CardImage from "/public/assets/CardImage.png";
-import Verify from "/public/assets/Verify.svg";
 import AllStarCardImg from "/public/assets/AllStarCardImg.png";
 import LOGO_nftfi from "/public/assets/nftfi.png";
 import ethIcon from "/public/assets/eth_icon.svg";
@@ -12,38 +11,20 @@ import ModalComp from "../components/Modal/ModalComp";
 import ListingSummary from "../components/ListingSummary/ListingSummary";
 import { Button } from "antd";
 import Head from "next/head";
-import NFTfi from "@nftfi/js";
-import { useAccount, useProvider, useSigner } from 'wagmi';
 import moment from "moment";
 
-import { useLoan } from "../components/core/store/store";
+import { useLoan, useNFTFi } from "../components/core/store/store"
 import { formatCurrency } from "../components/core/utils/formatCurrency";
 import { ERC20_MAP } from "../components/core/constant/nftFiConfig";
 import Router from 'next/router'
 
 
-const nftFi = async (a, s, p) => {
-  const initNFTFI = await NFTfi.init({
-    config: { api: { key: 'AIzaSyC7ZjZ4mYLoyVmkl-Ch9yzfbMTgHqpy5iM' } },
-    ethereum: {
-      account: { signer: s, address: a },
-      provider: { url: 'https://goerli.infura.io/v3/d5a371cc71304b32ac4bf5c01281d388' }
-    },
-    web3: { provider: p },
-    logging: { verbose: true }
-  });
-  window.initNFTFI = initNFTFI;
-}
-
 const Repay = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const { loan } = useLoan();
-
-  const { address } = useAccount();
-  const provider = useProvider();
-  const { data: signer } = useSigner();
   const { clearLoan } = useLoan();
+  const { nftfi } = useNFTFi();
 
 
   const showModal = () => {
@@ -54,15 +35,6 @@ const Repay = () => {
     console.log("loan", loan);
   }, [loan]);
 
-  useEffect(() => {
-    if (address && signer && provider) {
-      nftFi(address, signer, provider);
-    }
-  }, [
-    address,
-    provider,
-    signer,
-  ])
 
   const onRepayAndClose = async () => {
     try {
@@ -70,7 +42,7 @@ const Repay = () => {
         loan
       })
 
-      const tx = await window.initNFTFI.erc20.approve({
+      const tx = await nftfi.erc20.approve({
         amount: loan?.terms?.loan?.repayment,
         token: { address: loan?.terms?.loan?.currency },
         nftfi: { contract: { name: loan?.nftfi?.contract?.name } }
@@ -80,7 +52,7 @@ const Repay = () => {
         console.log({
           tx
         })
-        const response = await window.initNFTFI.loans.repay({
+        const response = await nftfi.loans.repay({
           loan: {
             id: loan?.id,
           },
@@ -247,7 +219,7 @@ const Repay = () => {
                       </h2>
                       <p className="font-inter font-normal text-base text-white80">
                         {
-                          (window.initNFTFI.utils.calcApr(loan?.terms?.loan?.principal, loan?.terms?.loan?.repayment, (loan?.terms?.loan?.duration / (24 * 60 * 60)))).toString().substring(0, 5)
+                          (nftfi.utils.calcApr(loan?.terms?.loan?.principal, loan?.terms?.loan?.repayment, (loan?.terms?.loan?.duration / (24 * 60 * 60)))).toString().substring(0, 5)
                         }
                         {
                           ' %'

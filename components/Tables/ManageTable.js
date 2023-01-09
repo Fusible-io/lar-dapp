@@ -4,172 +4,28 @@ import React, { useEffect, useState } from "react";
 import Router from 'next/router'
 
 import Avatar from "/public/assets/avatar.jpg";
-import nftfi from "/public/assets/nftfi.png";
+import nftfi_logo from "/public/assets/nftfi.png";
 import StatusComp from "../StatusComp/StatusComp";
-import { useAccount, useProvider, useSigner } from 'wagmi';
 import moment from "moment";
-
-import NFTfi from "@nftfi/js";
-import { useLoan, useAllNfts } from "../core/store/store";
 
 import { formatCurrency } from "../core/utils/formatCurrency";
 import { ERC20_MAP } from "../core/constant/nftFiConfig";
+import { useLoan, useNFTFi } from "../core/store/store";
 
-
-const nftFi = async (a, s, p) => {
-  const initNFTFI = await NFTfi.init({
-    config: { api: { key: 'AIzaSyC7ZjZ4mYLoyVmkl-Ch9yzfbMTgHqpy5iM' } },
-    ethereum: {
-      account: { signer: s, address: a },
-      provider: { url: 'https://goerli.infura.io/v3/d5a371cc71304b32ac4bf5c01281d388' }
-    },
-    web3: { provider: p },
-    logging: { verbose: true }
-  });
-  window.initNFTFI = initNFTFI;
-}
-
-const listor = async (address, signer, provider, sLoad, sList) => {
-  const initNFTFI = await nftFi(address, signer, provider);
-  //sLoad(true);
-  if (typeof window.initNFTFI == undefined) return;
-  const listings = await initNFTFI.listings.get({
-    pagination: {
-      limit: 5,
-      page: 1
-    }
-  });
-  sLoad(false);
-  sList(listings);
-  // console.log({ listings });
-
-}
-const getActiveLoans = async (address, signer, provider, sLoad, sList) => {
-  sLoad(true);
-  await nftFi(address, signer, provider);
-  if (typeof window.initNFTFI == undefined) return;
-  const loans = await window.initNFTFI.loans.get({
-    filters: {
-      counterparty: 'borrower',
-      status: 'escrow'
-    }
-  });
-
-  for (var i = 0; i < loans.length; i++) {
-    const loan = loans[i];
-    const response = formatCurrency(loan.terms.loan.principal, loan.terms.currency);
-    // console.log({
-    //   response
-    // })
-  }
-
-  // for (var i = 0; i < loans.length; i++) {
-  //   const loan = loans[i];
-  //   // fetch single nft details from single_nft endpoint and add it to the loan object
-  //   const nft = await fetch('/api/single_nft',
-  //     {
-  //       method: 'POST', // or 'PUT'
-  //       headers: {
-  //         'Content-Type': 'application/json',
-  //       },
-  //       body: JSON.stringify({
-  //         contractAddress: loan.nft.address,
-  //         tokenId: loan.nft.id
-  //       }),
-
-
-  //     }
-  //   ).then(response => response.json())
-  //     .then(data => {
-  //       console.log(data)
-  //       return data
-  //     }
-  //     );
-  //   loan.nft = nft;
-  // }
-
-  sLoad(false);
-  sList(loans);
-  // console.log({ loans });
-}
-
-// const getOffersOnNFTs = async (address, signer, provider, ownedNFTs, setOffers) => {
-//   await nftFi(address, signer, provider);
-//   console.log({ ownedNFTs })
-//   if (typeof window.initNFTFI == undefined) return;
-
-//   const response = await Promise.all(ownedNFTs.map(async (nft) => {
-//     const offers = await window.initNFTFI.offers.get({
-//       filters: {
-//         nft: {
-//           id: nft.tokenId,
-//           address: nft.contract.address,
-//         }
-//       }
-//     });
-//     return offers;
-//   }));
-
-//   console.log({ response })
-
-//   setOffers(response);
-// }
+import { useAccount } from 'wagmi';
 
 
 const ManageTable = () => {
   const [loading, setLoading] = useState(false);
   const [activeLoansList, setActiveLoansList] = useState([]);
-  const [ownedNFTs, setOwnedNFTs] = useState([]);
-  const [offers, setOffers] = useState([]);
+  const { nftfi } = useNFTFi();
   const { address } = useAccount();
-  const provider = useProvider();
-  const { data: signer } = useSigner();
   const { setLoan } = useLoan();
-  const { setAllNfts } = useAllNfts();
 
 
   useEffect(() => {
-    if ((address && signer && provider) && typeof window != undefined) {
-      if (typeof window.initNFTFI != undefined) {
-        getActiveLoans(address, signer, provider, setLoading, setActiveLoansList);
-      }
-    }
-  }, [
-    address, provider, signer
-  ]);
-
-  // useEffect(() => {
-  //   if (address) {
-  //     fetch('/api/nft',
-  //       {
-  //         method: 'POST', // or 'PUT'
-  //         headers: {
-  //           'Content-Type': 'application/json',
-  //         },
-  //         body: JSON.stringify({
-  //           address,
-  //         }),
-  //       }
-  //     )
-  //       .then((res) => res.json())
-  //       .then((res) => {
-  //         setOwnedNFTs(res.ownedNfts);
-  //         setAllNfts(res.ownedNFTs);
-  //         // console.log({
-  //         //   'ownedNFts': res.ownedNfts,
-  //         // })
-  //       });
-  //   }
-
-  // }, [address]);
-
-  // useEffect(() => {
-  //   if (address, signer, provider, ownedNFTs) {
-  //     getOffersOnNFTs(address, signer, provider, ownedNFTs, setOffers);
-  //   }
-  // }, [
-  //   address, signer, provider, ownedNFTs,
-  // ]);
+    getActiveLoans()
+  }, [address]);
 
 
   const onLoadMore = () => {
@@ -184,28 +40,25 @@ const ManageTable = () => {
     Router.push('/repay');
   }
 
-  const fetchSingleNFTImage = async (contractAddress, tokenId) => {
-    // call single_nft api POST with contractAddress and tokenId to get image
-    const response = await fetch(
-      '/api/single_nft',
-      {
-        method: 'POST', // or 'PUT'
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          contractAddress,
-          tokenId,
-        }),
-      }
-    );
+  const getActiveLoans = async () => {
+    try {
+      setLoading(true);
+      const loans = await nftfi.loans.get({
+        filters: {
+          counterparty: 'borrower',
+          status: 'escrow'
+        }
+      });
 
-    const image = await response.json();
-    // console.log({
-    //   image
-    // })
+      console.log({ loans })
 
-    return image;
+      setLoading(false);
+      setActiveLoansList(loans);
+    }
+    catch (err) {
+      console.log(err)
+    }
+
   }
 
   const loadMore =
@@ -265,13 +118,13 @@ const ManageTable = () => {
           }
           bordered
           dataSource={activeLoansList}
-          loadMore={loadMore}
+          // loadMore={loadMore}
           loading={loading}
           renderItem={(item) => {
             return (
               <div className="flex justify-between items-center px-[18px] pb-4">
                 <div className="flex items-center w-3/12 my-2">
-                  <Image src={() => fetchSingleNFTImage(item.nft.address, item.nft.id)} alt="Avatar" className="rounded" />
+                  <Image src={Avatar} alt="Avatar" className="rounded" />
                   <p className="font-semibold font-jakarta text-base text-lightTextC ml-2">
                     {item?.nft?.name}
                   </p>
@@ -314,7 +167,7 @@ const ManageTable = () => {
                 <div className="w-1/12 pr-5">
                   <p className="font-semibold font-jakarta text-base text-lightTextC text-right ">
                     {
-                      (window.initNFTFI.utils.calcApr(item?.terms?.loan?.principal, item?.terms?.loan?.repayment, (item?.terms?.loan?.duration / (24 * 60 * 60)))).toString().substring(0, 5)
+                      (nftfi.utils.calcApr(item?.terms?.loan?.principal, item?.terms?.loan?.repayment, (item?.terms?.loan?.duration / (24 * 60 * 60)))).toString().substring(0, 5)
                     }
                   </p>
                 </div>
@@ -333,7 +186,7 @@ const ManageTable = () => {
 
                 <div className="flex justify-center items-center w-1/12">
                   <Image
-                    src={nftfi}
+                    src={nftfi_logo}
                     alt="nftfi"
                     className="rounded-full"
                     width={20}
@@ -342,13 +195,11 @@ const ManageTable = () => {
                 </div>
 
                 <div className="flex items-center justify-end w-1/12">
-                  {/* <Link href="/repay"> */}
                   <button
                     onClick={() => onRepay(item)}
                     className="border-lightBorder border rounded-lg px-2 py-1 font-jakarta font-normal text-base text-lightBorder">
                     Repay
                   </button>
-                  {/* </Link> */}
                 </div>
               </div>
             );

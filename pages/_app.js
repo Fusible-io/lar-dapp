@@ -29,13 +29,12 @@ const inter = Inter({
 const { chains, provider } = configureChains(
   [goerli],
   [
-    alchemyProvider({ apiKey: process.env.ALCHEMY_ID }),
     publicProvider()
   ]
 );
 
 const { connectors } = getDefaultWallets({
-  appName: 'My RainbowKit App',
+  appName: 'LAR DAPP',
   chains
 });
 

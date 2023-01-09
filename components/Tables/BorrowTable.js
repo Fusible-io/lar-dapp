@@ -3,7 +3,7 @@ import Image from "next/image";
 import React, { useState, useEffect } from "react";
 
 import Avatar from "/public/assets/avatar.jpg";
-import nftfi from "/public/assets/nftfi.png";
+import nftfi_logo from "/public/assets/nftfi.png";
 import DownArrow from "/public/assets/downArrow.svg";
 import UpArrow from "/public/assets/upArrow.svg";
 import ListView from "/public/assets/listIcon.svg";
@@ -11,15 +11,14 @@ import GridView from "/public/assets/gridIcon.svg";
 import ListActiveIcon from "/public/assets/listActiveIcon.svg";
 import GridActiveIcon from "/public/assets/gridActiveIcon.svg";
 
-import { useAccount, useProvider, useSigner } from 'wagmi';
-import NFTfi from "@nftfi/js";
-
 import { formatCurrency } from "../core/utils/formatCurrency";
 import { ERC20_MAP } from "../core/constant/nftFiConfig";
 import moment from "moment";
 import Router from 'next/router'
 
-import { useOffer } from "../core/store/store";
+
+import { useOffer, useNFTFi } from "../core/store/store";
+import { useAccount } from 'wagmi';
 
 
 
@@ -30,18 +29,6 @@ import { CardData } from "../Data/Data";
 
 const { Panel } = Collapse;
 
-const nftFi = async (a, s, p) => {
-  const initNFTFI = await NFTfi.init({
-    config: { api: { key: 'AIzaSyC7ZjZ4mYLoyVmkl-Ch9yzfbMTgHqpy5iM' } },
-    ethereum: {
-      account: { signer: s, address: a },
-      provider: { url: 'https://goerli.infura.io/v3/d5a371cc71304b32ac4bf5c01281d388' }
-    },
-    web3: { provider: p },
-    logging: { verbose: true }
-  });
-  window.initNFTFI = initNFTFI;
-}
 
 const BorrowTable = () => {
   const [listView, setListView] = useState(true);
@@ -50,11 +37,9 @@ const BorrowTable = () => {
   const [ownedNFTs, setOwnedNFTs] = useState([]);
   const [nftOffers, setNFTOffers] = useState([]);
 
-  const provider = useProvider();
-  const { data: signer } = useSigner();
-  const { address } = useAccount();
-
   const { setOffer } = useOffer();
+  const { nftfi } = useNFTFi();
+  const { address } = useAccount();
 
 
 
@@ -80,78 +65,37 @@ const BorrowTable = () => {
 
 
   const getOffersOnNFTs = async () => {
-    
-    if ((address && signer && provider) && typeof window != undefined) {
-      if (typeof window.initNFTFI != undefined) {
-        await nftFi(address, signer, provider)
-      }
-    }
-
-
-    if (typeof window.initNFTFI == undefined) return;
-    else {
-      const response = await Promise.all(ownedNFTs.map(async (nft) => {
-        const offers = await window.initNFTFI.offers.get({
-          filters: {
-            nft: {
-              id: nft.tokenId,
-              address: nft.contract.address,
-            }
+    const response = await Promise.all(ownedNFTs.map(async (nft) => {
+      const offers = await nftfi.offers.get({
+        filters: {
+          nft: {
+            id: nft.tokenId,
+            address: nft.contract.address,
           }
-        });
-        // set offers to ownedNFTs offers
+        }
+      });
+      // set offers to ownedNFTs offers
 
-        const updatedNFTs = ownedNFTs.map((item) => {
-          if (item.tokenId == nft.tokenId && item.contract.address === nft.contract.address) {
-            item.offers = offers
-            return item;
-          } else {
-            return item;
-          }
-        });
-        setNFTOffers(updatedNFTs)
-        return offers;
+      const updatedNFTs = ownedNFTs.map((item) => {
+        if (item.tokenId == nft.tokenId && item.contract.address === nft.contract.address) {
+          item.offers = offers
+          return item;
+        } else {
+          return item;
+        }
+      });
+      setNFTOffers(updatedNFTs)
+      return offers;
 
-      }));
-
-
-      // setList(response)
-      setLoading(false)
-      console.log("borrow list", response)
-    }
-
+    }));
+    setLoading(false)
+    console.log("borrow list", response)
 
   }
 
   useEffect(() => {
     console.log("nft with offers", nftOffers)
   }, [nftOffers])
-
-  // useEffect(() => {
-  //   console.log("key", activeKey)
-  // }, [activeKey])
-
-  // useEffect(() => {
-  //   fetch("/api/api")
-  //     .then((res) => res.json())
-  //     .then((res) => {
-  //       setInitLoading(false);
-  //       setData(res);
-  //       setList(res);
-  //     });
-  // }, []);
-
-  // const onLoadMore = () => {
-  //   setLoading(true);
-  //   fetch("/api/api")
-  //     .then((res) => res.json())
-  //     .then((res) => {
-  //       const newData = data.concat(res);
-  //       setData(newData);
-  //       setList(newData);
-  //       setLoading(false);
-  //     });
-  // };
 
   useEffect(() => {
     if (address) {
@@ -183,11 +127,9 @@ const BorrowTable = () => {
 
 
   useEffect(() => {
-    if (address, signer, provider, ownedNFTs) {
-      getOffersOnNFTs();
-    }
+    getOffersOnNFTs();
   }, [
-    address, signer, provider, ownedNFTs, getOffersOnNFTs
+    ownedNFTs
   ]);
 
 
@@ -334,14 +276,14 @@ const BorrowTable = () => {
                         <div className="w-1/12">
                           <p className="font-semibold font-jakarta text-base text-lightTextC text-right ">
                             {/* {
-                              (window.initNFTFI.utils.calcApr(item[0]?.terms?.loan?.principal, item[0]?.terms?.loan?.repayment, (item[0]?.terms?.loan?.duration / (24 * 60 * 60)))).toString().substring(0, 5)
+                              (nftfi.utils.calcApr(item[0]?.terms?.loan?.principal, item[0]?.terms?.loan?.repayment, (item[0]?.terms?.loan?.duration / (24 * 60 * 60)))).toString().substring(0, 5)
                             } */}
                           </p>
                         </div>
 
                         <div className="flex justify-center items-center w-1/12">
                           <Image
-                            src={nftfi}
+                            src={nftfi_logo}
                             alt="nftfi"
                             className="rounded-full"
                             width={20}
@@ -441,14 +383,14 @@ const BorrowTable = () => {
                             <p className="font-semibold font-jakarta text-base text-lightTextC text-right ">
 
                               {
-                                (window.initNFTFI.utils.calcApr(items?.terms?.loan?.principal, items?.terms?.loan?.repayment, (items?.terms?.loan?.duration / (24 * 60 * 60)))).toString().substring(0, 5)
+                                (nftfi.utils.calcApr(items?.terms?.loan?.principal, items?.terms?.loan?.repayment, (items?.terms?.loan?.duration / (24 * 60 * 60)))).toString().substring(0, 5)
                               }
                             </p>
                           </div>
 
                           <div className="flex justify-center items-center w-1/12">
                             <Image
-                              src={nftfi}
+                              src={nftfi_logo}
                               alt="nftfi"
                               className="rounded-full"
                             />
