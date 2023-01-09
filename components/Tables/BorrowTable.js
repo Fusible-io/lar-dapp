@@ -42,7 +42,7 @@ const nftFi = async (a, s, p) => {
 const BorrowTable = () => {
   const [listView, setListView] = useState(true);
   const [initLoading, setInitLoading] = useState(true);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
   const [ownedNFTs, setOwnedNFTs] = useState([]);
 
   const provider = useProvider();
@@ -66,10 +66,8 @@ const BorrowTable = () => {
 
 
   const getOffersOnNFTs = async () => {
-    setLoading(true)
-    if (typeof window.initNFTFI == undefined) {
-      await nftFi(address, signer, provider);
-    }
+    await nftFi(address, signer, provider);
+    if (typeof window.initNFTFI == undefined) return;
     else {
       const response = await Promise.all(ownedNFTs.map(async (nft) => {
         const offers = await window.initNFTFI.offers.get({
@@ -119,6 +117,7 @@ const BorrowTable = () => {
 
   useEffect(() => {
     if (address) {
+      setLoading(true);
       fetch('/api/nft',
         {
           method: 'POST', // or 'PUT'
@@ -133,6 +132,7 @@ const BorrowTable = () => {
         .then((res) => res.json())
         .then((res) => {
           setOwnedNFTs(res.ownedNfts);
+          console.log(res.ownedNfts)
           // setAllNfts(res.ownedNFTs);
           // console.log({
           //   'ownedNFts': res.ownedNfts,
