@@ -187,7 +187,7 @@ const BorrowTable = () => {
       getOffersOnNFTs();
     }
   }, [
-    address, signer, provider, ownedNFTs,
+    address, signer, provider, ownedNFTs, getOffersOnNFTs
   ]);
 
 

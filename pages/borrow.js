@@ -131,7 +131,8 @@ const Borrow = (disabled = true) => {
           {
             ownedNFTs && ownedNFTs.length > 0 ? <>
               {
-                ownedNFTs.map(nft => <Card
+                ownedNFTs.map( (nft, idx) => <Card
+                  key={idx}
                   style={
                     disabled
                       ? {
@@ -183,7 +184,8 @@ const Borrow = (disabled = true) => {
           {
             ownedNFTs && ownedNFTs.length > 0 ? <>
               {
-                ownedNFTs.map(nft => <Card
+                ownedNFTs.map((nft, idx) => <Card
+                  key={idx}
                   style={
                     disabled
                       ? {
