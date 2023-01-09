@@ -171,7 +171,7 @@ const CardDetail = () => {
                           ' '
                         }
                         {
-                          ERC20_MAP[offer?.offer?.terms?.loan?.currency].symbol
+                          ERC20_MAP[offer?.offer?.terms?.loan?.currency]?.symbol
                         }
                       </h1>
                       <span className="font-jakarta text-sm font-normal text-[#5D6785]">
@@ -186,13 +186,13 @@ const CardDetail = () => {
                       You repay
                     </span>{" "}
                     {
-                      formatCurrency(offer?.offer?.terms.loan.repayment, offer?.offer?.terms.loan.currency)
+                      formatCurrency(offer?.offer?.terms?.loan?.repayment, offer?.offer?.terms?.loan?.currency)
                     }
                     {
                       ' '
                     }
                     {
-                      ERC20_MAP[offer?.offer?.terms.loan.currency].symbol
+                      ERC20_MAP[offer?.offer?.terms?.loan?.currency]?.symbol
                     }
                   </p>
                   <Button
