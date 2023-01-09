@@ -1,5 +1,6 @@
 export const LOCAL_STORAGE_KEYS = {
-    LOAN: 'loan',
-    ALL_NFTS : 'allNfts',
-    NFT: 'nft',
+    LOAN: 'LAR.loan',
+    ALL_NFTS : 'LAR.allNfts',
+    NFT: 'LAR.nft',
+    OFFER: 'LAR.offer'
 };

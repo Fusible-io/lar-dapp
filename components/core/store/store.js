@@ -36,6 +36,20 @@ export const useAllNfts = create(
     )
 );
 
+export const useOffer = create(
+    persist(
+        (set, get) => ({
+            offer: null,
+            setOffer: (offer) => set({ offer }),
+            clearOffer: () => set({ offer: null }),
+        }),
+        {
+            name: LOCAL_STORAGE_KEYS.OFFER,
+            getStorage: () => localStorage
+        }
+    )
+)
+
 
 // export const useMatch = create(
 //     persist(

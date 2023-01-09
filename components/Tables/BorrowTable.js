@@ -17,6 +17,10 @@ import NFTfi from "@nftfi/js";
 import { formatCurrency } from "../core/utils/formatCurrency";
 import { ERC20_MAP } from "../core/constant/nftFiConfig";
 import moment from "moment";
+import Router from 'next/router'
+
+import { useOffer } from "../core/store/store";
+
 
 
 
@@ -44,14 +48,15 @@ const BorrowTable = () => {
   const [initLoading, setInitLoading] = useState(true);
   const [loading, setLoading] = useState(true);
   const [ownedNFTs, setOwnedNFTs] = useState([]);
+  const [nftOffers, setNFTOffers] = useState([]);
 
   const provider = useProvider();
   const { data: signer } = useSigner();
   const { address } = useAccount();
 
+  const { setOffer } = useOffer();
 
-  const [data, setData] = useState([]);
-  const [list, setList] = useState([]);
+
 
   const [activeKey, setActiveKey] = useState([]);
 
@@ -64,9 +69,25 @@ const BorrowTable = () => {
     }
   };
 
+  const onAcceptOffer = (nft, offer) => {
+    console.log('onaccept offer', offer)
+    setOffer({
+      nft,
+      offer
+    })
+    Router.push('/cardDetail')
+  }
+
 
   const getOffersOnNFTs = async () => {
-    await nftFi(address, signer, provider);
+    
+    if ((address && signer && provider) && typeof window != undefined) {
+      if (typeof window.initNFTFI != undefined) {
+        await nftFi(address, signer, provider)
+      }
+    }
+
+
     if (typeof window.initNFTFI == undefined) return;
     else {
       const response = await Promise.all(ownedNFTs.map(async (nft) => {
@@ -78,20 +99,37 @@ const BorrowTable = () => {
             }
           }
         });
+        // set offers to ownedNFTs offers
+
+        const updatedNFTs = ownedNFTs.map((item) => {
+          if (item.tokenId == nft.tokenId && item.contract.address === nft.contract.address) {
+            item.offers = offers
+            return item;
+          } else {
+            return item;
+          }
+        });
+        setNFTOffers(updatedNFTs)
         return offers;
+
       }));
-  
-  
-      setList(response)
+
+
+      // setList(response)
       setLoading(false)
+      console.log("borrow list", response)
     }
 
-    
+
   }
 
   useEffect(() => {
-    console.log("key", activeKey)
-  }, [activeKey])
+    console.log("nft with offers", nftOffers)
+  }, [nftOffers])
+
+  // useEffect(() => {
+  //   console.log("key", activeKey)
+  // }, [activeKey])
 
   // useEffect(() => {
   //   fetch("/api/api")
@@ -133,6 +171,7 @@ const BorrowTable = () => {
         .then((res) => {
           setOwnedNFTs(res.ownedNfts);
           console.log(res.ownedNfts)
+          // console.log(res.ownedNfts)
           // setAllNfts(res.ownedNFTs);
           // console.log({
           //   'ownedNFts': res.ownedNfts,
@@ -234,11 +273,11 @@ const BorrowTable = () => {
               </div>
             }
             bordered
-            dataSource={list}
+            dataSource={nftOffers}
             loadMore={loadMore}
             loading={loading}
             renderItem={(item, idx) => {
-              if (item.length === 0) return null
+              if (item?.offers?.length === 0) return null
               return (
                 <Collapse ghost activeKey={activeKey}>
                   <Panel
@@ -252,15 +291,15 @@ const BorrowTable = () => {
                             className="rounded"
                           />
                           <p className="font-semibold font-jakarta text-base text-lightTextC ml-2">
-                            {item[0]?.nft?.project?.name}
-                            { ' '}
-                            { (item[0]?.id).toString().substring(0,4)}
+                            {item?.title}
+                            {' '}
+                            {item?.tokenId}
                           </p>
                         </div>
 
                         <div className="w-1/12">
                           <p className="font-semibold font-jakarta text-base text-lightTextC text-right ">
-                            {
+                            {/* {
                               formatCurrency(item[0]?.terms?.loan?.principal, item[0]?.terms?.loan?.currency)
                             }
                             {
@@ -268,19 +307,19 @@ const BorrowTable = () => {
                             }
                             {
                               ERC20_MAP[item[0]?.terms?.loan?.currency].symbol
-                            }
+                            } */}
                           </p>
                         </div>
 
                         <div className="w-1/12">
                           <p className="font-semibold font-jakarta text-base text-lightTextC text-right ">
-                            {moment.duration(item[0]?.terms?.loan?.duration, 'second').humanize()}
+                            {/* {moment.duration(item[0]?.terms?.loan?.duration, 'second').humanize()} */}
                           </p>
                         </div>
 
                         <div className="w-1/12">
                           <p className="font-semibold font-jakarta text-base text-lightTextC text-right ">
-                            {
+                            {/* {
                               formatCurrency(item[0]?.terms.loan?.repayment, item[0]?.terms?.loan?.currency)
                             }
                             {
@@ -288,15 +327,15 @@ const BorrowTable = () => {
                             }
                             {
                               ERC20_MAP[item[0]?.terms.loan.currency].symbol
-                            }
+                            } */}
                           </p>
                         </div>
 
                         <div className="w-1/12">
                           <p className="font-semibold font-jakarta text-base text-lightTextC text-right ">
-                            {
+                            {/* {
                               (window.initNFTFI.utils.calcApr(item[0]?.terms?.loan?.principal, item[0]?.terms?.loan?.repayment, (item[0]?.terms?.loan?.duration / (24 * 60 * 60)))).toString().substring(0, 5)
-                            }
+                            } */}
                           </p>
                         </div>
 
@@ -341,7 +380,8 @@ const BorrowTable = () => {
                             </button>
                           )}
 
-                          <button className="border-lightBorder border rounded-lg px-2 py-1 font-jakarta font-normal text-base text-lightBorder">
+                          <button
+                            className="border-lightBorder border rounded-lg px-2 py-1 font-jakarta font-normal text-base text-lightBorder">
                             Accept
                           </button>
                         </div>
@@ -354,10 +394,7 @@ const BorrowTable = () => {
                         : "transparent",
                     }}
                   >
-                    {item.map((items) => {
-                      {
-                        console.log("itens", items)
-                      }
+                    {item?.offers?.map((items) => {
                       return <>
                         <div
                           className="flex justify-between items-center pb-3 first:pt-2"
@@ -367,33 +404,45 @@ const BorrowTable = () => {
 
                           <div className="w-1/12">
                             <p className="font-semibold font-jakarta text-base text-lightTextC text-right ">
-                            {
-                              formatCurrency(items?.terms?.loan?.principal, items?.terms?.loan?.currency)
-                            }
-                            {
-                              ' '
-                            }
-                            {
-                              ERC20_MAP[items?.terms?.loan?.currency].symbol
-                            }
+                              {
+                                formatCurrency(items?.terms?.loan?.principal, items?.terms?.loan?.currency)
+                              }
+                              {
+                                ' '
+                              }
+                              {
+                                ERC20_MAP[items?.terms?.loan?.currency].symbol
+                              }
                             </p>
                           </div>
 
                           <div className="w-1/12">
                             <p className="font-semibold font-jakarta text-base text-lightTextC text-right ">
-                              {item.duration}
+                              {moment.duration(items?.terms?.loan?.duration, 'second').humanize()}
+
                             </p>
                           </div>
 
                           <div className="w-1/12">
                             <p className="font-semibold font-jakarta text-base text-lightTextC text-right ">
-                              {item.payoff}
+                              {
+                                formatCurrency(items?.terms.loan?.repayment, items?.terms?.loan?.currency)
+                              }
+                              {
+                                ' '
+                              }
+                              {
+                                ERC20_MAP[items?.terms.loan.currency].symbol
+                              }
                             </p>
                           </div>
 
                           <div className="w-1/12">
                             <p className="font-semibold font-jakarta text-base text-lightTextC text-right ">
-                              {item.apr}
+
+                              {
+                                (window.initNFTFI.utils.calcApr(items?.terms?.loan?.principal, items?.terms?.loan?.repayment, (items?.terms?.loan?.duration / (24 * 60 * 60)))).toString().substring(0, 5)
+                              }
                             </p>
                           </div>
 
@@ -406,7 +455,10 @@ const BorrowTable = () => {
                           </div>
 
                           <div className="flex items-center justify-end w-4/12">
-                            <button className="border-lightBorder border rounded-lg px-2 py-1 font-jakarta font-normal text-base text-lightBorder">
+                            <button
+                              onClick={() => onAcceptOffer(item, items)}
+
+                              className="border-lightBorder border rounded-lg px-2 py-1 font-jakarta font-normal text-base text-lightBorder">
                               Accept
                             </button>
                           </div>

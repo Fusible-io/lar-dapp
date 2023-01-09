@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Button, List, Select } from "antd";
 
 import CardImage from "/public/assets/CardImage.png";
@@ -12,13 +12,65 @@ import { ListData } from "../components/Data/Data";
 import ModalComp from "../components/Modal/ModalComp";
 import ListingSummary from "../components/ListingSummary/ListingSummary";
 import Head from "next/head";
+import { useOffer } from "../components/core/store/store";
+import { formatCurrency } from "../components/core/utils/formatCurrency";
+import { ERC20_MAP } from "../components/core/constant/nftFiConfig";
+import moment from "moment";
+
 
 const CardDetail = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const { offer } = useOffer();
 
   const showModal = () => {
     setIsModalOpen(true);
   };
+
+  useEffect(() => {
+    console.log('single offer', offer)
+  }, [offer])
+
+  const onIssueLoan = async () => {
+    // // Begin a loan on a lender's offer.
+    // const result = await nftfi.loans.begin({
+    //   offer: {
+    //     nft: {
+    //       id: '42',
+    //       address: '0x00000000',
+    //     },
+    //     lender: {
+    //       address: '0x00000000',
+    //       nonce: '314159265359'
+    //     },
+    //     terms: {
+    //       loan: {
+    //         principal: 1000000000000000000,
+    //         repayment: 1100000000000000000,
+    //         duration: 86400 * 7, // 7 days (in seconds)
+    //         currency: "0x00000000",
+    //         expiry: 1690548548 // Friday, 28 July 2023 14:49:08 GMT+02:00
+    //       }
+    //     },
+    //     signature: '0x000000000000000000000000000000000000000000000000000',
+    //     nftfi: {
+    //       fee: { bps: 500 },
+    //       contract: { name: 'v2-1.loan.fixed' }
+    //     }
+    //   }
+    // });
+
+
+    const result = await window.initNFTFI.loans.begin({
+      offer: {
+        ...offer.offer,
+        nft: {
+          id: offer?.nft.tokenId,
+          address: offer?.nft?.contract?.address
+        }
+      }
+    });
+    console.log(result)
+  }
 
   return (
     <>
@@ -52,10 +104,12 @@ const CardDetail = () => {
             </div>
             <div>
               <h3 className="flex items-center font-jakarta text-base font-normal mb-2">
-                DigiDaigaku Genesis <Image src={Verify} alt="Verify" />
+                {
+                  offer?.nft?.contract?.name
+                }<Image src={Verify} alt="Verify" />
               </h3>
               <h1 className="font-jakarta text-[28px] font-medium mb-[47px]">
-                DigiDaigaku #935
+                {offer?.nft?.title} #{offer?.nft?.tokenId}
               </h1>
               <div className="bg-[#090C12] border-[#1B2236] border shadow-list rounded-2xl">
                 <div className="border-b border-[#1B2236] px-[22px] py-[17px]">
@@ -109,7 +163,15 @@ const CardDetail = () => {
                   <div className="flex justify-between items-center mb-4">
                     <div className="flex items-end mr-12">
                       <h1 className="font-jakarta text-2xl font-semibold mr-2">
-                        6.3 ETH
+                        {
+                          formatCurrency(offer?.offer?.terms.loan.principal, offer?.offer?.terms.loan.currency)
+                        }
+                        {
+                          ' '
+                        }
+                        {
+                          ERC20_MAP[offer?.offer?.terms.loan.currency].symbol
+                        }
                       </h1>
                       <span className="font-jakarta text-sm font-normal text-[#5D6785]">
                         $10,084.83
@@ -118,13 +180,22 @@ const CardDetail = () => {
                     <Image src={Nftifi} alt="Nftifi" width={20} height={20} />
                   </div>
                   <p className="font-jakarta text-sm font-normal leading-5 mb-5">
-                    34% APY <span className="text-[#5D6785]">for</span> 30 days.
+                    34% APY <span className="text-[#5D6785]">for</span> {moment.duration(offer?.offer?.terms?.loan?.duration, 'second').humanize()}
                     <br /> <span className="text-[#5D6785]">
                       You repay
                     </span>{" "}
-                    6.35 ETH.
+                    {
+                      formatCurrency(offer?.offer?.terms.loan.repayment, offer?.offer?.terms.loan.currency)
+                    }
+                    {
+                      ' '
+                    }
+                    {
+                      ERC20_MAP[offer?.offer?.terms.loan.currency].symbol
+                    }
                   </p>
                   <Button
+                    onClick={() => onIssueLoan()}
                     type="primary"
                     className="h-[44px] rounded-lg bg-greenBtn w-full text-base font-jakarta font-bold text-white mb-[6px] border-none"
                   >

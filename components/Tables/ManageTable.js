@@ -129,7 +129,7 @@ const ManageTable = () => {
 
 
   useEffect(() => {
-    if ((address, signer, provider) && typeof window != undefined) {
+    if ((address && signer && provider) && typeof window != undefined) {
       if (typeof window.initNFTFI != undefined) {
         getActiveLoans(address, signer, provider, setLoading, setActiveLoansList);
       }
