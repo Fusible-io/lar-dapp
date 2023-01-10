@@ -65,32 +65,31 @@ const BorrowTable = () => {
 
 
   const getOffersOnNFTs = async () => {
-    const response = await Promise.all(ownedNFTs.map(async (nft) => {
-      const offers = await nftfi.offers.get({
-        filters: {
-          nft: {
-            id: nft.tokenId,
-            address: nft.contract.address,
+    if (window && window.localStorage.getItem('sdkToken')) {
+      const response = (ownedNFTs.map(async (nft) => {
+        const offers = await nftfi.offers.get({
+          filters: {
+            nft: {
+              id: nft.tokenId,
+              address: nft.contract.address,
+            }
           }
-        }
-      });
-      // set offers to ownedNFTs offers
+        });
+        // set offers to ownedNFTs offers
 
-      const updatedNFTs = ownedNFTs.map((item) => {
-        if (item.tokenId == nft.tokenId && item.contract.address === nft.contract.address) {
-          item.offers = offers
-          return item;
-        } else {
-          return item;
-        }
-      });
-      setNFTOffers(updatedNFTs)
-      return offers;
-
-    }));
-    setLoading(false)
-    console.log("borrow list", response)
-
+        const updatedNFTs = ownedNFTs.map((item) => {
+          if (item.tokenId == nft.tokenId && item.contract.address === nft.contract.address) {
+            item.offers = offers
+            return item;
+          } else {
+            return item;
+          }
+        });
+        setNFTOffers(updatedNFTs)
+        setLoading(false)
+        return offers;
+      }));
+    }
   }
 
   useEffect(() => {
@@ -115,11 +114,6 @@ const BorrowTable = () => {
         .then((res) => {
           setOwnedNFTs(res.ownedNfts);
           console.log(res.ownedNfts)
-          // console.log(res.ownedNfts)
-          // setAllNfts(res.ownedNFTs);
-          // console.log({
-          //   'ownedNFts': res.ownedNfts,
-          // })
         });
     }
 
@@ -127,9 +121,12 @@ const BorrowTable = () => {
 
 
   useEffect(() => {
-    getOffersOnNFTs();
+    if (ownedNFTs.length > 0) {
+      getOffersOnNFTs()
+    }
+
   }, [
-    ownedNFTs
+    ownedNFTs,
   ]);
 
 
@@ -242,13 +239,13 @@ const BorrowTable = () => {
                         <div className="w-1/12">
                           <p className="font-semibold font-jakarta text-base text-lightTextC text-right ">
                             {/* {
-                              formatCurrency(item[0]?.terms?.loan?.principal, item[0]?.terms?.loan?.currency)
+                              formatCurrency(item?.offers[0]?.terms?.loan?.principal, item?.offers[0]?.terms?.loan?.currency)
                             }
                             {
                               ' '
                             }
                             {
-                              ERC20_MAP[item[0]?.terms?.loan?.currency].symbol
+                              ERC20_MAP[item?.offers[0]?.terms?.loan?.currency].symbol
                             } */}
                           </p>
                         </div>

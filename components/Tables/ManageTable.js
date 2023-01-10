@@ -25,7 +25,7 @@ const ManageTable = () => {
 
   useEffect(() => {
     getActiveLoans()
-  }, [address]);
+  }, []);
 
 
   const onLoadMore = () => {

@@ -56,7 +56,11 @@ export const useNFTFi = create(
     (set, get) => ({
         nftfi: null,
         setNFTFi: (nftfi) => set({ nftfi }),
-        clearNFTFi: () => set({ nftfi: null }),
+        clearNFTFi: () => {
+            if (window && window.localStorage) {
+                window.localStorage.removeItem('sdkToken')
+            }
+            set({ nftfi: null })}
     })
 )
 

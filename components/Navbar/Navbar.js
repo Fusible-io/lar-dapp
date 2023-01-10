@@ -16,16 +16,16 @@ const Navbar = () => {
 
   const { nftfi, setNFTFi, clearNFTFi } = useNFTFi();
 
-  const { address, isConnected } = useAccount({
+  const { address } = useAccount({
     // isConnected: () => {
     //   clearNFTFi();
     // },
     // onConnect: () => {
     //   clearNFTFi();
     // },
-    // onDisconnect: () => {
-    //   clearNFTFi();
-    // },
+    onDisconnect: () => {
+      clearNFTFi();
+    },
     // isConnecting: () => {
     //   clearNFTFi();
     // }
@@ -49,7 +49,7 @@ const Navbar = () => {
 
 
   useEffect(() => {
-    if (!window) return
+    // if (!window) return
     if (!provider || !address || !signer) return
 
     // ToDo: intialize NFTfi when account is changes, or network is changed, or the account is disconnected
