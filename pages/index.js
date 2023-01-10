@@ -7,8 +7,6 @@ import { useNFTFi } from "../components/core/store/store";
 export default function Home() {
   const { nftfi } = useNFTFi();
 
-
-
   return (
     <>
       <Head>
@@ -19,20 +17,20 @@ export default function Home() {
       </Head>
 
       <main className="mb-20">
-        {
-          nftfi ? <>
+        {nftfi ? (
+          <>
             <ManageTable />
             <BorrowTable />
-          </> : <>
-            please connect your wallet</>
-        }
-
+          </>
+        ) : (
+          <>
+            <h1 className="text-center text-xl">Please connect your wallet</h1>
+          </>
+        )}
 
         {/* <LoanDetails />
         <ManageTable />
         <BorrowTable /> */}
-
-
       </main>
     </>
   );
