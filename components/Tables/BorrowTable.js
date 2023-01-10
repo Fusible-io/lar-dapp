@@ -216,29 +216,31 @@ const BorrowTable = () => {
             loadMore={loadMore}
             loading={loading}
             renderItem={(item, idx) => {
-              if (item?.offers?.length === 0) return null
-              return (
+              if (item?.offers?.length > 0) return (
                 <Collapse ghost activeKey={activeKey}>
                   <Panel
                     showArrow={false}
                     header={
                       <div className="flex justify-between items-center px-[18px] pb-4">
                         <div className="flex items-center w-3/12 my-2">
+
                           <Image
-                            src={Avatar}
-                            alt="Avatar"
+                            src={item?.rawMetadata?.image}
+                            // alt="Avatar"
+                            width={150}
+                            height={150}
                             className="rounded"
                           />
                           <p className="font-semibold font-jakarta text-base text-lightTextC ml-2">
                             {item?.title}
-                            {' '}
+                            {' #'}
                             {item?.tokenId}
                           </p>
                         </div>
 
                         <div className="w-1/12">
                           <p className="font-semibold font-jakarta text-base text-lightTextC text-right ">
-                            {/* {
+                            {
                               formatCurrency(item?.offers[0]?.terms?.loan?.principal, item?.offers[0]?.terms?.loan?.currency)
                             }
                             {
@@ -246,35 +248,35 @@ const BorrowTable = () => {
                             }
                             {
                               ERC20_MAP[item?.offers[0]?.terms?.loan?.currency].symbol
-                            } */}
+                            }
                           </p>
                         </div>
 
                         <div className="w-1/12">
                           <p className="font-semibold font-jakarta text-base text-lightTextC text-right ">
-                            {/* {moment.duration(item[0]?.terms?.loan?.duration, 'second').humanize()} */}
+                            {moment.duration(item?.offers[0]?.terms?.loan?.duration, 'second').humanize()}
                           </p>
                         </div>
 
                         <div className="w-1/12">
                           <p className="font-semibold font-jakarta text-base text-lightTextC text-right ">
-                            {/* {
-                              formatCurrency(item[0]?.terms.loan?.repayment, item[0]?.terms?.loan?.currency)
+                            {
+                              formatCurrency(item?.offers[0]?.terms?.loan?.repayment, item?.offers[0]?.terms?.loan?.currency)
                             }
                             {
                               ' '
                             }
                             {
-                              ERC20_MAP[item[0]?.terms.loan.currency].symbol
-                            } */}
+                              ERC20_MAP[item?.offers[0]?.terms?.loan?.currency]?.symbol
+                            }
                           </p>
                         </div>
 
                         <div className="w-1/12">
                           <p className="font-semibold font-jakarta text-base text-lightTextC text-right ">
-                            {/* {
-                              (nftfi.utils.calcApr(item[0]?.terms?.loan?.principal, item[0]?.terms?.loan?.repayment, (item[0]?.terms?.loan?.duration / (24 * 60 * 60)))).toString().substring(0, 5)
-                            } */}
+                            {
+                              (nftfi.utils.calcApr(item?.offers[0]?.terms?.loan?.principal, item?.offers[0]?.terms?.loan?.repayment, (item?.offers[0]?.terms?.loan?.duration / (24 * 60 * 60)))).toString().substring(0, 5)
+                            }
                           </p>
                         </div>
 
@@ -410,20 +412,11 @@ const BorrowTable = () => {
           />
         ) : (
           <div className="mb-14 flex gap-4">
-            {CardData.map((e) => {
+            {nftOffers.map((item) => {
               return (
                 <CardComp
-                  key={e.id}
-                  img={e.img}
-                  listed={e.listed}
-                  name={e.name}
-                  x2y2={e.x2y2}
-                  borrowDay={e.borrowDay}
-                  weth={e.weth}
-                  apr={e.apr}
-                  acceptD={e.acceptD}
-                  offerD={e.offerD}
-                  offerBtn={e.offerBtn}
+                  key={item.id}
+                  item={item}
                 />
               );
             })}
