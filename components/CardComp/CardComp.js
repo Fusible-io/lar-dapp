@@ -15,6 +15,7 @@ const CardComp = ({
   const { nftfi } = useNFTFi();
 
   if (item && item?.offers?.length === 0) return null
+  if (!nftfi) return null
 
   return (
     <Card
@@ -55,7 +56,7 @@ const CardComp = ({
             ' '
           }
           {
-            ERC20_MAP[item?.offers[0]?.terms?.loan?.currency].symbol
+            ERC20_MAP[item?.offers[0]?.terms?.loan?.currency]?.symbol
           }
 
         </h4>
