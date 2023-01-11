@@ -22,7 +22,7 @@ export function formatCurrency(amount, currencyAddress) {
         return 
     }
     const unit = getUnit(currencyAddress);
-    const formattedAmount = ethers.utils.formatUnits(amount, unit);
+    const formattedAmount = ethers.utils.formatUnits(amount.toString(), unit);
     return formattedAmount;
 }
 
