@@ -135,10 +135,10 @@ a {
 }
 
 .ant-collapse > .ant-collapse-item {
-  margin-left: -52px !important;
-  margin-right: -52px !important;
+  margin-left: -34px !important;
+  margin-right: -34px !important;
   margin-top: -17px !important;
-  padding: 17px 52px 0px !important;
+  padding: 17px 34px 0px !important;
   margin-bottom: 0px !important;
 }
 

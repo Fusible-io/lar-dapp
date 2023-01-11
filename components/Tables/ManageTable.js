@@ -1,7 +1,7 @@
 import { List } from "antd";
 import Image from "next/image";
 import React, { useEffect, useState } from "react";
-import Router from 'next/router'
+import Router from "next/router";
 
 import Avatar from "/public/assets/avatar.jpg";
 import nftfi_logo from "/public/assets/nftfi.png";
@@ -12,8 +12,7 @@ import { formatCurrency } from "../core/utils/formatCurrency";
 import { ERC20_MAP } from "../core/constant/nftFiConfig";
 import { useLoan, useNFTFi } from "../core/store/store";
 
-import { useAccount } from 'wagmi';
-
+import { useAccount } from "wagmi";
 
 const ManageTable = () => {
   const [loading, setLoading] = useState(false);
@@ -22,11 +21,9 @@ const ManageTable = () => {
   const { address } = useAccount();
   const { setLoan } = useLoan();
 
-
   useEffect(() => {
-    getActiveLoans()
-  }, [address]);
-
+    getActiveLoans();
+  }, []);
 
   const onLoadMore = () => {
     setLoading(true);
@@ -37,29 +34,26 @@ const ManageTable = () => {
 
   const onRepay = (loan) => {
     setLoan(loan);
-    Router.push('/repay');
-  }
+    Router.push("/repay");
+  };
 
   const getActiveLoans = async () => {
     try {
       setLoading(true);
       const loans = await nftfi.loans.get({
         filters: {
-          counterparty: 'borrower',
-          status: 'escrow'
-        }
+          counterparty: "borrower",
+        },
       });
 
-      console.log({ loans })
+      console.log({ loans });
 
       setLoading(false);
       setActiveLoansList(loans);
+    } catch (err) {
+      console.log(err);
     }
-    catch (err) {
-      console.log(err)
-    }
-
-  }
+  };
 
   const loadMore =
     !loading && !loading ? (
@@ -132,55 +126,56 @@ const ManageTable = () => {
 
                 <div className="w-1/12">
                   <p className="font-semibold font-jakarta text-base text-lightTextC text-right ">
-                    {
-                      formatCurrency(item.terms.loan.principal, item.terms.loan.currency)
-                    }
-                    {
-                      ' '
-                    }
-                    {
-                      ERC20_MAP[item.terms.loan.currency].symbol
-                    }
+                    {formatCurrency(
+                      item.terms.loan.principal,
+                      item.terms.loan.currency
+                    )}{" "}
+                    {ERC20_MAP[item.terms.loan.currency].symbol}
                   </p>
                 </div>
 
                 <div className="w-1/12">
                   <p className="font-semibold font-jakarta text-base text-lightTextC text-right ">
-                    {moment.duration(item?.terms?.loan?.duration, 'second').humanize()}
+                    {moment
+                      .duration(item?.terms?.loan?.duration, "second")
+                      .humanize()}
                   </p>
                 </div>
 
                 <div className="w-1/12">
                   <p className="font-semibold font-jakarta text-base text-lightTextC text-right ">
-                    {
-                      formatCurrency(item.terms.loan.repayment, item.terms.loan.currency)
-                    }
-                    {
-                      ' '
-                    }
-                    {
-                      ERC20_MAP[item.terms.loan.currency].symbol
-                    }
+                    {formatCurrency(
+                      item.terms.loan.repayment,
+                      item.terms.loan.currency
+                    )}{" "}
+                    {ERC20_MAP[item.terms.loan.currency].symbol}
                   </p>
                 </div>
 
                 <div className="w-1/12 pr-5">
                   <p className="font-semibold font-jakarta text-base text-lightTextC text-right ">
-                    {
-                      (nftfi.utils.calcApr(item?.terms?.loan?.principal, item?.terms?.loan?.repayment, (item?.terms?.loan?.duration / (24 * 60 * 60)))).toString().substring(0, 5)
-                    }
+                    {nftfi.utils
+                      .calcApr(
+                        item?.terms?.loan?.principal,
+                        item?.terms?.loan?.repayment,
+                        item?.terms?.loan?.duration / (24 * 60 * 60)
+                      )
+                      .toString()
+                      .substring(0, 5)}
                   </p>
                 </div>
 
                 <div className="w-1/12">
+                  {console.log(item.status)}
                   <StatusComp status={item.status} />
                 </div>
 
                 <div className="w-2/12 pr-10">
                   <p className="font-semibold font-jakarta text-base text-lightTextC text-right">
-                    {
-                      moment(item?.date?.started).add(item?.terms?.loan?.duration, 'seconds').format('DD MMM YY HH:mm ').toString()
-                    }
+                    {moment(item?.date?.started)
+                      .add(item?.terms?.loan?.duration, "seconds")
+                      .format("DD MMM YY HH:mm ")
+                      .toString()}
                   </p>
                 </div>
 
@@ -197,7 +192,8 @@ const ManageTable = () => {
                 <div className="flex items-center justify-end w-1/12">
                   <button
                     onClick={() => onRepay(item)}
-                    className="border-lightBorder border rounded-lg px-2 py-1 font-jakarta font-normal text-base text-lightBorder">
+                    className="border-lightBorder border rounded-lg px-2 py-1 font-jakarta font-normal text-base text-lightBorder"
+                  >
                     Repay
                   </button>
                 </div>

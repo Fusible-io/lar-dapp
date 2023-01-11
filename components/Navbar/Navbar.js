@@ -3,26 +3,27 @@ import { useRouter } from "next/router";
 import React, { useEffect } from "react";
 import Logo from "/public/assets/logo.svg";
 import Image from "next/image";
-import { ConnectButton } from "@rainbow-me/rainbowkit";
-import { useProvider, useSigner, useAccount } from "wagmi";
-import { useNFTFi } from "../core/store/store";
+import { ConnectButton } from '@rainbow-me/rainbowkit';
+import { useProvider, useSigner, useAccount } from 'wagmi';
+import { useNFTFi, useAddressStore } from "../core/store/store";
 import NFTfi from "@nftfi/js";
 
 const Navbar = () => {
   const router = useRouter();
 
   const { nftfi, setNFTFi, clearNFTFi } = useNFTFi();
+  const { address: prevAddress, setAddress } = useAddressStore();
 
-  const { address, isConnected } = useAccount({
+  const { address } = useAccount({
     // isConnected: () => {
     //   clearNFTFi();
     // },
     // onConnect: () => {
     //   clearNFTFi();
     // },
-    // onDisconnect: () => {
-    //   clearNFTFi();
-    // },
+    onDisconnect: () => {
+      clearNFTFi();
+    },
     // isConnecting: () => {
     //   clearNFTFi();
     // }
@@ -56,6 +57,19 @@ const Navbar = () => {
       nftfi,
     });
   }, [nftfi]);
+
+  useEffect(() => {
+    if (address && prevAddress && address !== prevAddress) {
+      clearNFTFi();
+      setAddress(address);
+    }
+  }, [
+    address
+  ]);
+
+
+
+
 
   return (
     <div className="px-10 py-7 flex justify-between items-center mainContainer">

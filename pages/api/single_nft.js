@@ -12,16 +12,16 @@ const getSingleNFTData = async ({
     tokenId
 }) => {
     try {
-        // const nft = await alchemy.nft.getNftMetadata({
-        //     contractAddress: contractAddress.toString(),
-        //     tokenId: tokenId.toString()
-        // });
-        const response = await alchemy.nft.getNftMetadata(
-            "0x5180db8F5c931aaE63c74266b211F580155ecac8",
-            "1590"
-          );
+        const nft = await alchemy.nft.getNftMetadata({
+            contractAddress: contractAddress.toString(),
+            tokenId: tokenId.toString()
+        });
+        // const response = await alchemy.nft.getNftMetadata(
+        //     "0x5180db8F5c931aaE63c74266b211F580155ecac8",
+        //     "1590"
+        //   );
         console.log(response)
-        return response
+        return nft
     }
     catch (error) {
         console.log(error)

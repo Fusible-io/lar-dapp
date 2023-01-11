@@ -56,8 +56,19 @@ export const useNFTFi = create(
     (set, get) => ({
         nftfi: null,
         setNFTFi: (nftfi) => set({ nftfi }),
-        clearNFTFi: () => set({ nftfi: null }),
+        clearNFTFi: () => {
+            set({ nftfi: null })
+            window?.localStorage?.removeItem('sdkToken')
+        }
     })
+)
+
+export const useAddressStore = create(
+    (set, get) => ({
+        address: null,
+        setAddress: (address) => set({ address }),
+        clearAddress: () => set({ address: null }),
+    }),
 )
 
 
