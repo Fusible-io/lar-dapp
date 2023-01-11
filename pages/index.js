@@ -2,8 +2,11 @@ import Head from "next/head";
 import LoanDetails from "../components/LoanStatics/LoanDetails";
 import ManageTable from "../components/Tables/ManageTable";
 import BorrowTable from "../components/Tables/BorrowTable";
+import { useNFTFi } from "../components/core/store/store";
 
 export default function Home() {
+  const { nftfi } = useNFTFi();
+
   return (
     <>
       <Head>
@@ -14,9 +17,20 @@ export default function Home() {
       </Head>
 
       <main className="mb-20">
-        <LoanDetails />
+        {nftfi ? (
+          <>
+            <ManageTable />
+            <BorrowTable />
+          </>
+        ) : (
+          <>
+            <h1 className="text-center text-xl">Please connect your wallet</h1>
+          </>
+        )}
+
+        {/* <LoanDetails />
         <ManageTable />
-        <BorrowTable />
+        <BorrowTable /> */}
       </main>
     </>
   );

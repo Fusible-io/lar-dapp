@@ -1,30 +1,30 @@
 import React from "react";
 
 const StatusComp = ({ status }) => {
-  if (status === "Soon") {
+  if (status === "liquidated") {
     return (
       <div className="flex justify-end items-center">
         <span className="px-[5px] bg-soonBg rounded-full mr-2 h-[10px] mb-0"></span>
         <p className="font-semibold font-jakarta text-base text-lightTextC">
-          {status}
+          Soon
         </p>
       </div>
     );
-  } else if (status === "Active") {
+  } else if (status === "escrow") {
     return (
       <div className="flex justify-end items-center">
         <span className="px-[5px] bg-activeBg rounded-full mr-2 h-[10px] mb-0"></span>
         <p className="font-semibold font-jakarta text-base text-lightTextC">
-          {status}
+          Active
         </p>
       </div>
     );
-  } else if (status === "Closed") {
+  } else if (status === "repaid") {
     return (
       <div className="flex justify-end items-center">
         <span className="px-[5px] bg-closeBg rounded-full mr-2 h-[10px] mb-0"></span>
         <p className="font-semibold font-jakarta text-base text-lightTextC">
-          {status}
+          Closed
         </p>
       </div>
     );
