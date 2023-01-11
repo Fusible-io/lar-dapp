@@ -310,7 +310,7 @@ const BorrowTable = () => {
                                 }}
                                 className="flex justify-center items-center font-normal font-jakarta text-base text-lightTextC mr-5 border-b border-lightBorder"
                               >
-                                View {item.length} offers{" "}
+                                View {item?.offers?.length} offers{" "}
                                 <Image
                                   src={DownArrow}
                                   alt="DownArrow"
