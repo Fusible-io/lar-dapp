@@ -47,20 +47,39 @@ const Navbar = () => {
   useEffect(() => {
     if (!window) return;
     if (!provider || !address || !signer) return;
-
+    var token = window.localStorage.getItem("sdkToken");
+    if(nftfi!==null)
+    {
+      console.log('TOken is valid->',token,nftfi.auth._isTokenValid(token));
+    }
+    //if(!nftfi.auth._isTokenValid(token))
     // ToDo: intialize NFTfi when account is changes, or network is changed, or the account is disconnected
     initNFTFI();
   }, [provider, address, signer]);
 
   useEffect(() => {
+    var token = window.localStorage.getItem("sdkToken");
+    if(nftfi!==null && token)
+    {
+      
+      console.log('TOken',nftfi.auth._isTokenValid(token));
+      if(!nftfi.auth._isTokenValid(token))     clearNFTFi();
+    }
+   
     console.log({
-      nftfi,
+      nftfi
     });
   }, [nftfi]);
 
   useEffect(() => {
-    if (address && prevAddress && address !== prevAddress) {
-      clearNFTFi();
+    if (address) {
+      //clearNFTFi();
+      var token = window.localStorage.getItem("sdkToken");
+      if(nftfi!==null && token)
+      {
+        
+        console.log('TOken',nftfi.auth._isTokenValid(token));
+      }
       setAddress(address);
     }
   }, [

@@ -57,7 +57,7 @@ const BorrowTable = () => {
   };
 
   const getOffersOnNFTs = async () => {
-    if (nftfi && window && window.localStorage.getItem("sdkToken")) {
+   // if (nftfi && window && window.localStorage.getItem("sdkToken")) {
       const response = ownedNFTs.map(async (nft) => {
         const offers = await nftfi.offers.get({
           filters: {
@@ -84,10 +84,12 @@ const BorrowTable = () => {
         setLoading(false);
         return offers;
       });
-    }
+    
   };
 
   useEffect(() => {
+    if (nftfi && window && nftfi.auth._isTokenValid(window.localStorage.getItem("sdkToken"))) {
+
     if (address) {
       setLoading(true);
       fetch("/api/nft", {
@@ -104,6 +106,7 @@ const BorrowTable = () => {
           setOwnedNFTs(res.ownedNfts);
           console.log(res.ownedNfts);
         });
+    }
     }
   }, [address]);
 
