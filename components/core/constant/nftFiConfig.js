@@ -33,7 +33,7 @@ const goerliConfig = {
             unit: 18
         },
         dai: {
-            address: '0x0000000000000000000000000000000000000000',
+            address: "0x11fe4b6ae13d2a6055c8d9cf65c55bac32b5d844",
             symbol: 'DAI',
             unit: 18
         },
