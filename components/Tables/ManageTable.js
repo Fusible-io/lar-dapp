@@ -126,7 +126,6 @@ const ManageTable = () => {
                   <Image src={Avatar} alt="Avatar" className="rounded" />
                   <p className="font-semibold font-jakarta text-base text-lightTextC ml-2">
                     {item?.nft?.name}
-                    {console.log(item)}
                   </p>
                 </div>
 

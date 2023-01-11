@@ -5,7 +5,7 @@ import Logo from "/public/assets/logo.svg";
 import Image from "next/image";
 import { ConnectButton } from '@rainbow-me/rainbowkit';
 import { useProvider, useSigner, useAccount } from 'wagmi';
-import { useNFTFi } from "../core/store/store";
+import { useNFTFi, useAddressStore } from "../core/store/store";
 import NFTfi from "@nftfi/js";
 
 
@@ -15,6 +15,7 @@ const Navbar = () => {
   const router = useRouter();
 
   const { nftfi, setNFTFi, clearNFTFi } = useNFTFi();
+  const { address: prevAddress, setAddress } = useAddressStore();
 
   const { address } = useAccount({
     // isConnected: () => {
@@ -64,6 +65,15 @@ const Navbar = () => {
       nftfi
     })
   }, [nftfi]);
+
+  useEffect(() => {
+    if (address && prevAddress && address !== prevAddress) {
+      clearNFTFi();
+      setAddress(address);
+    }
+  }, [
+    address
+  ]);
 
 
 

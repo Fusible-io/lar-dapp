@@ -65,7 +65,7 @@ const BorrowTable = () => {
 
 
   const getOffersOnNFTs = async () => {
-    if (window && window.localStorage.getItem('sdkToken')) {
+    if (nftfi && window && window.localStorage.getItem('sdkToken')) {
       const response = (ownedNFTs.map(async (nft) => {
         const offers = await nftfi.offers.get({
           filters: {
@@ -91,10 +91,6 @@ const BorrowTable = () => {
       }));
     }
   }
-
-  useEffect(() => {
-    console.log("nft with offers", nftOffers)
-  }, [nftOffers])
 
   useEffect(() => {
     if (address) {
@@ -247,7 +243,7 @@ const BorrowTable = () => {
                               ' '
                             }
                             {
-                              ERC20_MAP[item?.offers[0]?.terms?.loan?.currency].symbol
+                              ERC20_MAP[item?.offers[0]?.terms?.loan?.currency]?.symbol
                             }
                           </p>
                         </div>
@@ -352,7 +348,7 @@ const BorrowTable = () => {
                                 ' '
                               }
                               {
-                                ERC20_MAP[items?.terms?.loan?.currency].symbol
+                                ERC20_MAP[items?.terms?.loan?.currency]?.symbol
                               }
                             </p>
                           </div>
@@ -373,7 +369,7 @@ const BorrowTable = () => {
                                 ' '
                               }
                               {
-                                ERC20_MAP[items?.terms.loan.currency].symbol
+                                ERC20_MAP[items?.terms.loan.currency]?.symbol
                               }
                             </p>
                           </div>
