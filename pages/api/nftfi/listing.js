@@ -46,72 +46,11 @@ async function run() {
   // }
   return listings;
 }
-/***
- * Get Active Loans of a given address
- * @param: address
- */
-async function activeLoans(address) {
 
-  try {
-    
-    const loans = await nftfi.loans.get({
-      filters: {
-        counterparty: "borrower",
-        address: address,
-      },
-    });
-
-    //console.log({ loans });
-    return loans;
-  } catch (err) {
-    console.log(err);
-  }
-  
-}
-/***
- * Get Active Offers of a given address
- * @param: address
- */
-async function activeOffers(options) {
-  try{
-  const offers = await nftfi.offers.get({
-    filters: {
-      nft: {
-        //id: nft.tokenId,
-        address: options.nft,
-      },
-      //lender?.address?.eq
-      lender:{
-        address: {
-          ne:options.address
-        }
-      },
-      //    validation: {
-      //      check: false
-      //    }
-    },
-  });
-  //console.log(offers);
-  return offers;
-}
-  catch(err){console.log(err); return {error:'fuck api'}}
-}
 export default function handler(req, res) {
-  if (req.method === 'GET') {
-    console.log(req.query.address,req.query.nft);
-  }
- 
-
-    // run().then(r=>{
-    //     res.status(200).json(r);
-    // });
-
-    // activeLoans(req.query.address).then(r=>{
-    //   res.status(200).json(r);
-    // });
-
-    activeOffers( {address:req.query.address,nft:req.query.nft}).then(r=>{
-      res.status(200).json(r);
+  console.log('activate');
+    run().then(r=>{
+        res.status(200).json(r);
     });
     
   }

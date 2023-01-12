@@ -106,10 +106,6 @@ export default function handler(req, res) {
     //     res.status(200).json(r);
     // });
 
-    // activeLoans(req.query.address).then(r=>{
-    //   res.status(200).json(r);
-    // });
-
     activeOffers( {address:req.query.address,nft:req.query.nft}).then(r=>{
       res.status(200).json(r);
     });
