@@ -8,7 +8,6 @@ import Verify from "/public/assets/Verify.svg";
 import Nftifi from "/public/assets/nftfi.png";
 import UpDownArrow from "/public/assets/updown_arrow.svg";
 
-import { ListData } from "../components/Data/Data";
 import ModalComp from "../components/Modal/ModalComp";
 import ListingSummary from "../components/ListingSummary/ListingSummary";
 import Head from "next/head";
@@ -17,61 +16,33 @@ import { formatCurrency } from "../components/core/utils/formatCurrency";
 import { ERC20_MAP } from "../components/core/constant/nftFiConfig";
 import moment from "moment";
 
-
 const CardDetail = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const { offer } = useOffer();
+  const [loading, setLoading] = useState(false);
+  const { offer, setOffer } = useOffer();
   const { nftfi } = useNFTFi();
-
   const showModal = () => {
     setIsModalOpen(true);
   };
 
-  useEffect(() => {
-    console.log('single offer', offer)
-  }, [offer])
-
   const onIssueLoan = async () => {
-    // // Begin a loan on a lender's offer.
-    // const result = await nftfi.loans.begin({
-    //   offer: {
-    //     nft: {
-    //       id: '42',
-    //       address: '0x00000000',
-    //     },
-    //     lender: {
-    //       address: '0x00000000',
-    //       nonce: '314159265359'
-    //     },
-    //     terms: {
-    //       loan: {
-    //         principal: 1000000000000000000,
-    //         repayment: 1100000000000000000,
-    //         duration: 86400 * 7, // 7 days (in seconds)
-    //         currency: "0x00000000",
-    //         expiry: 1690548548 // Friday, 28 July 2023 14:49:08 GMT+02:00
-    //       }
-    //     },
-    //     signature: '0x000000000000000000000000000000000000000000000000000',
-    //     nftfi: {
-    //       fee: { bps: 500 },
-    //       contract: { name: 'v2-1.loan.fixed' }
-    //     }
-    //   }
-    // });
-
-
+    setLoading(true);
     const result = await nftfi.loans.begin({
       offer: {
         ...offer.offer,
         nft: {
           id: offer?.nft.tokenId,
-          address: offer?.nft?.contract?.address
-        }
-      }
+          address: offer?.nft?.contract?.address,
+        },
+      },
     });
-    console.log(result)
-  }
+    setLoading(false);
+    console.log({ result });
+  };
+
+  const onAccept = (item) => {
+    setOffer({ ...offer, offer: item });
+  };
 
   return (
     <>
@@ -105,9 +76,8 @@ const CardDetail = () => {
             </div>
             <div>
               <h3 className="flex items-center font-jakarta text-base font-normal mb-2">
-                {
-                  offer?.nft?.contract?.name
-                }<Image src={Verify} alt="Verify" />
+                {offer?.nft?.contract?.name}
+                <Image src={Verify} alt="Verify" />
               </h3>
               <h1 className="font-jakarta text-[28px] font-medium mb-[47px]">
                 {offer?.nft?.title} #{offer?.nft?.tokenId}
@@ -164,15 +134,11 @@ const CardDetail = () => {
                   <div className="flex justify-between items-center mb-4">
                     <div className="flex items-end mr-12">
                       <h1 className="font-jakarta text-2xl font-semibold mr-2">
-                        {
-                          formatCurrency(offer?.offer?.terms?.loan?.principal, offer?.offer?.terms?.loan?.currency)
-                        }
-                        {
-                          ' '
-                        }
-                        {
-                          ERC20_MAP[offer?.offer?.terms?.loan?.currency]?.symbol
-                        }
+                        {formatCurrency(
+                          offer?.offer?.terms?.loan?.principal,
+                          offer?.offer?.terms?.loan?.currency
+                        )}{" "}
+                        {ERC20_MAP[offer?.offer?.terms?.loan?.currency]?.symbol}
                       </h1>
                       <span className="font-jakarta text-sm font-normal text-[#5D6785]">
                         $10,084.83
@@ -181,21 +147,19 @@ const CardDetail = () => {
                     <Image src={Nftifi} alt="Nftifi" width={20} height={20} />
                   </div>
                   <p className="font-jakarta text-sm font-normal leading-5 mb-5">
-                    34% APY <span className="text-[#5D6785]">for</span> {moment.duration(offer?.offer?.terms?.loan?.duration, 'second').humanize()}
-                    <br /> <span className="text-[#5D6785]">
-                      You repay
-                    </span>{" "}
-                    {
-                      formatCurrency(offer?.offer?.terms?.loan?.repayment, offer?.offer?.terms?.loan?.currency)
-                    }
-                    {
-                      ' '
-                    }
-                    {
-                      ERC20_MAP[offer?.offer?.terms?.loan?.currency]?.symbol
-                    }
+                    34% APY <span className="text-[#5D6785]">for</span>{" "}
+                    {moment
+                      .duration(offer?.offer?.terms?.loan?.duration, "second")
+                      .humanize()}
+                    <br /> <span className="text-[#5D6785]">You repay</span>{" "}
+                    {formatCurrency(
+                      offer?.offer?.terms?.loan?.repayment,
+                      offer?.offer?.terms?.loan?.currency
+                    )}{" "}
+                    {ERC20_MAP[offer?.offer?.terms?.loan?.currency]?.symbol}
                   </p>
                   <Button
+                    loading={loading}
                     onClick={() => onIssueLoan()}
                     type="primary"
                     className="h-[44px] rounded-lg bg-greenBtn w-full text-base font-jakarta font-bold text-white mb-[6px] border-none"
@@ -233,7 +197,7 @@ const CardDetail = () => {
                 </div>
               }
               bordered
-              dataSource={ListData}
+              dataSource={offer?.nft?.offers}
               renderItem={(item) => {
                 return (
                   <div
@@ -242,25 +206,42 @@ const CardDetail = () => {
                   >
                     <div className="w-1/6">
                       <p className="font-semibold font-jakarta text-base text-lightTextC text-right ">
-                        {item.principal}
+                        {formatCurrency(
+                          item?.terms?.loan?.principal,
+                          item?.terms?.loan?.currency
+                        )}{" "}
+                        {ERC20_MAP[item?.terms?.loan?.currency]?.symbol}
                       </p>
                     </div>
 
                     <div className="w-1/6">
                       <p className="font-semibold font-jakarta text-base text-lightTextC text-right ">
-                        {item.duration}
+                        {moment
+                          .duration(item?.terms?.loan?.duration, "second")
+                          .humanize()}
                       </p>
                     </div>
 
                     <div className="w-1/6">
                       <p className="font-semibold font-jakarta text-base text-lightTextC text-right ">
-                        {item.payoff}
+                        {formatCurrency(
+                          item?.terms?.loan?.repayment,
+                          item?.terms?.loan?.currency
+                        )}{" "}
+                        {ERC20_MAP[item?.terms?.loan?.currency]?.symbol}
                       </p>
                     </div>
 
                     <div className="w-1/6">
                       <p className="font-semibold font-jakarta text-base text-lightTextC text-right ">
-                        {item.apr}
+                        {nftfi.utils
+                          .calcApr(
+                            item?.terms?.loan?.principal,
+                            item?.terms?.loan?.repayment,
+                            item?.terms?.loan?.duration / (24 * 60 * 60)
+                          )
+                          .toString()
+                          .substring(0, 5)}
                       </p>
                     </div>
 
@@ -275,7 +256,10 @@ const CardDetail = () => {
                     </div>
 
                     <div className="flex items-center justify-end w-1/6">
-                      <button className="border-lightBorder border rounded-lg px-2 py-1 font-jakarta font-normal text-base text-lightBorder">
+                      <button
+                        onClick={() => onAccept(item)}
+                        className="border-lightBorder border rounded-lg px-2 py-1 font-jakarta font-normal text-base text-lightBorder"
+                      >
                         Accept
                       </button>
                     </div>
