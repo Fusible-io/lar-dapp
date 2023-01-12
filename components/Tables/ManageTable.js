@@ -43,6 +43,7 @@ const ManageTable = () => {
       const loans = await nftfi.loans.get({
         filters: {
           counterparty: "borrower",
+          address: "0x44857e863dFFf1f992F644e75b0f3B6fF88311f9",
         },
       });
 

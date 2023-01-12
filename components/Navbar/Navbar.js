@@ -36,7 +36,7 @@ const Navbar = () => {
       config: { api: { key: "AIzaSyC7ZjZ4mYLoyVmkl-Ch9yzfbMTgHqpy5iM" } },
       ethereum: {
         account: { signer, address },
-        provider: { url: provider.connection.url },
+        provider: { url: 'https://eth-goerli.g.alchemy.com/v2/I8sUm_xAMMW6ZacAhq97c-l2rqwChRh7' },
       },
       web3: { provider },
       logging: { verbose: true },

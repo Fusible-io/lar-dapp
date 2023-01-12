@@ -65,10 +65,19 @@ const BorrowTable = () => {
               id: nft.tokenId,
               address: nft.contract.address,
             },
+            //lender?.address?.eq
+            lender:{
+              address: {
+                ne:'0x44857e863dFFf1f992F644e75b0f3B6fF88311f9'
+              }
+            },
+            //    validation: {
+            //      check: false
+            //    }
           },
         });
         // set offers to ownedNFTs offers
-
+        console.log(offers);
         const updatedNFTs = ownedNFTs.map((item) => {
           if (
             item.tokenId == nft.tokenId &&
@@ -98,7 +107,7 @@ const BorrowTable = () => {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          address,
+          address:'0x44857e863dFFf1f992F644e75b0f3B6fF88311f9',
         }),
       })
         .then((res) => res.json())
