@@ -8,7 +8,6 @@ import Verify from "/public/assets/Verify.svg";
 import Nftifi from "/public/assets/nftfi.png";
 import UpDownArrow from "/public/assets/updown_arrow.svg";
 
-import { ListData } from "../components/Data/Data";
 import ModalComp from "../components/Modal/ModalComp";
 import ListingSummary from "../components/ListingSummary/ListingSummary";
 import Head from "next/head";
@@ -19,48 +18,15 @@ import moment from "moment";
 
 const CardDetail = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [nftOffers, setNftOffers] = useState([]);
+  const [loading, setLoading] = useState(false);
   const { offer, setOffer } = useOffer();
   const { nftfi } = useNFTFi();
-
   const showModal = () => {
     setIsModalOpen(true);
   };
 
-  useEffect(() => {
-    // console.log("single offer", offer);
-    setNftOffers(offer?.nft?.offers);
-  }, [offer]);
-
   const onIssueLoan = async () => {
-    // // Begin a loan on a lender's offer.
-    // const result = await nftfi.loans.begin({
-    //   offer: {
-    //     nft: {
-    //       id: '42',
-    //       address: '0x00000000',
-    //     },
-    //     lender: {
-    //       address: '0x00000000',
-    //       nonce: '314159265359'
-    //     },
-    //     terms: {
-    //       loan: {
-    //         principal: 1000000000000000000,
-    //         repayment: 1100000000000000000,
-    //         duration: 86400 * 7, // 7 days (in seconds)
-    //         currency: "0x00000000",
-    //         expiry: 1690548548 // Friday, 28 July 2023 14:49:08 GMT+02:00
-    //       }
-    //     },
-    //     signature: '0x000000000000000000000000000000000000000000000000000',
-    //     nftfi: {
-    //       fee: { bps: 500 },
-    //       contract: { name: 'v2-1.loan.fixed' }
-    //     }
-    //   }
-    // });
-
+    setLoading(true);
     const result = await nftfi.loans.begin({
       offer: {
         ...offer.offer,
@@ -70,11 +36,12 @@ const CardDetail = () => {
         },
       },
     });
-    console.log(result);
+    setLoading(false);
+    console.log({ result });
   };
 
   const onAccept = (item) => {
-    console.log(item);
+    setOffer({ ...offer, offer: item });
   };
 
   return (
@@ -192,6 +159,7 @@ const CardDetail = () => {
                     {ERC20_MAP[offer?.offer?.terms?.loan?.currency]?.symbol}
                   </p>
                   <Button
+                    loading={loading}
                     onClick={() => onIssueLoan()}
                     type="primary"
                     className="h-[44px] rounded-lg bg-greenBtn w-full text-base font-jakarta font-bold text-white mb-[6px] border-none"
@@ -229,7 +197,7 @@ const CardDetail = () => {
                 </div>
               }
               bordered
-              dataSource={nftOffers}
+              dataSource={offer?.nft?.offers}
               renderItem={(item) => {
                 return (
                   <div
