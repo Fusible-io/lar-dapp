@@ -57,7 +57,7 @@ const BorrowTable = () => {
   };
 
   const getOffersOnNFTs = async () => {
-   // if (nftfi && window && window.localStorage.getItem("sdkToken")) {
+    if (nftfi) {
       const response = ownedNFTs.map(async (nft) => {
         const offers = await nftfi.offers.get({
           filters: {
@@ -65,15 +65,6 @@ const BorrowTable = () => {
               id: nft.tokenId,
               address: nft.contract.address,
             },
-            //lender?.address?.eq
-            lender:{
-              address: {
-                ne: address
-              }
-            },
-            //    validation: {
-            //      check: false
-            //    }
           },
         });
         // set offers to ownedNFTs offers
@@ -93,12 +84,10 @@ const BorrowTable = () => {
         setLoading(false);
         return offers;
       });
-    
+    }
   };
 
   useEffect(() => {
-    if (nftfi && window && nftfi.auth._isTokenValid(window.localStorage.getItem("sdkToken"))) {
-
     if (address) {
       setLoading(true);
       fetch("/api/nft", {
@@ -116,11 +105,10 @@ const BorrowTable = () => {
           console.log(res.ownedNfts);
         });
     }
-    }
   }, [address]);
 
   useEffect(() => {
-    if (ownedNFTs.length > 0) {
+    if (ownedNFTs.length > 0 && nftfi) {
       getOffersOnNFTs();
     }
   }, [ownedNFTs]);
@@ -283,7 +271,7 @@ const BorrowTable = () => {
                                   item?.offers[0]?.terms?.loan?.principal,
                                   item?.offers[0]?.terms?.loan?.repayment,
                                   item?.offers[0]?.terms?.loan?.duration /
-                                    (24 * 60 * 60)
+                                  (24 * 60 * 60)
                                 )
                                 .toString()
                                 .substring(0, 5)}
@@ -397,7 +385,7 @@ const BorrowTable = () => {
                                       items?.terms?.loan?.principal,
                                       items?.terms?.loan?.repayment,
                                       items?.terms?.loan?.duration /
-                                        (24 * 60 * 60)
+                                      (24 * 60 * 60)
                                     )
                                     .toString()
                                     .substring(0, 5)}
@@ -433,7 +421,7 @@ const BorrowTable = () => {
           />
         ) : (
           <div className="mb-14 flex gap-4">
-            {nftOffers.map((item) => {
+            {nftOffers.length > 0 && nftOffers.map((item) => {
               return <CardComp key={item.id} item={item} />;
             })}
           </div>
