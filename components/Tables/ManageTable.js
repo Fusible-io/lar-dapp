@@ -167,7 +167,6 @@ const ManageTable = () => {
                 </div>
 
                 <div className="w-1/12">
-                  {console.log(item.status)}
                   <StatusComp status={item.status} />
                 </div>
 
@@ -191,12 +190,32 @@ const ManageTable = () => {
                 </div>
 
                 <div className="flex items-center justify-end w-1/12">
-                  <button
-                    onClick={() => onRepay(item)}
-                    className="border-lightBorder border rounded-lg px-2 py-1 font-jakarta font-normal text-base text-lightBorder"
-                  >
-                    Repay
-                  </button>
+                  {/* Optional: repay button hide style */}
+                  {/* {item.status !== "repaid" && (
+                    <button
+                      onClick={() => onRepay(item)}
+                      className="border-lightBorder border rounded-lg px-2 py-1 font-jakarta font-normal text-base text-lightBorder"
+                    >
+                      Repay
+                    </button>
+                  )} */}
+
+                  {item.status === "repaid" ? (
+                    <button
+                      disabled
+                      onClick={() => onRepay(item)}
+                      className="border-lightBorder border rounded-lg px-2 py-1 font-jakarta font-normal text-base text-lightBorder cursor-not-allowed opacity-[0.2]"
+                    >
+                      Repay
+                    </button>
+                  ) : (
+                    <button
+                      onClick={() => onRepay(item)}
+                      className="border-lightBorder border rounded-lg px-2 py-1 font-jakarta font-normal text-base text-lightBorder"
+                    >
+                      Repay
+                    </button>
+                  )}
                 </div>
               </div>
             );
