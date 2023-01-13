@@ -26,23 +26,33 @@ const CardDetail = () => {
   };
 
   const onIssueLoan = async () => {
-    setLoading(true);
-    const result = await nftfi.loans.begin({
-      offer: {
-        ...offer.offer,
-        nft: {
-          id: offer?.nft.tokenId,
-          address: offer?.nft?.contract?.address,
+    try {
+      setLoading(true);
+      const result = await nftfi.loans.begin({
+        offer: {
+          ...offer.offer,
+          nft: {
+            id: offer?.nft.tokenId,
+            address: offer?.nft?.contract?.address,
+          },
         },
-      },
-    });
-    setLoading(false);
-    console.log({ result });
+      });
+      setLoading(false);
+      console.log({ result });
+    }
+    catch (err) {
+      console.log(err);
+    }
+
   };
 
   const onAccept = (item) => {
     setOffer({ ...offer, offer: item });
   };
+
+  useEffect(() => {
+    console.log({ offer });
+  }, [offer])
 
   return (
     <>

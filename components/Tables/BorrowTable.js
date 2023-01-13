@@ -68,7 +68,7 @@ const BorrowTable = () => {
             //lender?.address?.eq
             lender:{
               address: {
-                ne:'0x44857e863dFFf1f992F644e75b0f3B6fF88311f9'
+                ne: address
               }
             },
             //    validation: {
@@ -107,7 +107,7 @@ const BorrowTable = () => {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          address:'0x44857e863dFFf1f992F644e75b0f3B6fF88311f9',
+          address: address,
         }),
       })
         .then((res) => res.json())

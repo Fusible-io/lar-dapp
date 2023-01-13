@@ -43,7 +43,7 @@ const ManageTable = () => {
       const loans = await nftfi.loans.get({
         filters: {
           counterparty: "borrower",
-          address: "0x44857e863dFFf1f992F644e75b0f3B6fF88311f9",
+          address: address,
         },
       });
 
@@ -116,6 +116,7 @@ const ManageTable = () => {
           // loadMore={loadMore}
           loading={loading}
           renderItem={(item) => {
+            if (item.borrower.address !== address) return 
             return (
               <div className="flex justify-between items-center px-[18px] pb-4">
                 <div className="flex items-center w-3/12 my-2">
