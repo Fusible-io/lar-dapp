@@ -57,34 +57,32 @@ const BorrowTable = () => {
   };
 
   const getOffersOnNFTs = async () => {
-    if (nftfi) {
-      const response = ownedNFTs.map(async (nft) => {
-        const offers = await nftfi.offers.get({
-          filters: {
-            nft: {
-              id: nft.tokenId,
-              address: nft.contract.address,
-            },
+    const response = ownedNFTs.map(async (nft) => {
+      const offers = await nftfi.offers.get({
+        filters: {
+          nft: {
+            id: nft.tokenId,
+            address: nft.contract.address,
           },
-        });
-        // set offers to ownedNFTs offers
-        console.log(offers);
-        const updatedNFTs = ownedNFTs.map((item) => {
-          if (
-            item.tokenId == nft.tokenId &&
-            item.contract.address === nft.contract.address
-          ) {
-            item.offers = offers;
-            return item;
-          } else {
-            return item;
-          }
-        });
-        setNFTOffers(updatedNFTs);
-        setLoading(false);
-        return offers;
+        },
       });
-    }
+      // set offers to ownedNFTs offers
+      console.log(offers);
+      const updatedNFTs = ownedNFTs.map((item) => {
+        if (
+          item.tokenId == nft.tokenId &&
+          item.contract.address === nft.contract.address
+        ) {
+          item.offers = offers;
+          return item;
+        } else {
+          return item;
+        }
+      });
+      setNFTOffers(updatedNFTs);
+      setLoading(false);
+      return offers;
+    });
   };
 
   useEffect(() => {
@@ -108,8 +106,13 @@ const BorrowTable = () => {
   }, [address]);
 
   useEffect(() => {
-    if (ownedNFTs.length > 0 && nftfi) {
-      getOffersOnNFTs();
+    var token = window.localStorage.getItem("sdkToken");
+    if (nftfi && nftfi.auth._isTokenValid(token)) {
+      if (ownedNFTs.length > 0) {
+        getOffersOnNFTs();
+      }
+    } else if (nftfi !== null) {
+      nftfi.auth.getToken();
     }
   }, [ownedNFTs]);
 
@@ -271,7 +274,7 @@ const BorrowTable = () => {
                                   item?.offers[0]?.terms?.loan?.principal,
                                   item?.offers[0]?.terms?.loan?.repayment,
                                   item?.offers[0]?.terms?.loan?.duration /
-                                  (24 * 60 * 60)
+                                    (24 * 60 * 60)
                                 )
                                 .toString()
                                 .substring(0, 5)}
@@ -385,7 +388,7 @@ const BorrowTable = () => {
                                       items?.terms?.loan?.principal,
                                       items?.terms?.loan?.repayment,
                                       items?.terms?.loan?.duration /
-                                      (24 * 60 * 60)
+                                        (24 * 60 * 60)
                                     )
                                     .toString()
                                     .substring(0, 5)}
@@ -421,9 +424,10 @@ const BorrowTable = () => {
           />
         ) : (
           <div className="mb-14 flex gap-4">
-            {nftOffers.length > 0 && nftOffers.map((item) => {
-              return <CardComp key={item.id} item={item} />;
-            })}
+            {nftOffers.length > 0 &&
+              nftOffers.map((item) => {
+                return <CardComp key={item.id} item={item} />;
+              })}
           </div>
         )}
       </div>

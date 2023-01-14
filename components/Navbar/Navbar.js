@@ -3,8 +3,8 @@ import { useRouter } from "next/router";
 import React, { useEffect } from "react";
 import Logo from "/public/assets/logo.svg";
 import Image from "next/image";
-import { ConnectButton } from '@rainbow-me/rainbowkit';
-import { useProvider, useSigner, useAccount } from 'wagmi';
+import { ConnectButton } from "@rainbow-me/rainbowkit";
+import { useProvider, useSigner, useAccount } from "wagmi";
 import { useNFTFi, useAddressStore } from "../core/store/store";
 import NFTfi from "@nftfi/js";
 
@@ -36,7 +36,9 @@ const Navbar = () => {
       config: { api: { key: "AIzaSyC7ZjZ4mYLoyVmkl-Ch9yzfbMTgHqpy5iM" } },
       ethereum: {
         account: { signer, address },
-        provider: { url: 'https://eth-goerli.g.alchemy.com/v2/I8sUm_xAMMW6ZacAhq97c-l2rqwChRh7' },
+        provider: {
+          url: "https://eth-goerli.g.alchemy.com/v2/I8sUm_xAMMW6ZacAhq97c-l2rqwChRh7",
+        },
       },
       web3: { provider },
       logging: { verbose: true },
@@ -48,9 +50,8 @@ const Navbar = () => {
     if (!window) return;
     if (!provider || !address || !signer) return;
     var token = window.localStorage.getItem("sdkToken");
-    if(nftfi!==null)
-    {
-      console.log('TOken is valid->',token,nftfi.auth._isTokenValid(token));
+    if (nftfi !== null) {
+      console.log("TOken is valid->", token, nftfi.auth._isTokenValid(token));
     }
     //if(!nftfi.auth._isTokenValid(token))
     // ToDo: intialize NFTfi when account is changes, or network is changed, or the account is disconnected
@@ -59,15 +60,13 @@ const Navbar = () => {
 
   useEffect(() => {
     var token = window.localStorage.getItem("sdkToken");
-    if(nftfi!==null && token)
-    {
-      
-      console.log('TOken',nftfi.auth._isTokenValid(token));
-      if(!nftfi.auth._isTokenValid(token))     clearNFTFi();
+    if (nftfi !== null && token) {
+      console.log("TOken", nftfi.auth._isTokenValid(token));
+      if (!nftfi.auth._isTokenValid(token)) clearNFTFi();
     }
-   
+
     console.log({
-      nftfi
+      nftfi,
     });
   }, [nftfi]);
 
@@ -75,20 +74,12 @@ const Navbar = () => {
     if (address) {
       //clearNFTFi();
       var token = window.localStorage.getItem("sdkToken");
-      if(nftfi!==null && token)
-      {
-        
-        console.log('TOken',nftfi.auth._isTokenValid(token));
+      if (nftfi !== null && token) {
+        console.log("TOken", nftfi.auth._isTokenValid(token));
       }
       setAddress(address);
     }
-  }, [
-    address
-  ]);
-
-
-
-
+  }, [address]);
 
   return (
     <div className="px-10 py-7 flex justify-between items-center mainContainer">
