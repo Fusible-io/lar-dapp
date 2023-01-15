@@ -22,6 +22,7 @@ const ManageTable = () => {
   const { setLoan } = useLoan();
 
   useEffect(() => {
+    if (!address) return;
     getActiveLoans();
   }, [address]);
 
@@ -39,35 +40,20 @@ const ManageTable = () => {
 
   const getActiveLoans = async () => {
     try {
-      // setLoading(true);
-      // const loans = await nftfi.loans.get({
-      //   filters: {
-      //     counterparty: "borrower",
-      //     address: address,
-      //   },
-      // });
-
-      // console.log({ loans });
-
-      // setLoading(false);
-      // setActiveLoansList(loans);
-      if (address) {
-        setLoading(true);
-        // http://localhost:3000/api/nftfi/loans/0xB71C355d2F672C679d13778D41e51de0D291f229
-        fetch(`/api/nftfi/loans/${address}`, {
-          method: "GET", // or 'PUT'
-          headers: {
-            "Content-Type": "application/json",
-          },
-        })
-          .then((res) =>
-            res.json()
-          ).then(res => {
-            console.log({ res })
-            setActiveLoansList(res);
-            setLoading(false);
-          })
-      }
+      setLoading(true);
+      // http://localhost:3000/api/nftfi/loans/0xB71C355d2F672C679d13778D41e51de0D291f229
+      fetch(`/api/nftfi/loans/${address}`, {
+        method: "GET", // or 'PUT'
+        headers: {
+          "Content-Type": "application/json",
+        },
+      })
+        .then((res) => res.json())
+        .then((res) => {
+          // console.log({ res });
+          setActiveLoansList(res);
+          setLoading(false);
+        });
     } catch (err) {
       console.log(err);
     }
@@ -130,16 +116,23 @@ const ManageTable = () => {
           }
           bordered
           dataSource={activeLoansList}
-          // loadMore={loadMore}
+          loadMore={loadMore}
           loading={loading}
           renderItem={(item) => {
-            if (item.borrower.address.toLowerCase() !== address.toLowerCase()) return null
+            if (item.borrower.address.toLowerCase() !== address.toLowerCase())
+              return null;
             return (
               <div className="flex justify-between items-center px-[18px] pb-4">
                 <div className="flex items-center w-3/12 my-2">
-                  <Image src={Avatar} alt="Avatar" className="rounded" />
+                  <Image
+                    src={item?.nft?.rawMetadata?.image}
+                    width={20}
+                    height={20}
+                    alt="Avatar"
+                    className="rounded"
+                  />
                   <p className="font-semibold font-jakarta text-base text-lightTextC ml-2">
-                    {item?.nft?.name}
+                    {item?.nft?.name} #{item?.nft?.id}
                   </p>
                 </div>
 
