@@ -14,8 +14,7 @@ const CardComp = ({
 }) => {
   const { nftfi } = useNFTFi();
 
-  if (item && item?.offers?.length === 0) return null
-  if (!nftfi) return null
+  if (item && item.offers.length === 0) return null
 
   return (
     <Card

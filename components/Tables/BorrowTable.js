@@ -21,8 +21,6 @@ import { useAccount } from "wagmi";
 
 import CardComp from "../CardComp/CardComp";
 
-import { CardData } from "../Data/Data";
-
 const { Panel } = Collapse;
 
 const BorrowTable = () => {
@@ -66,8 +64,6 @@ const BorrowTable = () => {
           },
         },
       });
-      // set offers to ownedNFTs offers
-      console.log(offers);
       const updatedNFTs = ownedNFTs.map((item) => {
         if (
           item.tokenId == nft.tokenId &&
@@ -110,6 +106,9 @@ const BorrowTable = () => {
     if (nftfi && nftfi.auth._isTokenValid(token)) {
       if (ownedNFTs.length > 0) {
         getOffersOnNFTs();
+      }
+      else if (ownedNFTs.length === 0) {
+        setLoading(false);
       }
     } else if (nftfi !== null) {
       nftfi.auth.getToken();
