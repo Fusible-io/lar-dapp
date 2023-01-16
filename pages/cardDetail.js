@@ -15,6 +15,8 @@ import { useOffer, useNFTFi } from "../components/core/store/store";
 import { formatCurrency } from "../components/core/utils/formatCurrency";
 import { ERC20_MAP } from "../components/core/constant/nftFiConfig";
 import moment from "moment";
+import Router from 'next/router'
+
 
 const CardDetail = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -38,7 +40,11 @@ const CardDetail = () => {
         },
       });
       setLoading(false);
+      
       console.log({ result });
+      if (result) {
+        Router.push('/')
+      }
     }
     catch (err) {
       console.log(err);

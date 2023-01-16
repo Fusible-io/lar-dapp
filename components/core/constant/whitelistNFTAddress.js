@@ -1,5 +1,5 @@
 export const whitelistNFTAddress = {
-  "MultiFaucet NFT V3": "0xBc19fFeF966bFf35cb0FeE54741FeF4f1a33662A",
+  "MultiFaucet NFT V3": "0xf5de760f2e916647fd766b4ad9e85ff943ce3a2b",
 };
 
 export const whitelistNFTAddresList = Object.values(whitelistNFTAddress);
