@@ -30,6 +30,21 @@ const CardDetail = () => {
   const onIssueLoan = async () => {
     try {
       setLoading(true);
+
+      const address = await nftfi.erc721.setApprovalForAll({
+        token: {
+         address: offer?.nft?.contract?.address,
+        },
+        nftfi: { contract: { name: 'v2-1.loan.fixed' } }
+      });
+
+      if (!address) {
+        setLoading(false);
+        return;
+      }
+
+
+
       const result = await nftfi.loans.begin({
         offer: {
           ...offer.offer,

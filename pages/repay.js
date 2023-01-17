@@ -104,10 +104,11 @@ const Repay = () => {
             <div className="flex gap-[46px] mb-10">
               <div className="relative">
                 <Image
-                  src={CardImage}
+                  src={loan?.nft?.rawMetadata?.image}
+                  width={395}
+                  height={435}
                   alt="CardImage"
                   className="rounded-xl"
-                  style={{ height: "435px", width: "395px" }}
                 />
                 <span className="text-white bg-tagColor rounded absolute top-[18px] left-[17px] font-semibold font-jakarta text-[11px] px-[3px] py-[1px]">
                   Listed 1/3
@@ -131,7 +132,7 @@ const Repay = () => {
                   }
                 </h1>
                 <div className="flex flex-wrap gap-[8px] mb-5">
-                  <div className="flex justify-between items-center bg-darkBgBlack px-[17px] py-[18px] rounded-[20px] shadow-list w-[251px] h-[82px]">
+                  {/* <div className="flex justify-between items-center bg-darkBgBlack px-[17px] py-[18px] rounded-[20px] shadow-list w-[251px] h-[82px]">
                     <div>
                       <h2 className="font-inter font-semibold text-base text-white80 mb-1">
                         Collateral
@@ -147,7 +148,7 @@ const Repay = () => {
                       width={55}
                       height={60}
                     />
-                  </div>
+                  </div> */}
                   <div className="flex justify-between items-center bg-darkBgBlack px-[17px] py-[18px] rounded-[20px] shadow-list w-[168px] h-[82px]">
                     <div>
                       <h2 className="font-inter font-semibold text-base text-white80 mb-1">
@@ -175,9 +176,9 @@ const Repay = () => {
                           width={12}
                           height={19}
                         />
-                        <span className="font-normal text-xs ml-2 -mb-[3px] font-inter text-white80">
+                        {/* <span className="font-normal text-xs ml-2 -mb-[3px] font-inter text-white80">
                           $7,239
-                        </span>
+                        </span> */}
                       </div>
                     </div>
                   </div>
@@ -206,9 +207,9 @@ const Repay = () => {
                           width={12}
                           height={19}
                         />
-                        <span className="font-normal text-xs ml-2 -mb-[3px] font-inter text-white80">
+                        {/* <span className="font-normal text-xs ml-2 -mb-[3px] font-inter text-white80">
                           $7,239
-                        </span>
+                        </span> */}
                       </div>
                     </div>
                   </div>
