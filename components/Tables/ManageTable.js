@@ -52,7 +52,9 @@ const ManageTable = () => {
         "x-api-key": API_KEY,
       },
     });
+    if (!res) return null;
     const data = await res.json();
+    if (!data) return null;
     return data;
   };
 
