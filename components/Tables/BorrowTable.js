@@ -85,7 +85,7 @@ const BorrowTable = () => {
   };
 
   const getAracadeListing = async () => {
-    setLoadingArcade(true)
+    setLoadingArcade(true);
     const url = `${GET_LISTING_URL}`;
 
     const expiresAt = (Date.now() + 10 * 1000).toString();
@@ -105,7 +105,10 @@ const BorrowTable = () => {
     if (fileredData.length > 0) {
       const updatedList = await Promise.all(
         fileredData.map(async (item) => {
-          const metadata = await getNFTMetadata(item?.collateralAddress, item?.collateralId);
+          const metadata = await getNFTMetadata(
+            item?.collateralAddress,
+            item?.collateralId
+          );
           if (metadata) {
             item.metadata = metadata.metadata;
           }
@@ -113,9 +116,8 @@ const BorrowTable = () => {
         })
       );
       setOffersArcade(updatedList);
-      console.log(updatedList)
-    }
-    else {
+      console.log(updatedList);
+    } else {
       setOffersArcade([]);
     }
     setLoadingArcade(false);
@@ -178,8 +180,6 @@ const BorrowTable = () => {
     if (nftfi && nftfi.auth._isTokenValid(token)) {
       if (ownedNFTs.length > 0) {
         getOffersOnNFTs();
-      } else if (ownedNFTs.length === 0) {
-        setLoading(false);
       }
     } else if (nftfi !== null) {
       nftfi.auth.getToken();
@@ -558,37 +558,33 @@ const BorrowTable = () => {
                           className="rounded"
                         />
                         <p className="font-semibold font-jakarta text-base text-lightTextC ml-2">
-                          {
-                            item?.metadata?.name
-                          }
-                          { ' #'}
-                          {
-                            item?.collateralId
-                          }
+                          {item?.metadata?.name}
+                          {" #"}
+                          {item?.collateralId}
                         </p>
                       </div>
 
                       <div className="w-1/12">
                         <p className="font-semibold font-jakarta text-base text-lightTextC text-right ">
                           {formatCurrency(
-                              item?.loanTerms[0]?.principal,
-                              item?.loanTerms[0]?.payableCurrency
-                            )}{" "}
-                            {
-                              ERC20_MAP[item?.loanTerms[0]?.payableCurrency]
-                                ?.symbol
-                            }
+                            item?.loanTerms[0]?.principal,
+                            item?.loanTerms[0]?.payableCurrency
+                          )}{" "}
+                          {
+                            ERC20_MAP[item?.loanTerms[0]?.payableCurrency]
+                              ?.symbol
+                          }
                         </p>
                       </div>
 
                       <div className="w-1/12">
                         <p className="font-semibold font-jakarta text-base text-lightTextC text-right ">
                           {moment
-                              .duration(
-                                item?.loanTerms[0]?.durationSecs,
-                                "second"
-                              )
-                              .humanize()}
+                            .duration(
+                              item?.loanTerms[0]?.durationSecs,
+                              "second"
+                            )
+                            .humanize()}
                         </p>
                       </div>
 
@@ -695,17 +691,14 @@ const BorrowTable = () => {
                           <div className="w-1/12">
                             <p className="font-semibold font-jakarta text-base text-lightTextC text-right ">
                               {moment
-                                .duration(
-                                  items?.durationSecs,
-                                  "second"
-                                )
+                                .duration(items?.durationSecs, "second")
                                 .humanize()}
                             </p>
                           </div>
 
                           <div className="w-1/12">
                             <p className="font-semibold font-jakarta text-base text-lightTextC text-right ">
-                            {/* {formatCurrency(
+                              {/* {formatCurrency(
                                 items?.principal,
                                 items?.payableCurrency
                               )}{" "}
