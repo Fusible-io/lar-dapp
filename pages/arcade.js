@@ -130,6 +130,19 @@ export default function Arcade() {
     console.log({ data });
   };
 
+  const getNFTMetadata = async (contract, tokenId) => {
+    // https://shuttle-goerli.arcade.xyz/api/v2/collections/0xf5de760f2e916647fd766b4ad9e85ff943ce3a2b/assets/2740179
+
+    const GET_NFT_METADATA_URL = `${BASE_URL}/collections/${contract}/assets/${tokenId}`;
+    const res = await fetch(GET_NFT_METADATA_URL, {
+      headers: {
+        "x-api-key": API_KEY,
+      },
+    });
+    const data = await res.json();
+    console.log({ data });
+  }
+
   return (
     <>
       <button onClick={triggerAracde}>click</button>

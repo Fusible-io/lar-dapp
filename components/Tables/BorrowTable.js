@@ -106,8 +106,7 @@ const BorrowTable = () => {
     if (nftfi && nftfi.auth._isTokenValid(token)) {
       if (ownedNFTs.length > 0) {
         getOffersOnNFTs();
-      }
-      else if (ownedNFTs.length === 0) {
+      } else if (ownedNFTs.length === 0) {
         setLoading(false);
       }
     } else if (nftfi !== null) {
@@ -429,6 +428,261 @@ const BorrowTable = () => {
               })}
           </div>
         )}
+      </div>
+
+      <h1 className="font-semibold text-[28px] leading-[44px] font-jakarta mb-5 text-white">
+        Arcade List
+      </h1>
+      <div>
+        <List
+          header={
+            <div className="flex px-[18px]">
+              <h1 className="font-medium text-sm font-jakarta text-gTextColor text-left w-3/12">
+                Items
+              </h1>
+
+              <h1 className="font-medium text-sm font-jakarta text-gTextColor text-right w-1/12">
+                Principal
+              </h1>
+
+              <h1 className="font-medium text-sm font-jakarta text-gTextColor text-right w-1/12">
+                Duration
+              </h1>
+
+              <h1 className="font-medium text-sm font-jakarta text-gTextColor text-right w-1/12">
+                Payoff
+              </h1>
+
+              <h1 className="font-medium text-sm font-jakarta text-gTextColor text-right w-1/12">
+                APR
+              </h1>
+
+              <h1 className="font-medium text-sm font-jakarta text-gTextColor text-right w-1/12"></h1>
+
+              <h1 className="font-medium text-sm font-jakarta text-gTextColor text-right w-4/12"></h1>
+            </div>
+          }
+          bordered
+          dataSource={nftOffers}
+          loadMore={loadMore}
+          loading={loading}
+          renderItem={(item, idx) => {
+            if (item?.offers?.length > 0)
+              return (
+                <Collapse ghost activeKey={activeKey}>
+                  <Panel
+                    showArrow={false}
+                    header={
+                      <div
+                        className="flex justify-between items-center px-[18px]"
+                        style={{
+                          paddingBottom: activeKey.includes(idx) ? 0 : 16,
+                        }}
+                      >
+                        <div className="flex items-center w-3/12 my-2">
+                          <Image
+                            src={item?.rawMetadata?.image}
+                            alt="metaImage"
+                            width={28}
+                            height={28}
+                            className="rounded"
+                          />
+                          <p className="font-semibold font-jakarta text-base text-lightTextC ml-2">
+                            {item?.title}
+                            {" #"}
+                            {item?.tokenId}
+                          </p>
+                        </div>
+
+                        <div className="w-1/12">
+                          <p className="font-semibold font-jakarta text-base text-lightTextC text-right ">
+                            {formatCurrency(
+                              item?.offers[0]?.terms?.loan?.principal,
+                              item?.offers[0]?.terms?.loan?.currency
+                            )}{" "}
+                            {
+                              ERC20_MAP[item?.offers[0]?.terms?.loan?.currency]
+                                ?.symbol
+                            }
+                          </p>
+                        </div>
+
+                        <div className="w-1/12">
+                          <p className="font-semibold font-jakarta text-base text-lightTextC text-right ">
+                            {moment
+                              .duration(
+                                item?.offers[0]?.terms?.loan?.duration,
+                                "second"
+                              )
+                              .humanize()}
+                          </p>
+                        </div>
+
+                        <div className="w-1/12">
+                          <p className="font-semibold font-jakarta text-base text-lightTextC text-right ">
+                            {formatCurrency(
+                              item?.offers[0]?.terms?.loan?.repayment,
+                              item?.offers[0]?.terms?.loan?.currency
+                            )}{" "}
+                            {
+                              ERC20_MAP[item?.offers[0]?.terms?.loan?.currency]
+                                ?.symbol
+                            }
+                          </p>
+                        </div>
+
+                        <div className="w-1/12">
+                          <p className="font-semibold font-jakarta text-base text-lightTextC text-right ">
+                            {nftfi.utils
+                              .calcApr(
+                                item?.offers[0]?.terms?.loan?.principal,
+                                item?.offers[0]?.terms?.loan?.repayment,
+                                item?.offers[0]?.terms?.loan?.duration /
+                                  (24 * 60 * 60)
+                              )
+                              .toString()
+                              .substring(0, 5)}
+                          </p>
+                        </div>
+
+                        <div className="flex justify-center items-center w-1/12">
+                          <Image
+                            src={nftfi_logo}
+                            alt="nftfi"
+                            className="rounded-full"
+                            width={20}
+                            height={20}
+                          />
+                        </div>
+
+                        <div className="flex items-center justify-end w-4/12">
+                          {activeKey.includes(idx) ? (
+                            <button
+                              onClick={() => {
+                                handleCollapseActiveKey(idx);
+                              }}
+                              className="flex justify-center items-center font-normal font-jakarta text-base text-lightTextC mr-5 border-b border-lightBorder"
+                            >
+                              View less{" "}
+                              <Image
+                                src={UpArrow}
+                                alt="UpArrow"
+                                className="ml-[6px]"
+                              />
+                            </button>
+                          ) : (
+                            <button
+                              onClick={() => {
+                                handleCollapseActiveKey(idx);
+                              }}
+                              className="flex justify-center items-center font-normal font-jakarta text-base text-lightTextC mr-5 border-b border-lightBorder"
+                            >
+                              View {item?.offers?.length} offers{" "}
+                              <Image
+                                src={DownArrow}
+                                alt="DownArrow"
+                                className="ml-[6px]"
+                              />
+                            </button>
+                          )}
+
+                          <button className="border-lightBorder border rounded-lg px-2 py-1 font-jakarta font-normal text-base text-lightBorder">
+                            Accept
+                          </button>
+                        </div>
+                      </div>
+                    }
+                    key={idx}
+                    style={{
+                      backgroundColor: activeKey.includes(idx)
+                        ? "#121A21"
+                        : "transparent",
+                    }}
+                  >
+                    {item?.offers?.map((items) => {
+                      return (
+                        <>
+                          <div
+                            className="flex justify-between items-center px-[18px] pb-3 first:pt-2"
+                            key={items.id}
+                          >
+                            <div className="flex items-center w-3/12 my-2"></div>
+
+                            <div className="w-1/12">
+                              <p className="font-semibold font-jakarta text-base text-lightTextC text-right ">
+                                {formatCurrency(
+                                  items?.terms?.loan?.principal,
+                                  items?.terms?.loan?.currency
+                                )}{" "}
+                                {
+                                  ERC20_MAP[items?.terms?.loan?.currency]
+                                    ?.symbol
+                                }
+                              </p>
+                            </div>
+
+                            <div className="w-1/12">
+                              <p className="font-semibold font-jakarta text-base text-lightTextC text-right ">
+                                {moment
+                                  .duration(
+                                    items?.terms?.loan?.duration,
+                                    "second"
+                                  )
+                                  .humanize()}
+                              </p>
+                            </div>
+
+                            <div className="w-1/12">
+                              <p className="font-semibold font-jakarta text-base text-lightTextC text-right ">
+                                {formatCurrency(
+                                  items?.terms.loan?.repayment,
+                                  items?.terms?.loan?.currency
+                                )}{" "}
+                                {ERC20_MAP[items?.terms.loan.currency]?.symbol}
+                              </p>
+                            </div>
+
+                            <div className="w-1/12">
+                              <p className="font-semibold font-jakarta text-base text-lightTextC text-right ">
+                                {nftfi.utils
+                                  .calcApr(
+                                    items?.terms?.loan?.principal,
+                                    items?.terms?.loan?.repayment,
+                                    items?.terms?.loan?.duration /
+                                      (24 * 60 * 60)
+                                  )
+                                  .toString()
+                                  .substring(0, 5)}
+                              </p>
+                            </div>
+
+                            <div className="flex justify-center items-center w-1/12">
+                              <Image
+                                src={nftfi_logo}
+                                width={20}
+                                height={20}
+                                alt="nftfi"
+                                className="rounded-full"
+                              />
+                            </div>
+
+                            <div className="flex items-center justify-end w-4/12">
+                              <button
+                                onClick={() => onAcceptOffer(item, items)}
+                                className="border-lightBorder border rounded-lg px-2 py-1 font-jakarta font-normal text-base text-lightBorder"
+                              >
+                                Accept
+                              </button>
+                            </div>
+                          </div>
+                        </>
+                      );
+                    })}
+                  </Panel>
+                </Collapse>
+              );
+          }}
+        />
       </div>
     </div>
   );
