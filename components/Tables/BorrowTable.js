@@ -123,6 +123,10 @@ const BorrowTable = () => {
     setLoadingArcade(false);
   };
 
+  const onArcadeAcceptOffer = (offer) => {
+    // TODO work on redireting the user on ther terms/offers page for arcade, add logic to filter based on the type of assests, so that it will different for a single NFT, and a VAULT
+  }
+
   const getOffersOnNFTs = async () => {
     const response = ownedNFTs.map(async (nft) => {
       const offers = await nftfi.offers.get({
@@ -731,7 +735,7 @@ const BorrowTable = () => {
 
                           <div className="flex items-center justify-end w-4/12">
                             <button
-                              onClick={() => onAcceptOffer(item, items)}
+                              onClick={() => onArcadeAcceptOffer(item, items)}
                               className="border-lightBorder border rounded-lg px-2 py-1 font-jakarta font-normal text-base text-lightBorder"
                             >
                               Accept
