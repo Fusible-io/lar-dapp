@@ -422,9 +422,7 @@ const ManageTable = () => {
                 </div>
 
                 <div className="w-1/12 flex justify-end items-center">
-                  {/* <StatusComp status={item.status} />
-                   */}
-                  {item?.state}
+                  <StatusComp status={item.state} />
                 </div>
 
                 <div className="w-2/12 pr-10">
