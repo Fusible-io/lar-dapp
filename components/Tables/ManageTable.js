@@ -5,6 +5,7 @@ import Router from "next/router";
 
 import Avatar from "/public/assets/avatar.jpg";
 import nftfi_logo from "/public/assets/nftfi.png";
+import arcade_logo from "/public/assets/arcade.png";
 import StatusComp from "../StatusComp/StatusComp";
 import moment from "moment";
 
@@ -361,7 +362,7 @@ const ManageTable = () => {
               <div className="flex justify-between items-center px-[18px] pb-4">
                 <div className="flex items-center w-3/12 my-2">
                   <Image
-                    src={item?.metadata?.image}
+                    src={item?.metadata?.image || arcade_logo}
                     width={20}
                     height={20}
                     alt="Avatar"
@@ -375,7 +376,7 @@ const ManageTable = () => {
                         {item?.loanTerms?.collateralSnapshot?.tokenId}
                       </>
                     ) : (
-                      <>VAULT</>
+                      <>Asset Vault</>
                     )}
                   </p>
                 </div>
@@ -436,8 +437,8 @@ const ManageTable = () => {
 
                 <div className="flex justify-center items-center w-1/12">
                   <Image
-                    src={nftfi_logo}
-                    alt="nftfi"
+                    src={arcade_logo}
+                    alt="arcade"
                     className="rounded-full"
                     width={20}
                     height={20}

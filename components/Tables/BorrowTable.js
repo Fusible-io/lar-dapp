@@ -4,6 +4,7 @@ import React, { useState, useEffect } from "react";
 
 import Avatar from "/public/assets/avatar.jpg";
 import nftfi_logo from "/public/assets/nftfi.png";
+import arcade_logo from "/public/assets/arcade.png";
 import DownArrow from "/public/assets/downArrow.svg";
 import UpArrow from "/public/assets/upArrow.svg";
 import ListView from "/public/assets/listIcon.svg";
@@ -621,8 +622,8 @@ const BorrowTable = () => {
 
                       <div className="flex justify-center items-center w-1/12">
                         <Image
-                          src={nftfi_logo}
-                          alt="nftfi"
+                          src={arcade_logo}
+                          alt="arcade"
                           className="rounded-full"
                           width={20}
                           height={20}
@@ -725,10 +726,10 @@ const BorrowTable = () => {
 
                           <div className="flex justify-center items-center w-1/12">
                             <Image
-                              src={nftfi_logo}
+                              src={arcade_logo}
                               width={20}
                               height={20}
-                              alt="nftfi"
+                              alt="arcade"
                               className="rounded-full"
                             />
                           </div>
