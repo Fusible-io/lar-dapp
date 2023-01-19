@@ -43,6 +43,12 @@ const ManageTable = () => {
     Router.push("/repay");
   };
 
+  const onAracdeRepay = (loan) => {
+    // https://goerli.arcade.xyz/terms/loan/0x398deeb51c56819880f2a2343705510a0c868747-61
+    const url = `https://goerli.arcade.xyz/terms/loan/${loan.id}`;
+    window.open(url, "_blank");
+  }
+
   const getNFTMetadata = async (contract, tokenId) => {
     // https://shuttle-goerli.arcade.xyz/api/v2/collections/0xf5de760f2e916647fd766b4ad9e85ff943ce3a2b/assets/2740179
 
@@ -281,16 +287,6 @@ const ManageTable = () => {
                 </div>
 
                 <div className="flex items-center justify-end w-1/12">
-                  {/* Optional: repay button hide style */}
-                  {/* {item.status !== "repaid" && (
-                    <button
-                      onClick={() => onRepay(item)}
-                      className="border-lightBorder border rounded-lg px-2 py-1 font-jakarta font-normal text-base text-lightBorder"
-                    >
-                      Repay
-                    </button>
-                  )} */}
-
                   {item.status === "repaid" ? (
                     <button
                       disabled
@@ -451,13 +447,22 @@ const ManageTable = () => {
                 </div>
 
                 <div className="flex items-center justify-end w-1/12">
-                  <button
-                    disabled
-                    onClick={() => onRepay(item)}
-                    className="border-lightBorder border rounded-lg px-2 py-1 font-jakarta font-normal text-base text-lightBorder cursor-not-allowed opacity-[0.2]"
-                  >
-                    Repay
-                  </button>
+                  {item.state === "Repaid" ? (
+                    <button
+                      disabled
+                      // onClick={() => onRepay(item)}
+                      className="border-lightBorder border rounded-lg px-2 py-1 font-jakarta font-normal text-base text-lightBorder cursor-not-allowed opacity-[0.2]"
+                    >
+                      Repay
+                    </button>
+                  ) : (
+                    <button
+                      onClick={() => onAracdeRepay(item)}
+                      className="border-lightBorder border rounded-lg px-2 py-1 font-jakarta font-normal text-base text-lightBorder"
+                    >
+                      Repay
+                    </button>
+                  )}
                 </div>
               </div>
             );
