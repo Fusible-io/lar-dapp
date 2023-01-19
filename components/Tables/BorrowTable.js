@@ -395,9 +395,9 @@ const BorrowTable = () => {
                               </button>
                             )}
 
-                            <button className="border-lightBorder border rounded-lg px-2 py-1 font-jakarta font-normal text-base text-lightBorder">
+                            {/* <button className="border-lightBorder border rounded-lg px-2 py-1 font-jakarta font-normal text-base text-lightBorder">
                               Accept
-                            </button>
+                            </button> */}
                           </div>
                         </div>
                       }
@@ -660,9 +660,9 @@ const BorrowTable = () => {
                           </button>
                         )}
 
-                        <button className="border-lightBorder border rounded-lg px-2 py-1 font-jakarta font-normal text-base text-lightBorder">
+                        {/* <button className="border-lightBorder border rounded-lg px-2 py-1 font-jakarta font-normal text-base text-lightBorder">
                           Accept
-                        </button>
+                        </button> */}
                       </div>
                     </div>
                   }
