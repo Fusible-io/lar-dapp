@@ -4,6 +4,7 @@ const nextConfig = {
   // "https://ipfs.io/ipfs/bafybeifvwitulq6elvka2hoqhwixfhgb42l4aiukmtrw335osetikviuuu"
   // (https://fusible.mypinata.cloud/ipfs/QmPomjVi6p8jofgiQSqyZRgDvGDkwAzBJDtexEb83SFPHm/USA.png)
   // https://goerli-integration-api.nftfi.com/loans/v2/promissory/image/5/18240033257052016565
+  // valhalla-nft-production.s3.amazonaws.com
 
   images: {
     remotePatterns: [
@@ -24,7 +25,11 @@ const nextConfig = {
         hostname: 'goerli-integration-api.nftfi.com',
         port: '',
         pathname: '/loans/v2/promissory/image/**',
-
+      },
+      {
+        protocol: 'https',
+        hostname: 'valhalla-nft-production.s3.amazonaws.com',
+        pathname: '/**',
       }
     ],
   },
