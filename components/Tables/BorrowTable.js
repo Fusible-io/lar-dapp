@@ -4,6 +4,7 @@ import React, { useState, useEffect } from "react";
 
 import Avatar from "/public/assets/avatar.jpg";
 import nftfi_logo from "/public/assets/nftfi.png";
+import arcade_logo from "/public/assets/arcade.png";
 import DownArrow from "/public/assets/downArrow.svg";
 import UpArrow from "/public/assets/upArrow.svg";
 import ListView from "/public/assets/listIcon.svg";
@@ -11,7 +12,7 @@ import GridView from "/public/assets/gridIcon.svg";
 import ListActiveIcon from "/public/assets/listActiveIcon.svg";
 import GridActiveIcon from "/public/assets/gridActiveIcon.svg";
 
-import { formatCurrency } from "../core/utils/formatCurrency";
+import { convertWEItoETH, formatCurrency } from "../core/utils/formatCurrency";
 import { ERC20_MAP } from "../core/constant/nftFiConfig";
 import moment from "moment";
 import Router from "next/router";
@@ -52,7 +53,6 @@ const BorrowTable = () => {
   const [activeKeyX2Y2, setActiveKeyX2Y2] = useState([]);
 
   const handleCollapseActiveKey = (key) => {
-    console.log("selected key", key);
     if (activeKey.includes(key)) {
       setActiveKey(activeKey.filter((item) => item !== key));
     } else {
@@ -74,6 +74,15 @@ const BorrowTable = () => {
     } else {
       setActiveKeyX2Y2([...activeKeyX2Y2, key]);
     }
+  };
+  const isTokenValid = async () => {
+    if (nftfi) {
+      var token = await nftfi.auth.getToken();
+      if (token) {
+        return nftfi.auth._isTokenValid(token);
+      }
+    }
+    return false;
   };
 
   const onAcceptOffer = (nft, offer) => {
@@ -145,7 +154,7 @@ const BorrowTable = () => {
 
   const getOffersOnNFTs = async () => {
     const response = ownedNFTs.map(async (nft) => {
-      const offers = await nftfi.offers.get({
+      const offers = await nftfi?.offers.get({
         filters: {
           nft: {
             id: nft.tokenId,
@@ -171,9 +180,8 @@ const BorrowTable = () => {
   };
 
   useEffect(() => {
-    if (!address) return;
     getAracadeListing();
-  }, [address]);
+  }, []);
 
   useEffect(() => {
     if (address) {
@@ -196,13 +204,8 @@ const BorrowTable = () => {
   }, []);
 
   useEffect(() => {
-    var token = window.localStorage.getItem("sdkToken");
-    if (nftfi && nftfi.auth._isTokenValid(token)) {
-      if (ownedNFTs.length > 0) {
-        getOffersOnNFTs();
-      }
-    } else if (nftfi !== null) {
-      nftfi.auth.getToken();
+    if (isTokenValid && ownedNFTs.length > 0) {
+      getOffersOnNFTs();
     }
   }, [ownedNFTs]);
 
@@ -475,9 +478,9 @@ const BorrowTable = () => {
                               </button>
                             )}
 
-                            <button className="border-lightBorder border rounded-lg px-2 py-1 font-jakarta font-normal text-base text-lightBorder">
+                            {/* <button className="border-lightBorder border rounded-lg px-2 py-1 font-jakarta font-normal text-base text-lightBorder">
                               Accept
-                            </button>
+                            </button> */}
                           </div>
                         </div>
                       }
@@ -576,9 +579,9 @@ const BorrowTable = () => {
             }}
           />
         ) : (
-          <div className="mb-14 flex gap-4">
-            {nftOffers.length > 0 &&
-              nftOffers.map((item) => {
+          <div className="mb-14 flex flex-wrap gap-5">
+            {nftOffers?.length > 0 &&
+              nftOffers?.map((item) => {
                 return <CardComp key={item.id} item={item} />;
               })}
           </div>
@@ -696,13 +699,15 @@ const BorrowTable = () => {
                               )
                               .toString()
                               .substring(0, 5)} */}
+
+                          {convertWEItoETH(item?.loanTerms[0]?.interestRate)}
                         </p>
                       </div>
 
                       <div className="flex justify-center items-center w-1/12">
                         <Image
-                          src={nftfi_logo}
-                          alt="nftfi"
+                          src={arcade_logo}
+                          alt="arcade"
                           className="rounded-full"
                           width={20}
                           height={20}
@@ -740,9 +745,9 @@ const BorrowTable = () => {
                           </button>
                         )}
 
-                        <button className="border-lightBorder border rounded-lg px-2 py-1 font-jakarta font-normal text-base text-lightBorder">
+                        {/* <button className="border-lightBorder border rounded-lg px-2 py-1 font-jakarta font-normal text-base text-lightBorder">
                           Accept
-                        </button>
+                        </button> */}
                       </div>
                     </div>
                   }
@@ -792,14 +797,7 @@ const BorrowTable = () => {
 
                           <div className="w-1/12">
                             <p className="font-semibold font-jakarta text-base text-lightTextC text-right ">
-                              {/* {nftfi.utils
-                                .calcApr(
-                                  items?.terms?.loan?.principal,
-                                  items?.terms?.loan?.repayment,
-                                  items?.terms?.loan?.duration / (24 * 60 * 60)
-                                )
-                                .toString()
-                                .substring(0, 5)} */}
+                              {convertWEItoETH(items?.interestRate)}
                             </p>
                           </div>
 
@@ -1030,10 +1028,10 @@ const BorrowTable = () => {
 
                           <div className="flex justify-center items-center w-1/12">
                             <Image
-                              src={nftfi_logo}
+                              src={arcade_logo}
                               width={20}
                               height={20}
-                              alt="nftfi"
+                              alt="arcade"
                               className="rounded-full"
                             />
                           </div>

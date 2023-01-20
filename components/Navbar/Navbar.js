@@ -42,6 +42,7 @@ const Navbar = () => {
       web3: { provider },
       logging: { verbose: true },
     });
+
     setNFTFi(initNFTFI);
   };
 

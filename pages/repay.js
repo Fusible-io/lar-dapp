@@ -110,9 +110,9 @@ const Repay = () => {
                   alt="CardImage"
                   className="rounded-xl"
                 />
-                <span className="text-white bg-tagColor rounded absolute top-[18px] left-[17px] font-semibold font-jakarta text-[11px] px-[3px] py-[1px]">
+                {/* <span className="text-white bg-tagColor rounded absolute top-[18px] left-[17px] font-semibold font-jakarta text-[11px] px-[3px] py-[1px]">
                   Listed 1/3
-                </span>
+                </span> */}
               </div>
               <div style={{ width: "429px" }}>
                 <h3 className="flex items-center font-jakarta text-base font-normal mb-2">
@@ -170,12 +170,12 @@ const Repay = () => {
                           }
                         </p>
 
-                        <Image
+                        {/* <Image
                           src={ethIcon}
                           alt="ethIcon"
                           width={12}
                           height={19}
-                        />
+                        /> */}
                         {/* <span className="font-normal text-xs ml-2 -mb-[3px] font-inter text-white80">
                           $7,239
                         </span> */}
@@ -201,12 +201,12 @@ const Repay = () => {
                             ERC20_MAP[loan.terms.loan.currency].symbol
                           }
                         </p>
-                        <Image
+                        {/* <Image
                           src={ethIcon}
                           alt="ethIcon"
                           width={12}
                           height={19}
-                        />
+                        /> */}
                         {/* <span className="font-normal text-xs ml-2 -mb-[3px] font-inter text-white80">
                           $7,239
                         </span> */}
