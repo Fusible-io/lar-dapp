@@ -27,12 +27,19 @@ const BASE_URL = "https://api-goerli.arcade.xyz/api/v2";
 const GET_LISTING_URL = `${BASE_URL}/lend`;
 const API_KEY = "4LFr808gFjR1XEQ4He2wwlF3IPrCEFgee7JjATN7jEEoes0F3";
 
+const X2Y2_BASE_URL = "https://loan-api.x2y2.org/v1";
+const X2Y2_GET_SYSTEM_PARAMS = `${X2Y2_BASE_URL}/sys/loanParam`;
+const X2Y2_API_KEY = "6e8d6ebbc1941f8345eb661de9997fd6";
+const X2Y2_ADDRESS = "0xC28F7Ee92Cd6619e8eEC6A70923079fBAFb86196";
+
 const BorrowTable = () => {
   const [listView, setListView] = useState(true);
   const [loading, setLoading] = useState(true);
   const [loadingArcade, setLoadingArcade] = useState(true);
+  const [loadingX2Y2, setLoadingX2Y2] = useState(true);
   const [ownedNFTs, setOwnedNFTs] = useState([]);
   const [nftOffers, setNFTOffers] = useState([]);
+  const [X2Y2Offers, setX2Y2Offers] = useState([]);
 
   const [offersArcade, setOffersArcade] = useState([]);
 
@@ -42,6 +49,7 @@ const BorrowTable = () => {
 
   const [activeKey, setActiveKey] = useState([]);
   const [activeKeyArcade, setActiveKeyArcade] = useState([]);
+  const [activeKeyX2Y2, setActiveKeyX2Y2] = useState([]);
 
   const handleCollapseActiveKey = (key) => {
     console.log("selected key", key);
@@ -57,6 +65,14 @@ const BorrowTable = () => {
       setActiveKeyArcade(activeKeyArcade.filter((item) => item !== key));
     } else {
       setActiveKeyArcade([...activeKeyArcade, key]);
+    }
+  };
+
+  const handleCollapseActiveKeyX2Y2 = (key) => {
+    if (activeKeyX2Y2.includes(key)) {
+      setActiveKeyX2Y2(activeKeyX2Y2.filter((item) => item !== key));
+    } else {
+      setActiveKeyX2Y2([...activeKeyX2Y2, key]);
     }
   };
 
@@ -125,7 +141,7 @@ const BorrowTable = () => {
 
   const onArcadeAcceptOffer = (offer) => {
     // TODO work on redireting the user on ther terms/offers page for arcade, add logic to filter based on the type of assests, so that it will different for a single NFT, and a VAULT
-  }
+  };
 
   const getOffersOnNFTs = async () => {
     const response = ownedNFTs.map(async (nft) => {
@@ -177,7 +193,7 @@ const BorrowTable = () => {
           console.log(res.ownedNfts);
         });
     }
-  }, [address]);
+  }, []);
 
   useEffect(() => {
     var token = window.localStorage.getItem("sdkToken");
@@ -190,16 +206,80 @@ const BorrowTable = () => {
     }
   }, [ownedNFTs]);
 
-  // const loadMore = !loading ? (
-  //   <div className="flex justify-center items-center absolute left-0 right-0 -bottom-5">
-  //     <button
-  //       onClick={loadMore}
-  //       className="bg-darkBg border-2 border-darkBorder py-[3px] px-[9px] rounded-lg text-lightGreen text-lg font-medium"
-  //     >
-  //       See more
-  //     </button>
-  //   </div>
-  // ) : null;
+  useEffect(() => {
+    getX2Y2Offers();
+  }, []);
+
+  const getX2Y2Offers = async () => {
+    setLoadingX2Y2(true);
+    const sysParams = await getSystemParams();
+    console.log({
+      sysParams: sysParams.data.collections,
+    });
+    const NFTS = await getAllNFTS(sysParams.data.collections);
+    console.log({
+      NFTS,
+    });
+
+    const offers = await Promise.all(
+      NFTS.ownedNfts.map(async (item, idx) => {
+        const offers = await getOffersForAnNFT(
+          item.contract.address,
+          item.tokenId
+        );
+        NFTS.ownedNfts[idx].offers = offers.data?.list;
+        return offers;
+      })
+    );
+
+    setX2Y2Offers(NFTS.ownedNfts);
+    setLoadingX2Y2(false);
+  };
+
+  const getSystemParams = async () => {
+    const x_timestamp = Date.now();
+    const options = {
+      method: "GET",
+      headers: {
+        accept: "application/json",
+        "x-api-key": X2Y2_API_KEY,
+        "x-timestamp": x_timestamp,
+      },
+    };
+
+    const res = await fetch(`${X2Y2_GET_SYSTEM_PARAMS}`, options);
+    return res.json();
+  };
+
+  const getAllNFTS = async (contractAddressesList = []) => {
+    const res = await fetch("/api/nft", {
+      method: "POST", // or 'PUT'
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        address: X2Y2_ADDRESS,
+        contractAddresses: contractAddressesList.map((item) => item.nftAddress),
+        network: "mainnet",
+      }),
+    });
+    return res.json();
+  };
+
+  const getOffersForAnNFT = async (nftAddress, tokenId) => {
+    const options = {
+      method: "GET",
+      headers: { accept: "application/json", "x-api-key": X2Y2_API_KEY },
+    };
+
+    const response = await fetch(
+      `https://loan-api.x2y2.org/v1/offer/list?nftAddress=${nftAddress}&tokenId=${tokenId}&isSufficient=1&duration=0&page=1&pageSize=10&sortField=createTime&sortDirection=desc&hasCollection=1`,
+      options
+    );
+    const res = await response.json();
+    // console.log(res);
+    return res;
+  };
 
   return (
     <div className="mx-10 mt-14">
@@ -720,6 +800,231 @@ const BorrowTable = () => {
                                 )
                                 .toString()
                                 .substring(0, 5)} */}
+                            </p>
+                          </div>
+
+                          <div className="flex justify-center items-center w-1/12">
+                            <img
+                              src={nftfi_logo}
+                              width={20}
+                              height={20}
+                              alt="nftfi"
+                              className="rounded-full"
+                            />
+                          </div>
+
+                          <div className="flex items-center justify-end w-4/12">
+                            <button
+                              onClick={() => onArcadeAcceptOffer(item, items)}
+                              className="border-lightBorder border rounded-lg px-2 py-1 font-jakarta font-normal text-base text-lightBorder"
+                            >
+                              Accept
+                            </button>
+                          </div>
+                        </div>
+                      </>
+                    );
+                  })}
+                </Panel>
+              </Collapse>
+            );
+          }}
+        />
+      </div>
+
+      {/* X2Y2 LIST */}
+      <h1 className="font-semibold text-[28px] leading-[44px] font-jakarta mb-5 text-white">
+        X2Y2 LIST
+      </h1>
+      <div>
+        <List
+          header={
+            <div className="flex px-[18px]">
+              <h1 className="font-medium text-sm font-jakarta text-gTextColor text-left w-3/12">
+                Items
+              </h1>
+
+              <h1 className="font-medium text-sm font-jakarta text-gTextColor text-right w-1/12">
+                Principal
+              </h1>
+
+              <h1 className="font-medium text-sm font-jakarta text-gTextColor text-right w-1/12">
+                Duration
+              </h1>
+
+              <h1 className="font-medium text-sm font-jakarta text-gTextColor text-right w-1/12">
+                Payoff
+              </h1>
+
+              <h1 className="font-medium text-sm font-jakarta text-gTextColor text-right w-1/12">
+                APR
+              </h1>
+
+              <h1 className="font-medium text-sm font-jakarta text-gTextColor text-right w-1/12"></h1>
+
+              <h1 className="font-medium text-sm font-jakarta text-gTextColor text-right w-4/12"></h1>
+            </div>
+          }
+          bordered
+          dataSource={X2Y2Offers}
+          // loadMore={loadMore}
+          loading={loadingArcade}
+          renderItem={(item, idx) => {
+            console.log(item);
+            if (item.offers === undefined || item.offers.length === 0)
+              return null;
+            return (
+              <Collapse ghost activeKey={activeKeyX2Y2}>
+                <Panel
+                  showArrow={false}
+                  header={
+                    <div
+                      className="flex justify-between items-center px-[18px]"
+                      style={{
+                        paddingBottom: activeKey.includes(idx) ? 0 : 16,
+                      }}
+                    >
+                      <div className="flex items-center w-3/12 my-2">
+                        <Image
+                          src={item?.rawMetadata?.image}
+                          alt="metaImage"
+                          width={28}
+                          height={28}
+                          className="rounded"
+                        />
+                        <p className="font-semibold font-jakarta text-base text-lightTextC ml-2">
+                          {item?.title}
+                        </p>
+                      </div>
+
+                      <div className="w-1/12">
+                        <p className="font-semibold font-jakarta text-base text-lightTextC text-right ">
+                          {formatCurrency(
+                            item?.offers[0]?.amount,
+                            item?.offers[0]?.erc20Address
+                          ).substring(0, 5)}{" "}
+                          {ERC20_MAP[item?.offers[0]?.erc20Address]?.symbol}
+                        </p>
+                      </div>
+
+                      <div className="w-1/12">
+                        <p className="font-semibold font-jakarta text-base text-lightTextC text-right ">
+                          {moment
+                            .duration(item?.offers[0]?.duration, "second")
+                            .humanize()}
+                        </p>
+                      </div>
+
+                      <div className="w-1/12">
+                        <p className="font-semibold font-jakarta text-base text-lightTextC text-right ">
+                          {formatCurrency(
+                            item?.offers[0]?.repayment,
+                            item?.offers[0]?.erc20Address
+                          ).substring(0, 5)}{" "}
+                          {ERC20_MAP[item?.offers[0]?.erc20Address]?.symbol}
+                        </p>
+                      </div>
+
+                      <div className="w-1/12">
+                        <p className="font-semibold font-jakarta text-base text-lightTextC text-right ">
+                          {item?.offers[0]?.apr} %
+                        </p>
+                      </div>
+
+                      <div className="flex justify-center items-center w-1/12">
+                        <Image
+                          src={nftfi_logo}
+                          alt="nftfi"
+                          className="rounded-full"
+                          width={20}
+                          height={20}
+                        />
+                      </div>
+
+                      <div className="flex items-center justify-end w-4/12">
+                        {activeKeyArcade.includes(idx) ? (
+                          <button
+                            onClick={() => {
+                              handleCollapseActiveKeyX2Y2(idx);
+                            }}
+                            className="flex justify-center items-center font-normal font-jakarta text-base text-lightTextC mr-5 border-b border-lightBorder"
+                          >
+                            View less{" "}
+                            <Image
+                              src={UpArrow}
+                              alt="UpArrow"
+                              className="ml-[6px]"
+                            />
+                          </button>
+                        ) : (
+                          <button
+                            onClick={() => {
+                              handleCollapseActiveKeyX2Y2(idx);
+                            }}
+                            className="flex justify-center items-center font-normal font-jakarta text-base text-lightTextC mr-5 border-b border-lightBorder"
+                          >
+                            View {item?.offers?.length} offers{" "}
+                            <Image
+                              src={DownArrow}
+                              alt="DownArrow"
+                              className="ml-[6px]"
+                            />
+                          </button>
+                        )}
+
+                        <button className="border-lightBorder border rounded-lg px-2 py-1 font-jakarta font-normal text-base text-lightBorder">
+                          Accept
+                        </button>
+                      </div>
+                    </div>
+                  }
+                  key={idx}
+                  style={{
+                    backgroundColor: activeKey.includes(idx)
+                      ? "#121A21"
+                      : "transparent",
+                  }}
+                >
+                  {item?.offers?.map((items, id) => {
+                    return (
+                      <>
+                        <div
+                          className="flex justify-between items-center px-[18px] pb-3 first:pt-2"
+                          key={id}
+                        >
+                          <div className="flex items-center w-3/12 my-2"></div>
+
+                          <div className="w-1/12">
+                            <p className="font-semibold font-jakarta text-base text-lightTextC text-right ">
+                              {formatCurrency(
+                                items?.amount,
+                                items?.erc20Address
+                              ).substring(0, 5)}{" "}
+                              {ERC20_MAP[items?.erc20Address]?.symbol}
+                            </p>
+                          </div>
+
+                          <div className="w-1/12">
+                            <p className="font-semibold font-jakarta text-base text-lightTextC text-right ">
+                              {moment
+                                .duration(items?.duration, "second")
+                                .humanize()}
+                            </p>
+                          </div>
+
+                          <div className="w-1/12">
+                            <p className="font-semibold font-jakarta text-base text-lightTextC text-right ">
+                              {formatCurrency(
+                                items?.repayment,
+                                items?.erc20Address
+                              ).substring(0, 5)}{" "}
+                              {ERC20_MAP[items?.erc20Address]?.symbol}
+                            </p>
+                          </div>
+
+                          <div className="w-1/12">
+                            <p className="font-semibold font-jakarta text-base text-lightTextC text-right ">
+                              {items?.apr} %
                             </p>
                           </div>
 

@@ -10,10 +10,12 @@ const mainnetConfig = {
         weth: {
             address: '0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2',
             symbol: 'wETH',
+            unit: 18
         },
         dai: {
             address: '0x6b175474e89094c44da98b954eedeac495271d0f',
             symbol: 'DAI',
+            unit: 18
         },
     },
 }
@@ -57,5 +59,13 @@ export const ERC20_MAP = {
     [goerliConfig.erc20.usdc.address]: {
         unit: goerliConfig.erc20.usdc.unit,
         symbol: goerliConfig.erc20.usdc.symbol,
-    }
+    },
+    [mainnetConfig.erc20.weth.address]: {
+        unit: mainnetConfig.erc20.weth.unit,
+        symbol: mainnetConfig.erc20.weth.symbol,
+    },
+    [mainnetConfig.erc20.dai.address]: {
+        unit: mainnetConfig.erc20.dai.unit,
+        symbol: mainnetConfig.erc20.dai.symbol,
+    },
 }
