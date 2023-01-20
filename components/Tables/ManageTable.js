@@ -30,7 +30,7 @@ const ManageTable = () => {
     if (!address) return;
     getActiveLoans();
     getLoanActivityArcade();
-  }, [address]);
+  }, []);
 
   const onLoadMore = () => {
     setLoading(true);

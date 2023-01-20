@@ -12,7 +12,7 @@ import GridView from "/public/assets/gridIcon.svg";
 import ListActiveIcon from "/public/assets/listActiveIcon.svg";
 import GridActiveIcon from "/public/assets/gridActiveIcon.svg";
 
-import { formatCurrency } from "../core/utils/formatCurrency";
+import { convertWEItoETH, formatCurrency } from "../core/utils/formatCurrency";
 import { ERC20_MAP } from "../core/constant/nftFiConfig";
 import moment from "moment";
 import Router from "next/router";
@@ -30,8 +30,8 @@ const API_KEY = "4LFr808gFjR1XEQ4He2wwlF3IPrCEFgee7JjATN7jEEoes0F3";
 
 const BorrowTable = () => {
   const [listView, setListView] = useState(true);
-  const [loading, setLoading] = useState(true);
-  const [loadingArcade, setLoadingArcade] = useState(true);
+  const [loading, setLoading] = useState(false);
+  const [loadingArcade, setLoadingArcade] = useState(false);
   const [ownedNFTs, setOwnedNFTs] = useState([]);
   const [nftOffers, setNFTOffers] = useState([]);
 
@@ -45,7 +45,6 @@ const BorrowTable = () => {
   const [activeKeyArcade, setActiveKeyArcade] = useState([]);
 
   const handleCollapseActiveKey = (key) => {
-    console.log("selected key", key);
     if (activeKey.includes(key)) {
       setActiveKey(activeKey.filter((item) => item !== key));
     } else {
@@ -59,6 +58,16 @@ const BorrowTable = () => {
     } else {
       setActiveKeyArcade([...activeKeyArcade, key]);
     }
+  };
+
+  const isTokenValid = async () => {
+    if (nftfi) {
+      var token = await nftfi.auth.getToken();
+      if (token) {
+        return nftfi.auth._isTokenValid(token);
+      }
+    }
+    return false;
   };
 
   const onAcceptOffer = (nft, offer) => {
@@ -126,7 +135,7 @@ const BorrowTable = () => {
 
   const onArcadeAcceptOffer = (offer) => {
     // TODO work on redireting the user on ther terms/offers page for arcade, add logic to filter based on the type of assests, so that it will different for a single NFT, and a VAULT
-  }
+  };
 
   const getOffersOnNFTs = async () => {
     const response = ownedNFTs.map(async (nft) => {
@@ -156,38 +165,30 @@ const BorrowTable = () => {
   };
 
   useEffect(() => {
-    if (!address) return;
     getAracadeListing();
-  }, [address]);
+  }, []);
 
   useEffect(() => {
-    if (address) {
-      setLoading(true);
-      fetch("/api/nft", {
-        method: "POST", // or 'PUT'
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          address: address,
-        }),
-      })
-        .then((res) => res.json())
-        .then((res) => {
-          setOwnedNFTs(res.ownedNfts);
-          console.log(res.ownedNfts);
-        });
-    }
-  }, [address]);
+    setLoading(true);
+    fetch("/api/nft", {
+      method: "POST", // or 'PUT'
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        address: address,
+      }),
+    })
+      .then((res) => res.json())
+      .then((res) => {
+        setOwnedNFTs(res.ownedNfts);
+        console.log(res.ownedNfts);
+      });
+  }, []);
 
   useEffect(() => {
-    var token = window.localStorage.getItem("sdkToken");
-    if (nftfi && nftfi.auth._isTokenValid(token)) {
-      if (ownedNFTs.length > 0) {
-        getOffersOnNFTs();
-      }
-    } else if (nftfi !== null) {
-      nftfi.auth.getToken();
+    if (isTokenValid && ownedNFTs.length > 0) {
+      getOffersOnNFTs();
     }
   }, [ownedNFTs]);
 
@@ -617,6 +618,8 @@ const BorrowTable = () => {
                               )
                               .toString()
                               .substring(0, 5)} */}
+
+                          {convertWEItoETH(item?.loanTerms[0]?.interestRate)}
                         </p>
                       </div>
 
@@ -713,14 +716,7 @@ const BorrowTable = () => {
 
                           <div className="w-1/12">
                             <p className="font-semibold font-jakarta text-base text-lightTextC text-right ">
-                              {/* {nftfi.utils
-                                .calcApr(
-                                  items?.terms?.loan?.principal,
-                                  items?.terms?.loan?.repayment,
-                                  items?.terms?.loan?.duration / (24 * 60 * 60)
-                                )
-                                .toString()
-                                .substring(0, 5)} */}
+                              {convertWEItoETH(items?.interestRate)}
                             </p>
                           </div>
 
