@@ -15,6 +15,8 @@ import { useOffer, useNFTFi } from "../components/core/store/store";
 import { formatCurrency } from "../components/core/utils/formatCurrency";
 import { ERC20_MAP } from "../components/core/constant/nftFiConfig";
 import moment from "moment";
+import Router from 'next/router'
+
 
 const CardDetail = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -28,6 +30,21 @@ const CardDetail = () => {
   const onIssueLoan = async () => {
     try {
       setLoading(true);
+
+      const address = await nftfi.erc721.setApprovalForAll({
+        token: {
+         address: offer?.nft?.contract?.address,
+        },
+        nftfi: { contract: { name: 'v2-1.loan.fixed' } }
+      });
+
+      if (!address) {
+        setLoading(false);
+        return;
+      }
+
+
+
       const result = await nftfi.loans.begin({
         offer: {
           ...offer.offer,
@@ -38,7 +55,11 @@ const CardDetail = () => {
         },
       });
       setLoading(false);
+      
       console.log({ result });
+      if (result) {
+        Router.push('/')
+      }
     }
     catch (err) {
       console.log(err);
@@ -75,14 +96,16 @@ const CardDetail = () => {
           <div className="flex gap-[46px] mb-10">
             <div className="relative">
               <Image
-                src={CardImage}
+                src={offer?.nft?.rawMetadata?.image}
                 alt="CardImage"
                 className="rounded-xl"
+                height={435}
+                width={395}
                 style={{ height: "435px", width: "395px" }}
               />
-              <span className="text-white bg-tagColor rounded absolute top-[18px] left-[17px] font-semibold font-jakarta text-[11px] px-[3px] py-[1px]">
+              {/* <span className="text-white bg-tagColor rounded absolute top-[18px] left-[17px] font-semibold font-jakarta text-[11px] px-[3px] py-[1px]">
                 Listed 1/3
-              </span>
+              </span> */}
             </div>
             <div>
               <h3 className="flex items-center font-jakarta text-base font-normal mb-2">

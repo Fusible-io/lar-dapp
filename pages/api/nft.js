@@ -11,7 +11,12 @@ const alchemy = new Alchemy(config);
 
 const getAllNFTS = async (address) => {
   try {
-    const nfts = await alchemy.nft.getNftsForOwner(address);
+    const nfts = await alchemy.nft.getNftsForOwner(address, {
+      contractAddresses: ['0xf5de760f2e916647fd766b4ad9e85ff943ce3a2b'],
+      pageKey: 1,
+      pageSize: 100,
+    });
+    // console.log({nfts})
     return nfts
   }
   catch (error) {
@@ -21,9 +26,6 @@ const getAllNFTS = async (address) => {
 
 
 export default function handler(req, res) {
-  if (req.method === 'GET') {
-
-  }
   if (req.method === 'POST') {
 
     const { address } = req.body;

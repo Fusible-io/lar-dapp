@@ -10,7 +10,7 @@ const StatusComp = ({ status }) => {
         </p>
       </div>
     );
-  } else if (status === "escrow") {
+  } else if (status === "escrow" || status === "Active") {
     return (
       <div className="flex justify-end items-center">
         <span className="px-[5px] bg-activeBg rounded-full mr-2 h-[10px] mb-0"></span>
@@ -19,7 +19,7 @@ const StatusComp = ({ status }) => {
         </p>
       </div>
     );
-  } else if (status === "repaid") {
+  } else if (status === "repaid" || status === "Repaid") {
     return (
       <div className="flex justify-end items-center">
         <span className="px-[5px] bg-closeBg rounded-full mr-2 h-[10px] mb-0"></span>

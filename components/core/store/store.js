@@ -52,7 +52,6 @@ export const useOffer = create(
   )
 );
 
-// Do no persist nftfi instance
 
 export const useNFTFi = create((set, get) => ({
   nftfi: null,
@@ -63,63 +62,10 @@ export const useNFTFi = create((set, get) => ({
   },
 }));
 
-export const useAddressStore = create((set, get) => ({
-  address: null,
-  setAddress: (address) => set({ address }),
-  clearAddress: () => set({ address: null }),
+
+
+export const useNFTFiToken = create((set, get) => ({
+  nftfiToken: null,
+  setNFTFiToken: (nftfiToken) => set({ nftfiToken }),
+  clearNFTFiToken: () => set({ nftfiToken: null }),
 }));
-
-// export const useMatch = create(
-//     persist(
-//         (set, get) => ({
-//             match: null,
-//             setMatch: (match) => set({ match }),
-//             clearMatch: () => set({ match: null }),
-//         }),
-//         {
-//             name: LOCAL_STORAGE_KEYS.MATCH,
-//             getStorage: () => localStorage,
-//         }
-//     )
-// );
-
-// export const useEntry = create(
-//     persist(
-//         (set, get) => ({
-//             entry: null,
-//             setEntry: (entry) => set({ entry }),
-//             clearEntry: () => set({ entry: null }),
-//         }),
-//         {
-//             name: LOCAL_STORAGE_KEYS.ENTRY,
-//             getStorage: () => localStorage,
-//         }
-//     )
-// );
-
-// export const useChain = create(
-//     persist(
-//         (set, get) => ({
-//             chain: null,
-//             setChain: (chain) => set({ chain }),
-//             clearChain: () => set({ chain: null }),
-//         }),
-//         {
-//             name: LOCAL_STORAGE_KEYS.CHAIN,
-//             getStorage: () => localStorage,
-//         }
-//     )
-// );
-
-// export const useActiveKey = create(
-//     persist(
-//         (set, get) => ({
-//             activeKey: MATCH_TYPES.UPCOMING,
-//             setActiveKey: (activeKey) => set({ activeKey }),
-//         }),
-//         {
-//             name: LOCAL_STORAGE_KEYS.ACTIVE_KEY,
-//             getStorage: () => localStorage,
-//         }
-//     )
-// );

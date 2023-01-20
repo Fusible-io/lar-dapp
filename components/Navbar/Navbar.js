@@ -12,7 +12,6 @@ const Navbar = () => {
   const router = useRouter();
 
   const { nftfi, setNFTFi, clearNFTFi } = useNFTFi();
-  const { address: prevAddress, setAddress } = useAddressStore();
 
   const { address } = useAccount({
     // isConnected: () => {
@@ -43,6 +42,7 @@ const Navbar = () => {
       web3: { provider },
       logging: { verbose: true },
     });
+
     setNFTFi(initNFTFI);
   };
 
@@ -77,7 +77,7 @@ const Navbar = () => {
       if (nftfi !== null && token) {
         console.log("TOken", nftfi.auth._isTokenValid(token));
       }
-      setAddress(address);
+      // setAddress(address);
     }
   }, [address]);
 
@@ -106,7 +106,7 @@ const Navbar = () => {
         >
           <Link href="/borrow">Borrow</Link>
         </li>
-        <li
+        {/* <li
           className={
             router.pathname == "/list"
               ? "mr-10 font-bold text-base font-jakarta"
@@ -114,7 +114,7 @@ const Navbar = () => {
           }
         >
           <Link href="/list">List</Link>
-        </li>
+        </li> */}
       </ul>
 
       {/* <ConnectButton showBalance={false} /> */}

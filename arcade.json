@@ -1,0 +1,1966 @@
+
+[
+    {
+        "listingId": 39,
+        "listingCreatorId": "0xa94f4df6a713108b859766dab2a4c7bc985196e6",
+        "collateralOwnerId": "0xa94f4df6a713108b859766dab2a4c7bc985196e6",
+        "collateralAddress": "0xf5de760f2e916647fd766b4ad9e85ff943ce3a2b",
+        "collateralId": "2620077",
+        "collateral": [
+            {
+                "contractAddress": "0xf5de760f2e916647fd766b4ad9e85ff943ce3a2b",
+                "tokenId": "2620077"
+            }
+        ],
+        "loanTerms": [
+            {
+                "id": 177,
+                "collectionId": "0xf5de760f2e916647fd766b4ad9e85ff943ce3a2b",
+                "contractTokenId": "0xf5de760f2e916647fd766b4ad9e85ff943ce3a2b-2620077",
+                "collateralAddress": "0xf5de760f2e916647fd766b4ad9e85ff943ce3a2b",
+                "collateralId": "2620077",
+                "kind": "asset",
+                "role": "lender",
+                "state": "created",
+                "creatorId": "0xd2f73176a94d56a1004aff1d4dff749408940300",
+                "durationSecs": 2592000,
+                "numInstallments": 0,
+                "interestRate": "640515809381759550000",
+                "principal": "17999999999999997",
+                "payableCurrency": "0xb4fbf271143f4fbf7b91a5ded31805e42b2208d6",
+                "deadline": "1674037249",
+                "itemsHash": null,
+                "itemPredicates": null,
+                "createdAt": "2023-01-13T10:20:49.974Z",
+                "updatedAt": "2023-01-13T10:20:49.974Z"
+            },
+            {
+                "id": 141,
+                "collectionId": "0xf5de760f2e916647fd766b4ad9e85ff943ce3a2b",
+                "contractTokenId": "0xf5de760f2e916647fd766b4ad9e85ff943ce3a2b-2620077",
+                "collateralAddress": "0xf5de760f2e916647fd766b4ad9e85ff943ce3a2b",
+                "collateralId": "2620077",
+                "kind": "asset",
+                "role": "lender",
+                "state": "created",
+                "creatorId": "0xf8a406465e9360e7a69f04b35c290891093e147b",
+                "durationSecs": 864000,
+                "numInstallments": 0,
+                "interestRate": "100000000000000000000",
+                "principal": "1000000000000000",
+                "payableCurrency": "0xb4fbf271143f4fbf7b91a5ded31805e42b2208d6",
+                "deadline": "1674710507",
+                "itemsHash": null,
+                "itemPredicates": null,
+                "createdAt": "2023-01-12T05:22:16.491Z",
+                "updatedAt": "2023-01-12T05:22:16.491Z"
+            },
+            {
+                "id": 175,
+                "collectionId": "0xf5de760f2e916647fd766b4ad9e85ff943ce3a2b",
+                "contractTokenId": "0xf5de760f2e916647fd766b4ad9e85ff943ce3a2b-2620077",
+                "collateralAddress": "0xf5de760f2e916647fd766b4ad9e85ff943ce3a2b",
+                "collateralId": "2620077",
+                "kind": "asset",
+                "role": "lender",
+                "state": "created",
+                "creatorId": "0xd2f73176a94d56a1004aff1d4dff749408940300",
+                "durationSecs": 2592000,
+                "numInstallments": 0,
+                "interestRate": "380241836784000000000",
+                "principal": "12000000000000000",
+                "payableCurrency": "0xb4fbf271143f4fbf7b91a5ded31805e42b2208d6",
+                "deadline": "1674037248",
+                "itemsHash": null,
+                "itemPredicates": null,
+                "createdAt": "2023-01-13T10:20:49.298Z",
+                "updatedAt": "2023-01-13T10:20:49.298Z"
+            },
+            {
+                "id": 176,
+                "collectionId": "0xf5de760f2e916647fd766b4ad9e85ff943ce3a2b",
+                "contractTokenId": "0xf5de760f2e916647fd766b4ad9e85ff943ce3a2b-2620077",
+                "collateralAddress": "0xf5de760f2e916647fd766b4ad9e85ff943ce3a2b",
+                "collateralId": "2620077",
+                "kind": "asset",
+                "role": "lender",
+                "state": "created",
+                "creatorId": "0xd2f73176a94d56a1004aff1d4dff749408940300",
+                "durationSecs": 2592000,
+                "numInstallments": 0,
+                "interestRate": "510378823082880000000",
+                "principal": "15000000000000000",
+                "payableCurrency": "0xb4fbf271143f4fbf7b91a5ded31805e42b2208d6",
+                "deadline": "1674037249",
+                "itemsHash": null,
+                "itemPredicates": null,
+                "createdAt": "2023-01-13T10:20:49.659Z",
+                "updatedAt": "2023-01-13T10:20:49.659Z"
+            }
+        ]
+    },
+    {
+        "listingId": 38,
+        "listingCreatorId": "0xa94f4df6a713108b859766dab2a4c7bc985196e6",
+        "collateralOwnerId": "0xa94f4df6a713108b859766dab2a4c7bc985196e6",
+        "collateralAddress": "0xf5de760f2e916647fd766b4ad9e85ff943ce3a2b",
+        "collateralId": "2620076",
+        "collateral": [
+            {
+                "contractAddress": "0xf5de760f2e916647fd766b4ad9e85ff943ce3a2b",
+                "tokenId": "2620076"
+            }
+        ],
+        "loanTerms": [
+            {
+                "id": 180,
+                "collectionId": "0xf5de760f2e916647fd766b4ad9e85ff943ce3a2b",
+                "contractTokenId": "0xf5de760f2e916647fd766b4ad9e85ff943ce3a2b-2620076",
+                "collateralAddress": "0xf5de760f2e916647fd766b4ad9e85ff943ce3a2b",
+                "collateralId": "2620076",
+                "kind": "asset",
+                "role": "lender",
+                "state": "created",
+                "creatorId": "0xd2f73176a94d56a1004aff1d4dff749408940300",
+                "durationSecs": 2592000,
+                "numInstallments": 0,
+                "interestRate": "640515809381759550000",
+                "principal": "17999999999999997",
+                "payableCurrency": "0xb4fbf271143f4fbf7b91a5ded31805e42b2208d6",
+                "deadline": "1674037250",
+                "itemsHash": null,
+                "itemPredicates": null,
+                "createdAt": "2023-01-13T10:20:50.923Z",
+                "updatedAt": "2023-01-13T10:20:50.923Z"
+            },
+            {
+                "id": 178,
+                "collectionId": "0xf5de760f2e916647fd766b4ad9e85ff943ce3a2b",
+                "contractTokenId": "0xf5de760f2e916647fd766b4ad9e85ff943ce3a2b-2620076",
+                "collateralAddress": "0xf5de760f2e916647fd766b4ad9e85ff943ce3a2b",
+                "collateralId": "2620076",
+                "kind": "asset",
+                "role": "lender",
+                "state": "created",
+                "creatorId": "0xd2f73176a94d56a1004aff1d4dff749408940300",
+                "durationSecs": 2592000,
+                "numInstallments": 0,
+                "interestRate": "380241836784000000000",
+                "principal": "12000000000000000",
+                "payableCurrency": "0xb4fbf271143f4fbf7b91a5ded31805e42b2208d6",
+                "deadline": "1674037250",
+                "itemsHash": null,
+                "itemPredicates": null,
+                "createdAt": "2023-01-13T10:20:50.287Z",
+                "updatedAt": "2023-01-13T10:20:50.287Z"
+            },
+            {
+                "id": 179,
+                "collectionId": "0xf5de760f2e916647fd766b4ad9e85ff943ce3a2b",
+                "contractTokenId": "0xf5de760f2e916647fd766b4ad9e85ff943ce3a2b-2620076",
+                "collateralAddress": "0xf5de760f2e916647fd766b4ad9e85ff943ce3a2b",
+                "collateralId": "2620076",
+                "kind": "asset",
+                "role": "lender",
+                "state": "created",
+                "creatorId": "0xd2f73176a94d56a1004aff1d4dff749408940300",
+                "durationSecs": 2592000,
+                "numInstallments": 0,
+                "interestRate": "510378823082880000000",
+                "principal": "15000000000000000",
+                "payableCurrency": "0xb4fbf271143f4fbf7b91a5ded31805e42b2208d6",
+                "deadline": "1674037250",
+                "itemsHash": null,
+                "itemPredicates": null,
+                "createdAt": "2023-01-13T10:20:50.599Z",
+                "updatedAt": "2023-01-13T10:20:50.599Z"
+            }
+        ]
+    },
+    {
+        "listingId": 46,
+        "listingCreatorId": "0xc49b69c3e846cf5e876fb591cfc12148f319ac13",
+        "collateralOwnerId": "0xc49b69c3e846cf5e876fb591cfc12148f319ac13",
+        "collateralAddress": "0xf5de760f2e916647fd766b4ad9e85ff943ce3a2b",
+        "collateralId": "1407249",
+        "collateral": [
+            {
+                "contractAddress": "0xf5de760f2e916647fd766b4ad9e85ff943ce3a2b",
+                "tokenId": "1407249"
+            }
+        ],
+        "loanTerms": [
+            {
+                "id": 181,
+                "collectionId": "0xf5de760f2e916647fd766b4ad9e85ff943ce3a2b",
+                "contractTokenId": "0xf5de760f2e916647fd766b4ad9e85ff943ce3a2b-1407249",
+                "collateralAddress": "0xf5de760f2e916647fd766b4ad9e85ff943ce3a2b",
+                "collateralId": "1407249",
+                "kind": "asset",
+                "role": "lender",
+                "state": "created",
+                "creatorId": "0xd2f73176a94d56a1004aff1d4dff749408940300",
+                "durationSecs": 2592000,
+                "numInstallments": 0,
+                "interestRate": "380241836784000000000",
+                "principal": "12000000000000000",
+                "payableCurrency": "0xb4fbf271143f4fbf7b91a5ded31805e42b2208d6",
+                "deadline": "1674037250",
+                "itemsHash": null,
+                "itemPredicates": null,
+                "createdAt": "2023-01-13T10:20:51.264Z",
+                "updatedAt": "2023-01-13T10:20:51.264Z"
+            },
+            {
+                "id": 182,
+                "collectionId": "0xf5de760f2e916647fd766b4ad9e85ff943ce3a2b",
+                "contractTokenId": "0xf5de760f2e916647fd766b4ad9e85ff943ce3a2b-1407249",
+                "collateralAddress": "0xf5de760f2e916647fd766b4ad9e85ff943ce3a2b",
+                "collateralId": "1407249",
+                "kind": "asset",
+                "role": "lender",
+                "state": "created",
+                "creatorId": "0xd2f73176a94d56a1004aff1d4dff749408940300",
+                "durationSecs": 2592000,
+                "numInstallments": 0,
+                "interestRate": "510378823082880000000",
+                "principal": "15000000000000000",
+                "payableCurrency": "0xb4fbf271143f4fbf7b91a5ded31805e42b2208d6",
+                "deadline": "1674037251",
+                "itemsHash": null,
+                "itemPredicates": null,
+                "createdAt": "2023-01-13T10:20:51.594Z",
+                "updatedAt": "2023-01-13T10:20:51.594Z"
+            },
+            {
+                "id": 183,
+                "collectionId": "0xf5de760f2e916647fd766b4ad9e85ff943ce3a2b",
+                "contractTokenId": "0xf5de760f2e916647fd766b4ad9e85ff943ce3a2b-1407249",
+                "collateralAddress": "0xf5de760f2e916647fd766b4ad9e85ff943ce3a2b",
+                "collateralId": "1407249",
+                "kind": "asset",
+                "role": "lender",
+                "state": "created",
+                "creatorId": "0xd2f73176a94d56a1004aff1d4dff749408940300",
+                "durationSecs": 2592000,
+                "numInstallments": 0,
+                "interestRate": "640515809381759550000",
+                "principal": "17999999999999997",
+                "payableCurrency": "0xb4fbf271143f4fbf7b91a5ded31805e42b2208d6",
+                "deadline": "1674037251",
+                "itemsHash": null,
+                "itemPredicates": null,
+                "createdAt": "2023-01-13T10:20:51.912Z",
+                "updatedAt": "2023-01-13T10:20:51.912Z"
+            }
+        ]
+    },
+    {
+        "listingId": 47,
+        "listingCreatorId": "0xc49b69c3e846cf5e876fb591cfc12148f319ac13",
+        "collateralOwnerId": "0xc49b69c3e846cf5e876fb591cfc12148f319ac13",
+        "collateralAddress": "0xf5de760f2e916647fd766b4ad9e85ff943ce3a2b",
+        "collateralId": "1414446",
+        "collateral": [
+            {
+                "contractAddress": "0xf5de760f2e916647fd766b4ad9e85ff943ce3a2b",
+                "tokenId": "1414446"
+            }
+        ],
+        "loanTerms": [
+            {
+                "id": 185,
+                "collectionId": "0xf5de760f2e916647fd766b4ad9e85ff943ce3a2b",
+                "contractTokenId": "0xf5de760f2e916647fd766b4ad9e85ff943ce3a2b-1414446",
+                "collateralAddress": "0xf5de760f2e916647fd766b4ad9e85ff943ce3a2b",
+                "collateralId": "1414446",
+                "kind": "asset",
+                "role": "lender",
+                "state": "created",
+                "creatorId": "0xd2f73176a94d56a1004aff1d4dff749408940300",
+                "durationSecs": 2592000,
+                "numInstallments": 0,
+                "interestRate": "510378823082880000000",
+                "principal": "15000000000000000",
+                "payableCurrency": "0xb4fbf271143f4fbf7b91a5ded31805e42b2208d6",
+                "deadline": "1674037252",
+                "itemsHash": null,
+                "itemPredicates": null,
+                "createdAt": "2023-01-13T10:20:52.572Z",
+                "updatedAt": "2023-01-13T10:20:52.572Z"
+            },
+            {
+                "id": 186,
+                "collectionId": "0xf5de760f2e916647fd766b4ad9e85ff943ce3a2b",
+                "contractTokenId": "0xf5de760f2e916647fd766b4ad9e85ff943ce3a2b-1414446",
+                "collateralAddress": "0xf5de760f2e916647fd766b4ad9e85ff943ce3a2b",
+                "collateralId": "1414446",
+                "kind": "asset",
+                "role": "lender",
+                "state": "created",
+                "creatorId": "0xd2f73176a94d56a1004aff1d4dff749408940300",
+                "durationSecs": 2592000,
+                "numInstallments": 0,
+                "interestRate": "640515809381759550000",
+                "principal": "17999999999999997",
+                "payableCurrency": "0xb4fbf271143f4fbf7b91a5ded31805e42b2208d6",
+                "deadline": "1674037252",
+                "itemsHash": null,
+                "itemPredicates": null,
+                "createdAt": "2023-01-13T10:20:52.884Z",
+                "updatedAt": "2023-01-13T10:20:52.884Z"
+            },
+            {
+                "id": 184,
+                "collectionId": "0xf5de760f2e916647fd766b4ad9e85ff943ce3a2b",
+                "contractTokenId": "0xf5de760f2e916647fd766b4ad9e85ff943ce3a2b-1414446",
+                "collateralAddress": "0xf5de760f2e916647fd766b4ad9e85ff943ce3a2b",
+                "collateralId": "1414446",
+                "kind": "asset",
+                "role": "lender",
+                "state": "created",
+                "creatorId": "0xd2f73176a94d56a1004aff1d4dff749408940300",
+                "durationSecs": 2592000,
+                "numInstallments": 0,
+                "interestRate": "380241836784000000000",
+                "principal": "12000000000000000",
+                "payableCurrency": "0xb4fbf271143f4fbf7b91a5ded31805e42b2208d6",
+                "deadline": "1674037251",
+                "itemsHash": null,
+                "itemPredicates": null,
+                "createdAt": "2023-01-13T10:20:52.232Z",
+                "updatedAt": "2023-01-13T10:20:52.232Z"
+            },
+            {
+                "id": 34,
+                "collectionId": "0xf5de760f2e916647fd766b4ad9e85ff943ce3a2b",
+                "contractTokenId": "0xf5de760f2e916647fd766b4ad9e85ff943ce3a2b-1414446",
+                "collateralAddress": "0xf5de760f2e916647fd766b4ad9e85ff943ce3a2b",
+                "collateralId": "1414446",
+                "kind": "asset",
+                "role": "borrower",
+                "state": "created",
+                "creatorId": "0xc49b69c3e846cf5e876fb591cfc12148f319ac13",
+                "durationSecs": 259200,
+                "numInstallments": 0,
+                "interestRate": "100000000000000000000",
+                "principal": "100000000",
+                "payableCurrency": "0x07865c6e87b9f70255377e024ace6630c1eaa37f",
+                "deadline": "1668490801",
+                "itemsHash": null,
+                "itemPredicates": null,
+                "createdAt": "2022-11-01T05:40:25.555Z",
+                "updatedAt": "2022-11-01T05:40:25.555Z"
+            }
+        ]
+    },
+    {
+        "listingId": 49,
+        "listingCreatorId": "0x078a66ba8c5d6de8db791c84b4748e05506ebfa8",
+        "collateralOwnerId": "0x078a66ba8c5d6de8db791c84b4748e05506ebfa8",
+        "collateralAddress": "0xd60d682764ee04e54707bee7b564dc65b31884d0",
+        "collateralId": "2279",
+        "collateral": [
+            {
+                "contractAddress": "0xd60d682764ee04e54707bee7b564dc65b31884d0",
+                "tokenId": "2279"
+            }
+        ],
+        "loanTerms": [
+            {
+                "id": 143,
+                "collectionId": "0xd60d682764ee04e54707bee7b564dc65b31884d0",
+                "contractTokenId": "0xd60d682764ee04e54707bee7b564dc65b31884d0-2279",
+                "collateralAddress": "0xd60d682764ee04e54707bee7b564dc65b31884d0",
+                "collateralId": "2279",
+                "kind": "asset",
+                "role": "lender",
+                "state": "created",
+                "creatorId": "0xe7e9fadbc0a35a4019297d879c56506835716166",
+                "durationSecs": 2592000,
+                "numInstallments": 0,
+                "interestRate": "400000000000000000000",
+                "principal": "50000000",
+                "payableCurrency": "0x07865c6e87b9f70255377e024ace6630c1eaa37f",
+                "deadline": "1674751740",
+                "itemsHash": null,
+                "itemPredicates": null,
+                "createdAt": "2023-01-12T16:49:26.304Z",
+                "updatedAt": "2023-01-12T16:49:26.304Z"
+            }
+        ]
+    },
+    {
+        "listingId": 51,
+        "listingCreatorId": "0xf36270c2124829fce84d9aa5d7a7c7a674f29ab1",
+        "collateralOwnerId": "0xf36270c2124829fce84d9aa5d7a7c7a674f29ab1",
+        "collateralAddress": "0xf40299b626ef6e197f5d9de9315076cab788b6ef",
+        "collateralId": "4776",
+        "collateral": [
+            {
+                "contractAddress": "0xf40299b626ef6e197f5d9de9315076cab788b6ef",
+                "tokenId": "4776"
+            }
+        ],
+        "loanTerms": []
+    },
+    {
+        "listingId": 55,
+        "listingCreatorId": "0x61196b8a36b54468da291ad6e1df8c16d20d4d76",
+        "collateralOwnerId": "0x61196b8a36b54468da291ad6e1df8c16d20d4d76",
+        "collateralAddress": "0xf5de760f2e916647fd766b4ad9e85ff943ce3a2b",
+        "collateralId": "1286242",
+        "collateral": [
+            {
+                "contractAddress": "0xf5de760f2e916647fd766b4ad9e85ff943ce3a2b",
+                "tokenId": "1286242"
+            }
+        ],
+        "loanTerms": [
+            {
+                "id": 190,
+                "collectionId": "0xf5de760f2e916647fd766b4ad9e85ff943ce3a2b",
+                "contractTokenId": "0xf5de760f2e916647fd766b4ad9e85ff943ce3a2b-1286242",
+                "collateralAddress": "0xf5de760f2e916647fd766b4ad9e85ff943ce3a2b",
+                "collateralId": "1286242",
+                "kind": "asset",
+                "role": "lender",
+                "state": "created",
+                "creatorId": "0xd2f73176a94d56a1004aff1d4dff749408940300",
+                "durationSecs": 2592000,
+                "numInstallments": 0,
+                "interestRate": "380241836784000000000",
+                "principal": "12000000000000000",
+                "payableCurrency": "0xb4fbf271143f4fbf7b91a5ded31805e42b2208d6",
+                "deadline": "1674037253",
+                "itemsHash": null,
+                "itemPredicates": null,
+                "createdAt": "2023-01-13T10:20:54.146Z",
+                "updatedAt": "2023-01-13T10:20:54.146Z"
+            },
+            {
+                "id": 192,
+                "collectionId": "0xf5de760f2e916647fd766b4ad9e85ff943ce3a2b",
+                "contractTokenId": "0xf5de760f2e916647fd766b4ad9e85ff943ce3a2b-1286242",
+                "collateralAddress": "0xf5de760f2e916647fd766b4ad9e85ff943ce3a2b",
+                "collateralId": "1286242",
+                "kind": "asset",
+                "role": "lender",
+                "state": "created",
+                "creatorId": "0xd2f73176a94d56a1004aff1d4dff749408940300",
+                "durationSecs": 2592000,
+                "numInstallments": 0,
+                "interestRate": "640515809381759550000",
+                "principal": "17999999999999997",
+                "payableCurrency": "0xb4fbf271143f4fbf7b91a5ded31805e42b2208d6",
+                "deadline": "1674037254",
+                "itemsHash": null,
+                "itemPredicates": null,
+                "createdAt": "2023-01-13T10:20:54.779Z",
+                "updatedAt": "2023-01-13T10:20:54.779Z"
+            },
+            {
+                "id": 191,
+                "collectionId": "0xf5de760f2e916647fd766b4ad9e85ff943ce3a2b",
+                "contractTokenId": "0xf5de760f2e916647fd766b4ad9e85ff943ce3a2b-1286242",
+                "collateralAddress": "0xf5de760f2e916647fd766b4ad9e85ff943ce3a2b",
+                "collateralId": "1286242",
+                "kind": "asset",
+                "role": "lender",
+                "state": "created",
+                "creatorId": "0xd2f73176a94d56a1004aff1d4dff749408940300",
+                "durationSecs": 2592000,
+                "numInstallments": 0,
+                "interestRate": "510378823082880000000",
+                "principal": "15000000000000000",
+                "payableCurrency": "0xb4fbf271143f4fbf7b91a5ded31805e42b2208d6",
+                "deadline": "1674037254",
+                "itemsHash": null,
+                "itemPredicates": null,
+                "createdAt": "2023-01-13T10:20:54.455Z",
+                "updatedAt": "2023-01-13T10:20:54.455Z"
+            }
+        ]
+    },
+    {
+        "listingId": 56,
+        "listingCreatorId": "0xf8a406465e9360e7a69f04b35c290891093e147b",
+        "collateralOwnerId": "0x77097f421ceb2454eb5f77898d25159ff3c7381d",
+        "collateralAddress": "0xf5de760f2e916647fd766b4ad9e85ff943ce3a2b",
+        "collateralId": "2740176",
+        "collateral": [
+            {
+                "contractAddress": "0xf5de760f2e916647fd766b4ad9e85ff943ce3a2b",
+                "tokenId": "2740176"
+            }
+        ],
+        "loanTerms": []
+    },
+    {
+        "listingId": 57,
+        "listingCreatorId": "0xf8a406465e9360e7a69f04b35c290891093e147b",
+        "collateralOwnerId": "0x92f8d09863d8544042533008fc43a4da61a84dac",
+        "collateralAddress": "0xf5de760f2e916647fd766b4ad9e85ff943ce3a2b",
+        "collateralId": "2740177",
+        "collateral": [
+            {
+                "contractAddress": "0xf5de760f2e916647fd766b4ad9e85ff943ce3a2b",
+                "tokenId": "2740177"
+            }
+        ],
+        "loanTerms": []
+    },
+    {
+        "listingId": 58,
+        "listingCreatorId": "0xf8a406465e9360e7a69f04b35c290891093e147b",
+        "collateralOwnerId": "0xf8a406465e9360e7a69f04b35c290891093e147b",
+        "collateralAddress": "0xf5de760f2e916647fd766b4ad9e85ff943ce3a2b",
+        "collateralId": "2740178",
+        "collateral": [
+            {
+                "contractAddress": "0xf5de760f2e916647fd766b4ad9e85ff943ce3a2b",
+                "tokenId": "2740178"
+            }
+        ],
+        "loanTerms": []
+    },
+    {
+        "listingId": 60,
+        "listingCreatorId": "0x21adafaa34d250a4fa0f8a4d2e2424aba0cee563",
+        "collateralOwnerId": "0x21adafaa34d250a4fa0f8a4d2e2424aba0cee563",
+        "collateralAddress": "0xd60d682764ee04e54707bee7b564dc65b31884d0",
+        "collateralId": "2254",
+        "collateral": [
+            {
+                "contractAddress": "0xd60d682764ee04e54707bee7b564dc65b31884d0",
+                "tokenId": "2254"
+            }
+        ],
+        "loanTerms": []
+    },
+    {
+        "listingId": 61,
+        "listingCreatorId": "0x21adafaa34d250a4fa0f8a4d2e2424aba0cee563",
+        "collateralOwnerId": "0x21adafaa34d250a4fa0f8a4d2e2424aba0cee563",
+        "collateralAddress": "0xd60d682764ee04e54707bee7b564dc65b31884d0",
+        "collateralId": "2255",
+        "collateral": [
+            {
+                "contractAddress": "0xd60d682764ee04e54707bee7b564dc65b31884d0",
+                "tokenId": "2255"
+            }
+        ],
+        "loanTerms": []
+    },
+    {
+        "listingId": 62,
+        "listingCreatorId": "0x21adafaa34d250a4fa0f8a4d2e2424aba0cee563",
+        "collateralOwnerId": "0x21adafaa34d250a4fa0f8a4d2e2424aba0cee563",
+        "collateralAddress": "0xd60d682764ee04e54707bee7b564dc65b31884d0",
+        "collateralId": "2256",
+        "collateral": [
+            {
+                "contractAddress": "0xd60d682764ee04e54707bee7b564dc65b31884d0",
+                "tokenId": "2256"
+            }
+        ],
+        "loanTerms": []
+    },
+    {
+        "listingId": 63,
+        "listingCreatorId": "0x21adafaa34d250a4fa0f8a4d2e2424aba0cee563",
+        "collateralOwnerId": "0x21adafaa34d250a4fa0f8a4d2e2424aba0cee563",
+        "collateralAddress": "0xd60d682764ee04e54707bee7b564dc65b31884d0",
+        "collateralId": "2257",
+        "collateral": [
+            {
+                "contractAddress": "0xd60d682764ee04e54707bee7b564dc65b31884d0",
+                "tokenId": "2257"
+            }
+        ],
+        "loanTerms": []
+    },
+    {
+        "listingId": 64,
+        "listingCreatorId": "0x21adafaa34d250a4fa0f8a4d2e2424aba0cee563",
+        "collateralOwnerId": "0x21adafaa34d250a4fa0f8a4d2e2424aba0cee563",
+        "collateralAddress": "0xd60d682764ee04e54707bee7b564dc65b31884d0",
+        "collateralId": "2258",
+        "collateral": [
+            {
+                "contractAddress": "0xd60d682764ee04e54707bee7b564dc65b31884d0",
+                "tokenId": "2258"
+            }
+        ],
+        "loanTerms": []
+    },
+    {
+        "listingId": 65,
+        "listingCreatorId": "0x21adafaa34d250a4fa0f8a4d2e2424aba0cee563",
+        "collateralOwnerId": "0x21adafaa34d250a4fa0f8a4d2e2424aba0cee563",
+        "collateralAddress": "0xd60d682764ee04e54707bee7b564dc65b31884d0",
+        "collateralId": "2253",
+        "collateral": [
+            {
+                "contractAddress": "0xd60d682764ee04e54707bee7b564dc65b31884d0",
+                "tokenId": "2253"
+            }
+        ],
+        "loanTerms": []
+    },
+    {
+        "listingId": 66,
+        "listingCreatorId": "0x21adafaa34d250a4fa0f8a4d2e2424aba0cee563",
+        "collateralOwnerId": "0x21adafaa34d250a4fa0f8a4d2e2424aba0cee563",
+        "collateralAddress": "0xd60d682764ee04e54707bee7b564dc65b31884d0",
+        "collateralId": "2259",
+        "collateral": [
+            {
+                "contractAddress": "0xd60d682764ee04e54707bee7b564dc65b31884d0",
+                "tokenId": "2259"
+            }
+        ],
+        "loanTerms": []
+    },
+    {
+        "listingId": 67,
+        "listingCreatorId": "0x21adafaa34d250a4fa0f8a4d2e2424aba0cee563",
+        "collateralOwnerId": "0x21adafaa34d250a4fa0f8a4d2e2424aba0cee563",
+        "collateralAddress": "0xd60d682764ee04e54707bee7b564dc65b31884d0",
+        "collateralId": "2260",
+        "collateral": [
+            {
+                "contractAddress": "0xd60d682764ee04e54707bee7b564dc65b31884d0",
+                "tokenId": "2260"
+            }
+        ],
+        "loanTerms": []
+    },
+    {
+        "listingId": 68,
+        "listingCreatorId": "0x21adafaa34d250a4fa0f8a4d2e2424aba0cee563",
+        "collateralOwnerId": "0x21adafaa34d250a4fa0f8a4d2e2424aba0cee563",
+        "collateralAddress": "0xd60d682764ee04e54707bee7b564dc65b31884d0",
+        "collateralId": "2261",
+        "collateral": [
+            {
+                "contractAddress": "0xd60d682764ee04e54707bee7b564dc65b31884d0",
+                "tokenId": "2261"
+            }
+        ],
+        "loanTerms": []
+    },
+    {
+        "listingId": 69,
+        "listingCreatorId": "0x21adafaa34d250a4fa0f8a4d2e2424aba0cee563",
+        "collateralOwnerId": "0x21adafaa34d250a4fa0f8a4d2e2424aba0cee563",
+        "collateralAddress": "0x3f228cbcec3ad130c45d21664f2c7f5b23130d23",
+        "collateralId": "3082",
+        "collateral": [
+            {
+                "contractAddress": "0x3f228cbcec3ad130c45d21664f2c7f5b23130d23",
+                "tokenId": "3082"
+            }
+        ],
+        "loanTerms": []
+    },
+    {
+        "listingId": 70,
+        "listingCreatorId": "0x21adafaa34d250a4fa0f8a4d2e2424aba0cee563",
+        "collateralOwnerId": "0x21adafaa34d250a4fa0f8a4d2e2424aba0cee563",
+        "collateralAddress": "0x3f228cbcec3ad130c45d21664f2c7f5b23130d23",
+        "collateralId": "3083",
+        "collateral": [
+            {
+                "contractAddress": "0x3f228cbcec3ad130c45d21664f2c7f5b23130d23",
+                "tokenId": "3083"
+            }
+        ],
+        "loanTerms": []
+    },
+    {
+        "listingId": 71,
+        "listingCreatorId": "0x21adafaa34d250a4fa0f8a4d2e2424aba0cee563",
+        "collateralOwnerId": "0x21adafaa34d250a4fa0f8a4d2e2424aba0cee563",
+        "collateralAddress": "0x3f228cbcec3ad130c45d21664f2c7f5b23130d23",
+        "collateralId": "3084",
+        "collateral": [
+            {
+                "contractAddress": "0x3f228cbcec3ad130c45d21664f2c7f5b23130d23",
+                "tokenId": "3084"
+            }
+        ],
+        "loanTerms": []
+    },
+    {
+        "listingId": 72,
+        "listingCreatorId": "0x21adafaa34d250a4fa0f8a4d2e2424aba0cee563",
+        "collateralOwnerId": "0x21adafaa34d250a4fa0f8a4d2e2424aba0cee563",
+        "collateralAddress": "0x3f228cbcec3ad130c45d21664f2c7f5b23130d23",
+        "collateralId": "3090",
+        "collateral": [
+            {
+                "contractAddress": "0x3f228cbcec3ad130c45d21664f2c7f5b23130d23",
+                "tokenId": "3090"
+            }
+        ],
+        "loanTerms": []
+    },
+    {
+        "listingId": 73,
+        "listingCreatorId": "0x21adafaa34d250a4fa0f8a4d2e2424aba0cee563",
+        "collateralOwnerId": "0x21adafaa34d250a4fa0f8a4d2e2424aba0cee563",
+        "collateralAddress": "0x3f228cbcec3ad130c45d21664f2c7f5b23130d23",
+        "collateralId": "3089",
+        "collateral": [
+            {
+                "contractAddress": "0x3f228cbcec3ad130c45d21664f2c7f5b23130d23",
+                "tokenId": "3089"
+            }
+        ],
+        "loanTerms": []
+    },
+    {
+        "listingId": 74,
+        "listingCreatorId": "0x21adafaa34d250a4fa0f8a4d2e2424aba0cee563",
+        "collateralOwnerId": "0x21adafaa34d250a4fa0f8a4d2e2424aba0cee563",
+        "collateralAddress": "0x3f228cbcec3ad130c45d21664f2c7f5b23130d23",
+        "collateralId": "3088",
+        "collateral": [
+            {
+                "contractAddress": "0x3f228cbcec3ad130c45d21664f2c7f5b23130d23",
+                "tokenId": "3088"
+            }
+        ],
+        "loanTerms": []
+    },
+    {
+        "listingId": 75,
+        "listingCreatorId": "0x21adafaa34d250a4fa0f8a4d2e2424aba0cee563",
+        "collateralOwnerId": "0x21adafaa34d250a4fa0f8a4d2e2424aba0cee563",
+        "collateralAddress": "0x3f228cbcec3ad130c45d21664f2c7f5b23130d23",
+        "collateralId": "3087",
+        "collateral": [
+            {
+                "contractAddress": "0x3f228cbcec3ad130c45d21664f2c7f5b23130d23",
+                "tokenId": "3087"
+            }
+        ],
+        "loanTerms": []
+    },
+    {
+        "listingId": 76,
+        "listingCreatorId": "0x21adafaa34d250a4fa0f8a4d2e2424aba0cee563",
+        "collateralOwnerId": "0x21adafaa34d250a4fa0f8a4d2e2424aba0cee563",
+        "collateralAddress": "0x3f228cbcec3ad130c45d21664f2c7f5b23130d23",
+        "collateralId": "3086",
+        "collateral": [
+            {
+                "contractAddress": "0x3f228cbcec3ad130c45d21664f2c7f5b23130d23",
+                "tokenId": "3086"
+            }
+        ],
+        "loanTerms": []
+    },
+    {
+        "listingId": 77,
+        "listingCreatorId": "0x21adafaa34d250a4fa0f8a4d2e2424aba0cee563",
+        "collateralOwnerId": "0x21adafaa34d250a4fa0f8a4d2e2424aba0cee563",
+        "collateralAddress": "0x3f228cbcec3ad130c45d21664f2c7f5b23130d23",
+        "collateralId": "3085",
+        "collateral": [
+            {
+                "contractAddress": "0x3f228cbcec3ad130c45d21664f2c7f5b23130d23",
+                "tokenId": "3085"
+            }
+        ],
+        "loanTerms": []
+    },
+    {
+        "listingId": 78,
+        "listingCreatorId": "0x21adafaa34d250a4fa0f8a4d2e2424aba0cee563",
+        "collateralOwnerId": "0x21adafaa34d250a4fa0f8a4d2e2424aba0cee563",
+        "collateralAddress": "0x3f228cbcec3ad130c45d21664f2c7f5b23130d23",
+        "collateralId": "3091",
+        "collateral": [
+            {
+                "contractAddress": "0x3f228cbcec3ad130c45d21664f2c7f5b23130d23",
+                "tokenId": "3091"
+            }
+        ],
+        "loanTerms": []
+    },
+    {
+        "listingId": 79,
+        "listingCreatorId": "0x21adafaa34d250a4fa0f8a4d2e2424aba0cee563",
+        "collateralOwnerId": "0x21adafaa34d250a4fa0f8a4d2e2424aba0cee563",
+        "collateralAddress": "0xf40299b626ef6e197f5d9de9315076cab788b6ef",
+        "collateralId": "4747",
+        "collateral": [
+            {
+                "contractAddress": "0xf40299b626ef6e197f5d9de9315076cab788b6ef",
+                "tokenId": "4747"
+            }
+        ],
+        "loanTerms": []
+    },
+    {
+        "listingId": 80,
+        "listingCreatorId": "0x21adafaa34d250a4fa0f8a4d2e2424aba0cee563",
+        "collateralOwnerId": "0x21adafaa34d250a4fa0f8a4d2e2424aba0cee563",
+        "collateralAddress": "0xf40299b626ef6e197f5d9de9315076cab788b6ef",
+        "collateralId": "4748",
+        "collateral": [
+            {
+                "contractAddress": "0xf40299b626ef6e197f5d9de9315076cab788b6ef",
+                "tokenId": "4748"
+            }
+        ],
+        "loanTerms": []
+    },
+    {
+        "listingId": 81,
+        "listingCreatorId": "0x21adafaa34d250a4fa0f8a4d2e2424aba0cee563",
+        "collateralOwnerId": "0x21adafaa34d250a4fa0f8a4d2e2424aba0cee563",
+        "collateralAddress": "0xf40299b626ef6e197f5d9de9315076cab788b6ef",
+        "collateralId": "4749",
+        "collateral": [
+            {
+                "contractAddress": "0xf40299b626ef6e197f5d9de9315076cab788b6ef",
+                "tokenId": "4749"
+            }
+        ],
+        "loanTerms": []
+    },
+    {
+        "listingId": 82,
+        "listingCreatorId": "0x21adafaa34d250a4fa0f8a4d2e2424aba0cee563",
+        "collateralOwnerId": "0x21adafaa34d250a4fa0f8a4d2e2424aba0cee563",
+        "collateralAddress": "0xf40299b626ef6e197f5d9de9315076cab788b6ef",
+        "collateralId": "4750",
+        "collateral": [
+            {
+                "contractAddress": "0xf40299b626ef6e197f5d9de9315076cab788b6ef",
+                "tokenId": "4750"
+            }
+        ],
+        "loanTerms": []
+    },
+    {
+        "listingId": 83,
+        "listingCreatorId": "0x21adafaa34d250a4fa0f8a4d2e2424aba0cee563",
+        "collateralOwnerId": "0x21adafaa34d250a4fa0f8a4d2e2424aba0cee563",
+        "collateralAddress": "0xf40299b626ef6e197f5d9de9315076cab788b6ef",
+        "collateralId": "4751",
+        "collateral": [
+            {
+                "contractAddress": "0xf40299b626ef6e197f5d9de9315076cab788b6ef",
+                "tokenId": "4751"
+            }
+        ],
+        "loanTerms": []
+    },
+    {
+        "listingId": 84,
+        "listingCreatorId": "0x21adafaa34d250a4fa0f8a4d2e2424aba0cee563",
+        "collateralOwnerId": "0x21adafaa34d250a4fa0f8a4d2e2424aba0cee563",
+        "collateralAddress": "0xf40299b626ef6e197f5d9de9315076cab788b6ef",
+        "collateralId": "4756",
+        "collateral": [
+            {
+                "contractAddress": "0xf40299b626ef6e197f5d9de9315076cab788b6ef",
+                "tokenId": "4756"
+            }
+        ],
+        "loanTerms": []
+    },
+    {
+        "listingId": 85,
+        "listingCreatorId": "0x21adafaa34d250a4fa0f8a4d2e2424aba0cee563",
+        "collateralOwnerId": "0x21adafaa34d250a4fa0f8a4d2e2424aba0cee563",
+        "collateralAddress": "0xf40299b626ef6e197f5d9de9315076cab788b6ef",
+        "collateralId": "4755",
+        "collateral": [
+            {
+                "contractAddress": "0xf40299b626ef6e197f5d9de9315076cab788b6ef",
+                "tokenId": "4755"
+            }
+        ],
+        "loanTerms": []
+    },
+    {
+        "listingId": 86,
+        "listingCreatorId": "0x21adafaa34d250a4fa0f8a4d2e2424aba0cee563",
+        "collateralOwnerId": "0x21adafaa34d250a4fa0f8a4d2e2424aba0cee563",
+        "collateralAddress": "0xf40299b626ef6e197f5d9de9315076cab788b6ef",
+        "collateralId": "4754",
+        "collateral": [
+            {
+                "contractAddress": "0xf40299b626ef6e197f5d9de9315076cab788b6ef",
+                "tokenId": "4754"
+            }
+        ],
+        "loanTerms": []
+    },
+    {
+        "listingId": 87,
+        "listingCreatorId": "0x21adafaa34d250a4fa0f8a4d2e2424aba0cee563",
+        "collateralOwnerId": "0x21adafaa34d250a4fa0f8a4d2e2424aba0cee563",
+        "collateralAddress": "0xf40299b626ef6e197f5d9de9315076cab788b6ef",
+        "collateralId": "4753",
+        "collateral": [
+            {
+                "contractAddress": "0xf40299b626ef6e197f5d9de9315076cab788b6ef",
+                "tokenId": "4753"
+            }
+        ],
+        "loanTerms": []
+    },
+    {
+        "listingId": 88,
+        "listingCreatorId": "0x21adafaa34d250a4fa0f8a4d2e2424aba0cee563",
+        "collateralOwnerId": "0x21adafaa34d250a4fa0f8a4d2e2424aba0cee563",
+        "collateralAddress": "0xf40299b626ef6e197f5d9de9315076cab788b6ef",
+        "collateralId": "4752",
+        "collateral": [
+            {
+                "contractAddress": "0xf40299b626ef6e197f5d9de9315076cab788b6ef",
+                "tokenId": "4752"
+            }
+        ],
+        "loanTerms": []
+    },
+    {
+        "listingId": null,
+        "listingCreatorId": null,
+        "collateralOwnerId": "",
+        "collateralAddress": "0x0028badf5d154dae44f874ac58ffcd3fa56d9586",
+        "collateralId": "1221232111755440428163062350455743252558274625475",
+        "collateral": [
+            {
+                "contractAddress": "0xf5de760f2e916647fd766b4ad9e85ff943ce3a2b",
+                "tokenId": "2522876"
+            }
+        ],
+        "loanTerms": []
+    },
+    {
+        "listingId": null,
+        "listingCreatorId": null,
+        "collateralOwnerId": "",
+        "collateralAddress": "0x0913ad7f7f684749dcf626312b59ca0d91b21f4f",
+        "collateralId": "1253207848180387874817367999140215238748383614987",
+        "collateral": [
+            {
+                "contractAddress": "0xf40299b626ef6e197f5d9de9315076cab788b6ef",
+                "tokenId": "1528"
+            },
+            {
+                "contractAddress": "0x3f228cbcec3ad130c45d21664f2c7f5b23130d23",
+                "tokenId": "1951"
+            }
+        ],
+        "loanTerms": [
+            {
+                "id": 130,
+                "collectionId": "0x0913ad7f7f684749dcf626312b59ca0d91b21f4f",
+                "contractTokenId": "0x0913ad7f7f684749dcf626312b59ca0d91b21f4f-1253207848180387874817367999140215238748383614987",
+                "collateralAddress": "0x0913ad7f7f684749dcf626312b59ca0d91b21f4f",
+                "collateralId": "1253207848180387874817367999140215238748383614987",
+                "kind": "vault",
+                "role": "lender",
+                "state": "created",
+                "creatorId": "0x45dd0f0ec3ebc02489a78010ab9d8890c11c14f5",
+                "durationSecs": 259200,
+                "numInstallments": 0,
+                "interestRate": "333333333333333333300",
+                "principal": "3000000000000000000",
+                "payableCurrency": "0x328507dc29c95c170b56a1b3a758eb7a9e73455c",
+                "deadline": "1674511799",
+                "itemsHash": null,
+                "itemPredicates": null,
+                "createdAt": "2023-01-09T22:10:03.221Z",
+                "updatedAt": "2023-01-09T22:10:03.221Z"
+            }
+        ]
+    },
+    {
+        "listingId": null,
+        "listingCreatorId": null,
+        "collateralOwnerId": "",
+        "collateralAddress": "0x0028badf5d154dae44f874ac58ffcd3fa56d9586",
+        "collateralId": "1293205544216363517128407350063227550269371009972",
+        "collateral": [
+            {
+                "contractAddress": "0xf5de760f2e916647fd766b4ad9e85ff943ce3a2b",
+                "tokenId": "1415893"
+            }
+        ],
+        "loanTerms": [
+            {
+                "id": 121,
+                "collectionId": "0x0028badf5d154dae44f874ac58ffcd3fa56d9586",
+                "contractTokenId": "0x0028badf5d154dae44f874ac58ffcd3fa56d9586-1293205544216363517128407350063227550269371009972",
+                "collateralAddress": "0x0028badf5d154dae44f874ac58ffcd3fa56d9586",
+                "collateralId": "1293205544216363517128407350063227550269371009972",
+                "kind": "vault",
+                "role": "lender",
+                "state": "created",
+                "creatorId": "0xc49b69c3e846cf5e876fb591cfc12148f319ac13",
+                "durationSecs": 864000,
+                "numInstallments": 0,
+                "interestRate": "100000000000000000000",
+                "principal": "100000000",
+                "payableCurrency": "0x07865c6e87b9f70255377e024ace6630c1eaa37f",
+                "deadline": "1674016217",
+                "itemsHash": null,
+                "itemPredicates": null,
+                "createdAt": "2023-01-04T04:30:20.205Z",
+                "updatedAt": "2023-01-04T04:30:20.205Z"
+            },
+            {
+                "id": 18,
+                "collectionId": "0x0028BADf5d154DAE44F874AC58FFCd3fA56D9586",
+                "contractTokenId": "0x0028badf5d154dae44f874ac58ffcd3fa56d9586-1293205544216363517128407350063227550269371009972",
+                "collateralAddress": "0x0028badf5d154dae44f874ac58ffcd3fa56d9586",
+                "collateralId": "1293205544216363517128407350063227550269371009972",
+                "kind": "vault",
+                "role": "lender",
+                "state": "created",
+                "creatorId": "0x2727dc45dc776a70be546347f296cbffebfca5af",
+                "durationSecs": 2678400,
+                "numInstallments": 0,
+                "interestRate": "39215686274509803900",
+                "principal": "5100000",
+                "payableCurrency": "0x07865c6e87b9f70255377e024ace6630c1eaa37f",
+                "deadline": "1666261189",
+                "itemsHash": null,
+                "itemPredicates": null,
+                "createdAt": "2022-10-06T10:19:54.691Z",
+                "updatedAt": "2022-10-06T10:19:54.691Z"
+            },
+            {
+                "id": 17,
+                "collectionId": "0x0028BADf5d154DAE44F874AC58FFCd3fA56D9586",
+                "contractTokenId": "0x0028badf5d154dae44f874ac58ffcd3fa56d9586-1293205544216363517128407350063227550269371009972",
+                "collateralAddress": "0x0028badf5d154dae44f874ac58ffcd3fa56d9586",
+                "collateralId": "1293205544216363517128407350063227550269371009972",
+                "kind": "vault",
+                "role": "borrower",
+                "state": "created",
+                "creatorId": "0xe607b17f2c3989b23c9a2921465914b20dde4411",
+                "durationSecs": 2592000,
+                "numInstallments": 0,
+                "interestRate": "60000000000000000000",
+                "principal": "5000000",
+                "payableCurrency": "0x07865c6e87b9f70255377e024ace6630c1eaa37f",
+                "deadline": "1666261099",
+                "itemsHash": null,
+                "itemPredicates": null,
+                "createdAt": "2022-10-06T10:19:22.842Z",
+                "updatedAt": "2022-10-06T10:19:22.842Z"
+            }
+        ]
+    },
+    {
+        "listingId": null,
+        "listingCreatorId": null,
+        "collateralOwnerId": "",
+        "collateralAddress": "0x0028badf5d154dae44f874ac58ffcd3fa56d9586",
+        "collateralId": "1307486628813489582538697052184309799740950072634",
+        "collateral": [
+            {
+                "contractAddress": "0xf5de760f2e916647fd766b4ad9e85ff943ce3a2b",
+                "tokenId": "2601488"
+            }
+        ],
+        "loanTerms": []
+    },
+    {
+        "listingId": null,
+        "listingCreatorId": null,
+        "collateralOwnerId": "",
+        "collateralAddress": "0x0028badf5d154dae44f874ac58ffcd3fa56d9586",
+        "collateralId": "1341338286009489544598505509676934902022528497532",
+        "collateral": [
+            {
+                "contractAddress": "0x3f228cbcec3ad130c45d21664f2c7f5b23130d23",
+                "tokenId": "3112"
+            }
+        ],
+        "loanTerms": [
+            {
+                "id": 133,
+                "collectionId": "0x0028badf5d154dae44f874ac58ffcd3fa56d9586",
+                "contractTokenId": "0x0028badf5d154dae44f874ac58ffcd3fa56d9586-1341338286009489544598505509676934902022528497532",
+                "collateralAddress": "0x0028badf5d154dae44f874ac58ffcd3fa56d9586",
+                "collateralId": "1341338286009489544598505509676934902022528497532",
+                "kind": "vault",
+                "role": "borrower",
+                "state": "created",
+                "creatorId": "0xf36270c2124829fce84d9aa5d7a7c7a674f29ab1",
+                "durationSecs": 31449600,
+                "numInstallments": 0,
+                "interestRate": "200000000000000000000",
+                "principal": "50000000000000000000",
+                "payableCurrency": "0x328507dc29c95c170b56a1b3a758eb7a9e73455c",
+                "deadline": "1674512110",
+                "itemsHash": null,
+                "itemPredicates": null,
+                "createdAt": "2023-01-09T22:15:12.343Z",
+                "updatedAt": "2023-01-09T22:16:43.384Z"
+            }
+        ]
+    },
+    {
+        "listingId": null,
+        "listingCreatorId": null,
+        "collateralOwnerId": "",
+        "collateralAddress": "0x0028badf5d154dae44f874ac58ffcd3fa56d9586",
+        "collateralId": "1381011384700090347795093788734062062922993067640",
+        "collateral": [
+            {
+                "contractAddress": "0xf5de760f2e916647fd766b4ad9e85ff943ce3a2b",
+                "tokenId": "348846"
+            },
+            {
+                "contractAddress": "0xf5de760f2e916647fd766b4ad9e85ff943ce3a2b",
+                "tokenId": "348847"
+            }
+        ],
+        "loanTerms": []
+    },
+    {
+        "listingId": null,
+        "listingCreatorId": null,
+        "collateralOwnerId": "",
+        "collateralAddress": "0x0913ad7f7f684749dcf626312b59ca0d91b21f4f",
+        "collateralId": "1452575722525737071418734600213352164390010389272",
+        "collateral": [
+            {
+                "contractAddress": "0xf40299b626ef6e197f5d9de9315076cab788b6ef",
+                "tokenId": "4758"
+            }
+        ],
+        "loanTerms": []
+    },
+    {
+        "listingId": null,
+        "listingCreatorId": null,
+        "collateralOwnerId": "",
+        "collateralAddress": "0x0028badf5d154dae44f874ac58ffcd3fa56d9586",
+        "collateralId": "291714605581508353850642260869410081490809119797",
+        "collateral": [
+            {
+                "contractAddress": "0xf5de760f2e916647fd766b4ad9e85ff943ce3a2b",
+                "tokenId": "348848"
+            }
+        ],
+        "loanTerms": []
+    },
+    {
+        "listingId": null,
+        "listingCreatorId": null,
+        "collateralOwnerId": "",
+        "collateralAddress": "0x0028badf5d154dae44f874ac58ffcd3fa56d9586",
+        "collateralId": "303133027202210310409158785081956906278010375145",
+        "collateral": [
+            {
+                "contractAddress": "0xf5de760f2e916647fd766b4ad9e85ff943ce3a2b",
+                "tokenId": "2259238"
+            },
+            {
+                "contractAddress": "0xd60d682764ee04e54707bee7b564dc65b31884d0",
+                "tokenId": "278"
+            }
+        ],
+        "loanTerms": [
+            {
+                "id": 94,
+                "collectionId": "0x0028badf5d154dae44f874ac58ffcd3fa56d9586",
+                "contractTokenId": "0x0028badf5d154dae44f874ac58ffcd3fa56d9586-303133027202210310409158785081956906278010375145",
+                "collateralAddress": "0x0028badf5d154dae44f874ac58ffcd3fa56d9586",
+                "collateralId": "303133027202210310409158785081956906278010375145",
+                "kind": "vault",
+                "role": "borrower",
+                "state": "created",
+                "creatorId": "0x6402cb41945a662e978c6a8a65d93c0ab17f7ac9",
+                "durationSecs": 864000,
+                "numInstallments": 0,
+                "interestRate": "2000000000000000000000",
+                "principal": "10000000000000000000",
+                "payableCurrency": "0x328507dc29c95c170b56a1b3a758eb7a9e73455c",
+                "deadline": "1672185835",
+                "itemsHash": null,
+                "itemPredicates": null,
+                "createdAt": "2022-12-14T00:04:38.630Z",
+                "updatedAt": "2022-12-14T00:04:38.630Z"
+            }
+        ]
+    },
+    {
+        "listingId": null,
+        "listingCreatorId": null,
+        "collateralOwnerId": "",
+        "collateralAddress": "0x0028badf5d154dae44f874ac58ffcd3fa56d9586",
+        "collateralId": "51700798221003880581747017843443061670368361772",
+        "collateral": [
+            {
+                "contractAddress": "0xf5de760f2e916647fd766b4ad9e85ff943ce3a2b",
+                "tokenId": "5596"
+            }
+        ],
+        "loanTerms": []
+    },
+    {
+        "listingId": null,
+        "listingCreatorId": null,
+        "collateralOwnerId": "",
+        "collateralAddress": "0x0028badf5d154dae44f874ac58ffcd3fa56d9586",
+        "collateralId": "546563559015494256307326756932952008846101623747",
+        "collateral": [
+            {
+                "contractAddress": "0xd60d682764ee04e54707bee7b564dc65b31884d0",
+                "tokenId": "2286"
+            },
+            {
+                "contractAddress": "0xf40299b626ef6e197f5d9de9315076cab788b6ef",
+                "tokenId": "4806"
+            }
+        ],
+        "loanTerms": [
+            {
+                "id": 138,
+                "collectionId": "0x0028badf5d154dae44f874ac58ffcd3fa56d9586",
+                "contractTokenId": "0x0028badf5d154dae44f874ac58ffcd3fa56d9586-546563559015494256307326756932952008846101623747",
+                "collateralAddress": "0x0028badf5d154dae44f874ac58ffcd3fa56d9586",
+                "collateralId": "546563559015494256307326756932952008846101623747",
+                "kind": "vault",
+                "role": "borrower",
+                "state": "created",
+                "creatorId": "0x6c6f915b21d43107d83c47541e5d29e872d82da6",
+                "durationSecs": 259200,
+                "numInstallments": 0,
+                "interestRate": "1000000000000000000000",
+                "principal": "100000",
+                "payableCurrency": "0x07865c6e87b9f70255377e024ace6630c1eaa37f",
+                "deadline": "1674556043",
+                "itemsHash": null,
+                "itemPredicates": null,
+                "createdAt": "2023-01-10T10:27:28.361Z",
+                "updatedAt": "2023-01-10T10:27:28.361Z"
+            }
+        ]
+    },
+    {
+        "listingId": null,
+        "listingCreatorId": null,
+        "collateralOwnerId": "",
+        "collateralAddress": "0x0028badf5d154dae44f874ac58ffcd3fa56d9586",
+        "collateralId": "673716134448819256354489128633079937675979039799",
+        "collateral": [
+            {
+                "contractAddress": "0xd60d682764ee04e54707bee7b564dc65b31884d0",
+                "tokenId": "2247"
+            },
+            {
+                "contractAddress": "0xd60d682764ee04e54707bee7b564dc65b31884d0",
+                "tokenId": "2248"
+            }
+        ],
+        "loanTerms": [
+            {
+                "id": 131,
+                "collectionId": "0x0028badf5d154dae44f874ac58ffcd3fa56d9586",
+                "contractTokenId": "0x0028badf5d154dae44f874ac58ffcd3fa56d9586-673716134448819256354489128633079937675979039799",
+                "collateralAddress": "0x0028badf5d154dae44f874ac58ffcd3fa56d9586",
+                "collateralId": "673716134448819256354489128633079937675979039799",
+                "kind": "vault",
+                "role": "lender",
+                "state": "created",
+                "creatorId": "0x0fbed7537e4120e1021c0f39f53e9953d5d8973d",
+                "durationSecs": 2592000,
+                "numInstallments": 0,
+                "interestRate": "5000000000000000000000",
+                "principal": "1000000000000000",
+                "payableCurrency": "0xb4fbf271143f4fbf7b91a5ded31805e42b2208d6",
+                "deadline": "1674511899",
+                "itemsHash": null,
+                "itemPredicates": null,
+                "createdAt": "2023-01-09T22:12:25.030Z",
+                "updatedAt": "2023-01-09T22:15:43.019Z"
+            }
+        ]
+    },
+    {
+        "listingId": null,
+        "listingCreatorId": null,
+        "collateralOwnerId": "",
+        "collateralAddress": "0x0028badf5d154dae44f874ac58ffcd3fa56d9586",
+        "collateralId": "718627386618613808627298660932449099243731438030",
+        "collateral": [
+            {
+                "contractAddress": "0xf5de760f2e916647fd766b4ad9e85ff943ce3a2b",
+                "tokenId": "2624086"
+            }
+        ],
+        "loanTerms": []
+    },
+    {
+        "listingId": null,
+        "listingCreatorId": null,
+        "collateralOwnerId": "",
+        "collateralAddress": "0x0913ad7f7f684749dcf626312b59ca0d91b21f4f",
+        "collateralId": "800695982965841979884855607236802000832589883890",
+        "collateral": [
+            {
+                "contractAddress": "0x3f228cbcec3ad130c45d21664f2c7f5b23130d23",
+                "tokenId": "74"
+            }
+        ],
+        "loanTerms": []
+    },
+    {
+        "listingId": null,
+        "listingCreatorId": null,
+        "collateralOwnerId": "",
+        "collateralAddress": "0x0028badf5d154dae44f874ac58ffcd3fa56d9586",
+        "collateralId": "827519995353417090803336390126911876330403623373",
+        "collateral": [
+            {
+                "contractAddress": "0xf5de760f2e916647fd766b4ad9e85ff943ce3a2b",
+                "tokenId": "1407248"
+            }
+        ],
+        "loanTerms": [
+            {
+                "id": 95,
+                "collectionId": "0x0028badf5d154dae44f874ac58ffcd3fa56d9586",
+                "contractTokenId": "0x0028badf5d154dae44f874ac58ffcd3fa56d9586-827519995353417090803336390126911876330403623373",
+                "collateralAddress": "0x0028badf5d154dae44f874ac58ffcd3fa56d9586",
+                "collateralId": "827519995353417090803336390126911876330403623373",
+                "kind": "vault",
+                "role": "lender",
+                "state": "created",
+                "creatorId": "0x6402cb41945a662e978c6a8a65d93c0ab17f7ac9",
+                "durationSecs": 864000,
+                "numInstallments": 0,
+                "interestRate": "2000000000000000000000",
+                "principal": "10000000000000000000",
+                "payableCurrency": "0x328507dc29c95c170b56a1b3a758eb7a9e73455c",
+                "deadline": "1672185974",
+                "itemsHash": null,
+                "itemPredicates": null,
+                "createdAt": "2022-12-14T00:07:56.914Z",
+                "updatedAt": "2022-12-14T00:07:56.914Z"
+            }
+        ]
+    },
+    {
+        "listingId": null,
+        "listingCreatorId": null,
+        "collateralOwnerId": "",
+        "collateralAddress": "0x0028badf5d154dae44f874ac58ffcd3fa56d9586",
+        "collateralId": "839061408560626559708774688663210986323113954732",
+        "collateral": [
+            {
+                "contractAddress": "0xf5de760f2e916647fd766b4ad9e85ff943ce3a2b",
+                "tokenId": "2740177"
+            }
+        ],
+        "loanTerms": []
+    },
+    {
+        "listingId": null,
+        "listingCreatorId": null,
+        "collateralOwnerId": "",
+        "collateralAddress": "0x0028badf5d154dae44f874ac58ffcd3fa56d9586",
+        "collateralId": "861371520145417757928441629992487267314018500437",
+        "collateral": [
+            {
+                "contractAddress": "0xf5de760f2e916647fd766b4ad9e85ff943ce3a2b",
+                "tokenId": "1415892"
+            },
+            {
+                "contractAddress": "0xf5de760f2e916647fd766b4ad9e85ff943ce3a2b",
+                "tokenId": "1415568"
+            }
+        ],
+        "loanTerms": [
+            {
+                "id": 15,
+                "collectionId": "0x0028BADf5d154DAE44F874AC58FFCd3fA56D9586",
+                "contractTokenId": "0x0028badf5d154dae44f874ac58ffcd3fa56d9586-861371520145417757928441629992487267314018500437",
+                "collateralAddress": "0x0028badf5d154dae44f874ac58ffcd3fa56d9586",
+                "collateralId": "861371520145417757928441629992487267314018500437",
+                "kind": "vault",
+                "role": "lender",
+                "state": "created",
+                "creatorId": "0xe607b17f2c3989b23c9a2921465914b20dde4411",
+                "durationSecs": 432000,
+                "numInstallments": 0,
+                "interestRate": "50000000000000000000",
+                "principal": "2000000",
+                "payableCurrency": "0x07865c6e87b9f70255377e024ace6630c1eaa37f",
+                "deadline": "1666260691",
+                "itemsHash": null,
+                "itemPredicates": null,
+                "createdAt": "2022-10-06T10:11:39.766Z",
+                "updatedAt": "2022-10-06T10:11:39.766Z"
+            },
+            {
+                "id": 20,
+                "collectionId": "0x0028BADf5d154DAE44F874AC58FFCd3fA56D9586",
+                "contractTokenId": "0x0028badf5d154dae44f874ac58ffcd3fa56d9586-861371520145417757928441629992487267314018500437",
+                "collateralAddress": "0x0028badf5d154dae44f874ac58ffcd3fa56d9586",
+                "collateralId": "861371520145417757928441629992487267314018500437",
+                "kind": "vault",
+                "role": "lender",
+                "state": "created",
+                "creatorId": "0xc49b69c3e846cf5e876fb591cfc12148f319ac13",
+                "durationSecs": 604800,
+                "numInstallments": 0,
+                "interestRate": "5000000000000000000000",
+                "principal": "2000000",
+                "payableCurrency": "0x07865c6e87b9f70255377e024ace6630c1eaa37f",
+                "deadline": "1666564901",
+                "itemsHash": null,
+                "itemPredicates": null,
+                "createdAt": "2022-10-09T22:41:46.082Z",
+                "updatedAt": "2022-10-09T22:41:46.082Z"
+            }
+        ]
+    },
+    {
+        "listingId": null,
+        "listingCreatorId": null,
+        "collateralOwnerId": "",
+        "collateralAddress": "0x0028badf5d154dae44f874ac58ffcd3fa56d9586",
+        "collateralId": "86650810117731221102832934435251131976706287278",
+        "collateral": [
+            {
+                "contractAddress": "0xf5de760f2e916647fd766b4ad9e85ff943ce3a2b",
+                "tokenId": "2259237"
+            }
+        ],
+        "loanTerms": []
+    },
+    {
+        "listingId": null,
+        "listingCreatorId": null,
+        "collateralOwnerId": "",
+        "collateralAddress": "0x0028badf5d154dae44f874ac58ffcd3fa56d9586",
+        "collateralId": "959983521961255475886292089217350875413716961201",
+        "collateral": [
+            {
+                "contractAddress": "0xf5de760f2e916647fd766b4ad9e85ff943ce3a2b",
+                "tokenId": "1407247"
+            }
+        ],
+        "loanTerms": []
+    },
+    {
+        "listingId": null,
+        "listingCreatorId": null,
+        "collateralOwnerId": "0x0fbed7537e4120e1021c0f39f53e9953d5d8973d",
+        "collateralAddress": "0xf5de760f2e916647fd766b4ad9e85ff943ce3a2b",
+        "collateralId": "2285676",
+        "collateral": [
+            {
+                "contractAddress": "0xf5de760f2e916647fd766b4ad9e85ff943ce3a2b",
+                "tokenId": "2285676"
+            }
+        ],
+        "loanTerms": [
+            {
+                "id": 115,
+                "collectionId": "0xf5de760f2e916647fd766b4ad9e85ff943ce3a2b",
+                "contractTokenId": "0xf5de760f2e916647fd766b4ad9e85ff943ce3a2b-2285676",
+                "collateralAddress": "0xf5de760f2e916647fd766b4ad9e85ff943ce3a2b",
+                "collateralId": "2285676",
+                "kind": "asset",
+                "role": "borrower",
+                "state": "created",
+                "creatorId": "0x0fbed7537e4120e1021c0f39f53e9953d5d8973d",
+                "durationSecs": 2592000,
+                "numInstallments": 0,
+                "interestRate": "2000000000000000000000",
+                "principal": "10000000",
+                "payableCurrency": "0x07865c6e87b9f70255377e024ace6630c1eaa37f",
+                "deadline": "1672787496",
+                "itemsHash": null,
+                "itemPredicates": null,
+                "createdAt": "2022-12-20T23:12:00.847Z",
+                "updatedAt": "2022-12-20T23:13:18.796Z"
+            }
+        ]
+    },
+    {
+        "listingId": null,
+        "listingCreatorId": null,
+        "collateralOwnerId": "0x15d4c89bee0d8c658d6b39bef4a75a6a4890b864",
+        "collateralAddress": "0xf5de760f2e916647fd766b4ad9e85ff943ce3a2b",
+        "collateralId": "1405965",
+        "collateral": [
+            {
+                "contractAddress": "0xf5de760f2e916647fd766b4ad9e85ff943ce3a2b",
+                "tokenId": "1405965"
+            }
+        ],
+        "loanTerms": [
+            {
+                "id": 23,
+                "collectionId": "0xf5de760f2e916647fd766b4ad9e85ff943ce3a2b",
+                "contractTokenId": "0xf5de760f2e916647fd766b4ad9e85ff943ce3a2b-1405965",
+                "collateralAddress": "0xf5de760f2e916647fd766b4ad9e85ff943ce3a2b",
+                "collateralId": "1405965",
+                "kind": "asset",
+                "role": "borrower",
+                "state": "created",
+                "creatorId": "0x6402cb41945a662e978c6a8a65d93c0ab17f7ac9",
+                "durationSecs": 864000,
+                "numInstallments": 0,
+                "interestRate": "2000000000000000000000",
+                "principal": "5000000000000000000",
+                "payableCurrency": "0xb4fbf271143f4fbf7b91a5ded31805e42b2208d6",
+                "deadline": "1667524854",
+                "itemsHash": null,
+                "itemPredicates": null,
+                "createdAt": "2022-10-21T01:20:59.448Z",
+                "updatedAt": "2022-10-21T01:20:59.448Z"
+            }
+        ]
+    },
+    {
+        "listingId": null,
+        "listingCreatorId": null,
+        "collateralOwnerId": "0x4f83294773970b958c2dc26d0160b59b31ccac0e",
+        "collateralAddress": "0xf5de760f2e916647fd766b4ad9e85ff943ce3a2b",
+        "collateralId": "1062451",
+        "collateral": [
+            {
+                "contractAddress": "0xf5de760f2e916647fd766b4ad9e85ff943ce3a2b",
+                "tokenId": "1062451"
+            }
+        ],
+        "loanTerms": [
+            {
+                "id": 25,
+                "collectionId": "0xf5de760f2e916647fd766b4ad9e85ff943ce3a2b",
+                "contractTokenId": "0xf5de760f2e916647fd766b4ad9e85ff943ce3a2b-1062451",
+                "collateralAddress": "0xf5de760f2e916647fd766b4ad9e85ff943ce3a2b",
+                "collateralId": "1062451",
+                "kind": "asset",
+                "role": "borrower",
+                "state": "created",
+                "creatorId": "0x4f83294773970b958c2dc26d0160b59b31ccac0e",
+                "durationSecs": 2592000,
+                "numInstallments": 0,
+                "interestRate": "123287671232877000000",
+                "principal": "1000000000000000000",
+                "payableCurrency": "0xb4fbf271143f4fbf7b91a5ded31805e42b2208d6",
+                "deadline": "1668270590",
+                "itemsHash": null,
+                "itemPredicates": null,
+                "createdAt": "2022-10-29T16:30:17.577Z",
+                "updatedAt": "2022-10-29T16:30:17.577Z"
+            }
+        ]
+    },
+    {
+        "listingId": null,
+        "listingCreatorId": null,
+        "collateralOwnerId": "0x398deeb51c56819880f2a2343705510a0c868747",
+        "collateralAddress": "0xf5de760f2e916647fd766b4ad9e85ff943ce3a2b",
+        "collateralId": "933281",
+        "collateral": [
+            {
+                "contractAddress": "0xf5de760f2e916647fd766b4ad9e85ff943ce3a2b",
+                "tokenId": "933281"
+            }
+        ],
+        "loanTerms": [
+            {
+                "id": 29,
+                "collectionId": "0xf5de760f2e916647fd766b4ad9e85ff943ce3a2b",
+                "contractTokenId": "0xf5de760f2e916647fd766b4ad9e85ff943ce3a2b-933281",
+                "collateralAddress": "0xf5de760f2e916647fd766b4ad9e85ff943ce3a2b",
+                "collateralId": "933281",
+                "kind": "asset",
+                "role": "borrower",
+                "state": "created",
+                "creatorId": "0x8d06e2e36b23a12aa0ea0dd105056683a1d613c0",
+                "durationSecs": 2592000,
+                "numInstallments": 0,
+                "interestRate": "123287671232877000000",
+                "principal": "1000000000000000000",
+                "payableCurrency": "0xb4fbf271143f4fbf7b91a5ded31805e42b2208d6",
+                "deadline": "1668384325",
+                "itemsHash": null,
+                "itemPredicates": null,
+                "createdAt": "2022-10-31T00:06:05.904Z",
+                "updatedAt": "2022-10-31T00:06:05.904Z"
+            }
+        ]
+    },
+    {
+        "listingId": null,
+        "listingCreatorId": null,
+        "collateralOwnerId": "0x398deeb51c56819880f2a2343705510a0c868747",
+        "collateralAddress": "0xf5de760f2e916647fd766b4ad9e85ff943ce3a2b",
+        "collateralId": "2740179",
+        "collateral": [
+            {
+                "contractAddress": "0xf5de760f2e916647fd766b4ad9e85ff943ce3a2b",
+                "tokenId": "2740179"
+            }
+        ],
+        "loanTerms": [
+            {
+                "id": 193,
+                "collectionId": "0xf5de760f2e916647fd766b4ad9e85ff943ce3a2b",
+                "contractTokenId": "0xf5de760f2e916647fd766b4ad9e85ff943ce3a2b-2740179",
+                "collateralAddress": "0xf5de760f2e916647fd766b4ad9e85ff943ce3a2b",
+                "collateralId": "2740179",
+                "kind": "asset",
+                "role": "borrower",
+                "state": "created",
+                "creatorId": "0xf8a406465e9360e7a69f04b35c290891093e147b",
+                "durationSecs": 2419200,
+                "numInstallments": 0,
+                "interestRate": "1000000000000000000000",
+                "principal": "100000000000000",
+                "payableCurrency": "0xb4fbf271143f4fbf7b91a5ded31805e42b2208d6",
+                "deadline": "1675176639",
+                "itemsHash": null,
+                "itemPredicates": null,
+                "createdAt": "2023-01-17T14:51:22.868Z",
+                "updatedAt": "2023-01-17T14:57:52.724Z"
+            }
+        ]
+    },
+    {
+        "listingId": null,
+        "listingCreatorId": null,
+        "collateralOwnerId": "0xf8a406465e9360e7a69f04b35c290891093e147b",
+        "collateralAddress": "0xf5de760f2e916647fd766b4ad9e85ff943ce3a2b",
+        "collateralId": "2740180",
+        "collateral": [
+            {
+                "contractAddress": "0xf5de760f2e916647fd766b4ad9e85ff943ce3a2b",
+                "tokenId": "2740180"
+            }
+        ],
+        "loanTerms": [
+            {
+                "id": 195,
+                "collectionId": "0xf5de760f2e916647fd766b4ad9e85ff943ce3a2b",
+                "contractTokenId": "0xf5de760f2e916647fd766b4ad9e85ff943ce3a2b-2740180",
+                "collateralAddress": "0xf5de760f2e916647fd766b4ad9e85ff943ce3a2b",
+                "collateralId": "2740180",
+                "kind": "asset",
+                "role": "borrower",
+                "state": "created",
+                "creatorId": "0xf8a406465e9360e7a69f04b35c290891093e147b",
+                "durationSecs": 6048000,
+                "numInstallments": 0,
+                "interestRate": "2000000000000000000000",
+                "principal": "10000000",
+                "payableCurrency": "0x07865c6e87b9f70255377e024ace6630c1eaa37f",
+                "deadline": "1675187068",
+                "itemsHash": null,
+                "itemPredicates": null,
+                "createdAt": "2023-01-17T17:44:35.416Z",
+                "updatedAt": "2023-01-17T17:44:35.416Z"
+            }
+        ]
+    },
+    {
+        "listingId": null,
+        "listingCreatorId": null,
+        "collateralOwnerId": "0xc49b69c3e846cf5e876fb591cfc12148f319ac13",
+        "collateralAddress": "0xf5de760f2e916647fd766b4ad9e85ff943ce3a2b",
+        "collateralId": "1426594",
+        "collateral": [
+            {
+                "contractAddress": "0xf5de760f2e916647fd766b4ad9e85ff943ce3a2b",
+                "tokenId": "1426594"
+            }
+        ],
+        "loanTerms": [
+            {
+                "id": 61,
+                "collectionId": "0xf5de760f2e916647fd766b4ad9e85ff943ce3a2b",
+                "contractTokenId": "0xf5de760f2e916647fd766b4ad9e85ff943ce3a2b-1426594",
+                "collateralAddress": "0xf5de760f2e916647fd766b4ad9e85ff943ce3a2b",
+                "collateralId": "1426594",
+                "kind": "asset",
+                "role": "borrower",
+                "state": "created",
+                "creatorId": "0xc49b69c3e846cf5e876fb591cfc12148f319ac13",
+                "durationSecs": 2592000,
+                "numInstallments": 0,
+                "interestRate": "100000000000000000000",
+                "principal": "10000000",
+                "payableCurrency": "0x07865c6e87b9f70255377e024ace6630c1eaa37f",
+                "deadline": "1668655250",
+                "itemsHash": null,
+                "itemPredicates": null,
+                "createdAt": "2022-11-03T03:21:13.428Z",
+                "updatedAt": "2022-11-03T03:21:13.428Z"
+            }
+        ]
+    },
+    {
+        "listingId": null,
+        "listingCreatorId": null,
+        "collateralOwnerId": "0xe7e9fadbc0a35a4019297d879c56506835716166",
+        "collateralAddress": "0xf5de760f2e916647fd766b4ad9e85ff943ce3a2b",
+        "collateralId": "2707416",
+        "collateral": [
+            {
+                "contractAddress": "0xf5de760f2e916647fd766b4ad9e85ff943ce3a2b",
+                "tokenId": "2707416"
+            }
+        ],
+        "loanTerms": [
+            {
+                "id": 123,
+                "collectionId": "0xf5de760f2e916647fd766b4ad9e85ff943ce3a2b",
+                "contractTokenId": "0xf5de760f2e916647fd766b4ad9e85ff943ce3a2b-2707416",
+                "collateralAddress": "0xf5de760f2e916647fd766b4ad9e85ff943ce3a2b",
+                "collateralId": "2707416",
+                "kind": "asset",
+                "role": "borrower",
+                "state": "created",
+                "creatorId": "0xe7e9fadbc0a35a4019297d879c56506835716166",
+                "durationSecs": 259200,
+                "numInstallments": 0,
+                "interestRate": "100000000000000000000",
+                "principal": "1000000",
+                "payableCurrency": "0x07865c6e87b9f70255377e024ace6630c1eaa37f",
+                "deadline": "1674509855",
+                "itemsHash": null,
+                "itemPredicates": null,
+                "createdAt": "2023-01-09T21:38:09.717Z",
+                "updatedAt": "2023-01-09T21:38:09.717Z"
+            }
+        ]
+    },
+    {
+        "listingId": null,
+        "listingCreatorId": null,
+        "collateralOwnerId": "0xe607b17f2c3989b23c9a2921465914b20dde4411",
+        "collateralAddress": "0xf5de760f2e916647fd766b4ad9e85ff943ce3a2b",
+        "collateralId": "1415567",
+        "collateral": [
+            {
+                "contractAddress": "0xf5de760f2e916647fd766b4ad9e85ff943ce3a2b",
+                "tokenId": "1415567"
+            }
+        ],
+        "loanTerms": [
+            {
+                "id": 69,
+                "collectionId": "0xf5de760f2e916647fd766b4ad9e85ff943ce3a2b",
+                "contractTokenId": "0xf5de760f2e916647fd766b4ad9e85ff943ce3a2b-1415567",
+                "collateralAddress": "0xf5de760f2e916647fd766b4ad9e85ff943ce3a2b",
+                "collateralId": "1415567",
+                "kind": "asset",
+                "role": "borrower",
+                "state": "created",
+                "creatorId": "0xe607b17f2c3989b23c9a2921465914b20dde4411",
+                "durationSecs": 2592000,
+                "numInstallments": 0,
+                "interestRate": "60000000000000000000",
+                "principal": "5000000",
+                "payableCurrency": "0x07865c6e87b9f70255377e024ace6630c1eaa37f",
+                "deadline": "1669371799",
+                "itemsHash": null,
+                "itemPredicates": null,
+                "createdAt": "2022-11-11T10:23:24.623Z",
+                "updatedAt": "2022-11-11T10:23:24.623Z"
+            }
+        ]
+    },
+    {
+        "listingId": null,
+        "listingCreatorId": null,
+        "collateralOwnerId": "0x398deeb51c56819880f2a2343705510a0c868747",
+        "collateralAddress": "0xf5de760f2e916647fd766b4ad9e85ff943ce3a2b",
+        "collateralId": "1001569",
+        "collateral": [
+            {
+                "contractAddress": "0xf5de760f2e916647fd766b4ad9e85ff943ce3a2b",
+                "tokenId": "1001569"
+            }
+        ],
+        "loanTerms": [
+            {
+                "id": 77,
+                "collectionId": "0xf5de760f2e916647fd766b4ad9e85ff943ce3a2b",
+                "contractTokenId": "0xf5de760f2e916647fd766b4ad9e85ff943ce3a2b-1001569",
+                "collateralAddress": "0xf5de760f2e916647fd766b4ad9e85ff943ce3a2b",
+                "collateralId": "1001569",
+                "kind": "asset",
+                "role": "borrower",
+                "state": "created",
+                "creatorId": "0x61196b8a36b54468da291ad6e1df8c16d20d4d76",
+                "durationSecs": 2592000,
+                "numInstallments": 0,
+                "interestRate": "1000000000000000000000",
+                "principal": "1000",
+                "payableCurrency": "0x07865c6e87b9f70255377e024ace6630c1eaa37f",
+                "deadline": "1669945979",
+                "itemsHash": null,
+                "itemPredicates": null,
+                "createdAt": "2022-11-18T01:53:07.783Z",
+                "updatedAt": "2022-11-18T01:53:07.783Z"
+            }
+        ]
+    },
+    {
+        "listingId": null,
+        "listingCreatorId": null,
+        "collateralOwnerId": "0xe71bbf642f3a4b0ed53541a269c192b61efd9434",
+        "collateralAddress": "0xf5de760f2e916647fd766b4ad9e85ff943ce3a2b",
+        "collateralId": "2483831",
+        "collateral": [
+            {
+                "contractAddress": "0xf5de760f2e916647fd766b4ad9e85ff943ce3a2b",
+                "tokenId": "2483831"
+            }
+        ],
+        "loanTerms": [
+            {
+                "id": 87,
+                "collectionId": "0xf5de760f2e916647fd766b4ad9e85ff943ce3a2b",
+                "contractTokenId": "0xf5de760f2e916647fd766b4ad9e85ff943ce3a2b-2483831",
+                "collateralAddress": "0xf5de760f2e916647fd766b4ad9e85ff943ce3a2b",
+                "collateralId": "2483831",
+                "kind": "asset",
+                "role": "borrower",
+                "state": "created",
+                "creatorId": "0xe71bbf642f3a4b0ed53541a269c192b61efd9434",
+                "durationSecs": 2592000,
+                "numInstallments": 0,
+                "interestRate": "2000000000000000000000",
+                "principal": "1000000000000000000",
+                "payableCurrency": "0xb4fbf271143f4fbf7b91a5ded31805e42b2208d6",
+                "deadline": "1671077706",
+                "itemsHash": null,
+                "itemPredicates": null,
+                "createdAt": "2022-12-01T04:15:44.600Z",
+                "updatedAt": "2022-12-01T04:15:44.600Z"
+            }
+        ]
+    },
+    {
+        "listingId": null,
+        "listingCreatorId": null,
+        "collateralOwnerId": "0x398deeb51c56819880f2a2343705510a0c868747",
+        "collateralAddress": "0xf40299b626ef6e197f5d9de9315076cab788b6ef",
+        "collateralId": "4796",
+        "collateral": [
+            {
+                "contractAddress": "0xf40299b626ef6e197f5d9de9315076cab788b6ef",
+                "tokenId": "4796"
+            }
+        ],
+        "loanTerms": [
+            {
+                "id": 124,
+                "collectionId": "0xf40299b626ef6e197f5d9de9315076cab788b6ef",
+                "contractTokenId": "0xf40299b626ef6e197f5d9de9315076cab788b6ef-4796",
+                "collateralAddress": "0xf40299b626ef6e197f5d9de9315076cab788b6ef",
+                "collateralId": "4796",
+                "kind": "asset",
+                "role": "borrower",
+                "state": "created",
+                "creatorId": "0xe7e9fadbc0a35a4019297d879c56506835716166",
+                "durationSecs": 604800,
+                "numInstallments": 0,
+                "interestRate": "10000000000000000000000",
+                "principal": "10000000000000000",
+                "payableCurrency": "0xb4fbf271143f4fbf7b91a5ded31805e42b2208d6",
+                "deadline": "1674511431",
+                "itemsHash": null,
+                "itemPredicates": null,
+                "createdAt": "2023-01-09T22:04:43.174Z",
+                "updatedAt": "2023-01-09T22:04:43.174Z"
+            }
+        ]
+    },
+    {
+        "listingId": null,
+        "listingCreatorId": null,
+        "collateralOwnerId": "0x0fbed7537e4120e1021c0f39f53e9953d5d8973d",
+        "collateralAddress": "0xf5de760f2e916647fd766b4ad9e85ff943ce3a2b",
+        "collateralId": "1405961",
+        "collateral": [
+            {
+                "contractAddress": "0xf5de760f2e916647fd766b4ad9e85ff943ce3a2b",
+                "tokenId": "1405961"
+            }
+        ],
+        "loanTerms": [
+            {
+                "id": 110,
+                "collectionId": "0xf5de760f2e916647fd766b4ad9e85ff943ce3a2b",
+                "contractTokenId": "0xf5de760f2e916647fd766b4ad9e85ff943ce3a2b-1405961",
+                "collateralAddress": "0xf5de760f2e916647fd766b4ad9e85ff943ce3a2b",
+                "collateralId": "1405961",
+                "kind": "asset",
+                "role": "borrower",
+                "state": "created",
+                "creatorId": "0x0fbed7537e4120e1021c0f39f53e9953d5d8973d",
+                "durationSecs": 7776000,
+                "numInstallments": 0,
+                "interestRate": "2000000000000000000000",
+                "principal": "10000000",
+                "payableCurrency": "0x07865c6e87b9f70255377e024ace6630c1eaa37f",
+                "deadline": "1672477175",
+                "itemsHash": null,
+                "itemPredicates": null,
+                "createdAt": "2022-12-17T09:00:00.636Z",
+                "updatedAt": "2022-12-20T07:35:35.949Z"
+            }
+        ]
+    },
+    {
+        "listingId": null,
+        "listingCreatorId": null,
+        "collateralOwnerId": "0x8a18a7ea34a476018da24c385f07dc2508a45c50",
+        "collateralAddress": "0xf5de760f2e916647fd766b4ad9e85ff943ce3a2b",
+        "collateralId": "2707406",
+        "collateral": [
+            {
+                "contractAddress": "0xf5de760f2e916647fd766b4ad9e85ff943ce3a2b",
+                "tokenId": "2707406"
+            }
+        ],
+        "loanTerms": [
+            {
+                "id": 132,
+                "collectionId": "0xf5de760f2e916647fd766b4ad9e85ff943ce3a2b",
+                "contractTokenId": "0xf5de760f2e916647fd766b4ad9e85ff943ce3a2b-2707406",
+                "collateralAddress": "0xf5de760f2e916647fd766b4ad9e85ff943ce3a2b",
+                "collateralId": "2707406",
+                "kind": "asset",
+                "role": "borrower",
+                "state": "created",
+                "creatorId": "0x8a18a7ea34a476018da24c385f07dc2508a45c50",
+                "durationSecs": 2592000,
+                "numInstallments": 0,
+                "interestRate": "5000000000000000000000",
+                "principal": "100000000",
+                "payableCurrency": "0x07865c6e87b9f70255377e024ace6630c1eaa37f",
+                "deadline": "1674511903",
+                "itemsHash": null,
+                "itemPredicates": null,
+                "createdAt": "2023-01-09T22:12:28.368Z",
+                "updatedAt": "2023-01-09T22:12:28.368Z"
+            }
+        ]
+    }
+]
