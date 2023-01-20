@@ -86,6 +86,7 @@ const BorrowTable = () => {
   };
 
   const onAcceptOffer = (nft, offer) => {
+
     console.log("onaccept offer", offer);
     setOffer({
       nft,
@@ -93,6 +94,11 @@ const BorrowTable = () => {
     });
     Router.push("/cardDetail");
   };
+
+  const onX2Y2AcceptOffer = (nft) => {
+    const url = `https://x2y2.io/eth/${nft.contract.address}/${nft.tokenId}`;
+    window.open(url, "_blank");
+  }
 
   const getNFTMetadata = async (contract, tokenId) => {
     // https://shuttle-goerli.arcade.xyz/api/v2/collections/0xf5de760f2e916647fd766b4ad9e85ff943ce3a2b/assets/2740179
@@ -1038,7 +1044,7 @@ const BorrowTable = () => {
 
                           <div className="flex items-center justify-end w-4/12">
                             <button
-                              onClick={() => onArcadeAcceptOffer(item, items)}
+                              onClick={() => onX2Y2AcceptOffer(item, items)}
                               className="border-lightBorder border rounded-lg px-2 py-1 font-jakarta font-normal text-base text-lightBorder"
                             >
                               Accept
