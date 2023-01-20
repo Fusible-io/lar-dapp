@@ -139,7 +139,7 @@ const BorrowTable = () => {
 
   const getOffersOnNFTs = async () => {
     const response = ownedNFTs.map(async (nft) => {
-      const offers = await nftfi.offers.get({
+      const offers = await nftfi?.offers.get({
         filters: {
           nft: {
             id: nft.tokenId,
@@ -498,9 +498,9 @@ const BorrowTable = () => {
             }}
           />
         ) : (
-          <div className="mb-14 flex gap-4">
-            {nftOffers.length > 0 &&
-              nftOffers.map((item) => {
+          <div className="mb-14 flex flex-wrap gap-5">
+            {nftOffers?.length > 0 &&
+              nftOffers?.map((item) => {
                 return <CardComp key={item.id} item={item} />;
               })}
           </div>
