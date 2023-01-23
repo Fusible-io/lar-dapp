@@ -86,6 +86,7 @@ const BorrowTable = () => {
   };
 
   const onAcceptOffer = (nft, offer) => {
+
     console.log("onaccept offer", offer);
     setOffer({
       nft,
@@ -93,6 +94,11 @@ const BorrowTable = () => {
     });
     Router.push("/cardDetail");
   };
+
+  const onX2Y2AcceptOffer = (nft) => {
+    const url = `https://x2y2.io/eth/${nft.contract.address}/${nft.tokenId}`;
+    window.open(url, "_blank");
+  }
 
   const getNFTMetadata = async (contract, tokenId) => {
     // https://shuttle-goerli.arcade.xyz/api/v2/collections/0xf5de760f2e916647fd766b4ad9e85ff943ce3a2b/assets/2740179
@@ -389,7 +395,7 @@ const BorrowTable = () => {
                               {formatCurrency(
                                 item?.offers[0]?.terms?.loan?.principal,
                                 item?.offers[0]?.terms?.loan?.currency
-                              )}{" "}
+                              ).substring(0, 5)}{" "}
                               {
                                 ERC20_MAP[
                                   item?.offers[0]?.terms?.loan?.currency
@@ -414,7 +420,7 @@ const BorrowTable = () => {
                               {formatCurrency(
                                 item?.offers[0]?.terms?.loan?.repayment,
                                 item?.offers[0]?.terms?.loan?.currency
-                              )}{" "}
+                              ).substring(0, 5)}{" "}
                               {
                                 ERC20_MAP[
                                   item?.offers[0]?.terms?.loan?.currency
@@ -505,7 +511,7 @@ const BorrowTable = () => {
                                   {formatCurrency(
                                     items?.terms?.loan?.principal,
                                     items?.terms?.loan?.currency
-                                  )}{" "}
+                                  ).substring(0, 5)}{" "}
                                   {
                                     ERC20_MAP[items?.terms?.loan?.currency]
                                       ?.symbol
@@ -529,7 +535,7 @@ const BorrowTable = () => {
                                   {formatCurrency(
                                     items?.terms.loan?.repayment,
                                     items?.terms?.loan?.currency
-                                  )}{" "}
+                                  ).substring(0, 5)}{" "}
                                   {
                                     ERC20_MAP[items?.terms.loan.currency]
                                       ?.symbol
@@ -656,7 +662,7 @@ const BorrowTable = () => {
                           {formatCurrency(
                             item?.loanTerms[0]?.principal,
                             item?.loanTerms[0]?.payableCurrency
-                          )}{" "}
+                          ).substring(0, 5)}{" "}
                           {
                             ERC20_MAP[item?.loanTerms[0]?.payableCurrency]
                               ?.symbol
@@ -772,7 +778,7 @@ const BorrowTable = () => {
                               {formatCurrency(
                                 items?.principal,
                                 items?.payableCurrency
-                              )}{" "}
+                              ).substring(0, 5)}{" "}
                               {ERC20_MAP[items?.payableCurrency]?.symbol}
                             </p>
                           </div>
@@ -802,8 +808,8 @@ const BorrowTable = () => {
                           </div>
 
                           <div className="flex justify-center items-center w-1/12">
-                            <img
-                              src={nftfi_logo}
+                            <Image
+                              src={arcade_logo}
                               width={20}
                               height={20}
                               alt="nftfi"
@@ -925,7 +931,7 @@ const BorrowTable = () => {
 
                       <div className="w-1/12">
                         <p className="font-semibold font-jakarta text-base text-lightTextC text-right ">
-                          {item?.offers[0]?.apr} %
+                          {item?.offers[0]?.apr/1000} %
                         </p>
                       </div>
 
@@ -940,7 +946,7 @@ const BorrowTable = () => {
                       </div>
 
                       <div className="flex items-center justify-end w-4/12">
-                        {activeKeyArcade.includes(idx) ? (
+                        {activeKeyX2Y2.includes(idx) ? (
                           <button
                             onClick={() => {
                               handleCollapseActiveKeyX2Y2(idx);
@@ -970,9 +976,9 @@ const BorrowTable = () => {
                           </button>
                         )}
 
-                        <button className="border-lightBorder border rounded-lg px-2 py-1 font-jakarta font-normal text-base text-lightBorder">
+                        {/* <button className="border-lightBorder border rounded-lg px-2 py-1 font-jakarta font-normal text-base text-lightBorder">
                           Accept
-                        </button>
+                        </button> */}
                       </div>
                     </div>
                   }
@@ -1038,7 +1044,7 @@ const BorrowTable = () => {
 
                           <div className="flex items-center justify-end w-4/12">
                             <button
-                              onClick={() => onArcadeAcceptOffer(item, items)}
+                              onClick={() => onX2Y2AcceptOffer(item, items)}
                               className="border-lightBorder border rounded-lg px-2 py-1 font-jakarta font-normal text-base text-lightBorder"
                             >
                               Accept

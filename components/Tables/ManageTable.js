@@ -228,7 +228,7 @@ const ManageTable = () => {
                     {formatCurrency(
                       item.terms.loan.principal,
                       item.terms.loan.currency
-                    )}{" "}
+                    ).substring(0, 5)}{" "}
                     {ERC20_MAP[item.terms.loan.currency].symbol}
                   </p>
                 </div>
@@ -246,7 +246,7 @@ const ManageTable = () => {
                     {formatCurrency(
                       item.terms.loan.repayment,
                       item.terms.loan.currency
-                    )}{" "}
+                    ).substring(0, 5)}{" "}
                     {ERC20_MAP[item.terms.loan.currency].symbol}
                   </p>
                 </div>
@@ -386,7 +386,7 @@ const ManageTable = () => {
                     {formatCurrency(
                       item?.loanTerms?.principal,
                       item?.loanTerms?.payableCurrency
-                    )}{" "}
+                    ).substring(0, 5)}{" "}
                     {ERC20_MAP[item?.loanTerms?.payableCurrency]?.symbol}
                   </p>
                 </div>
