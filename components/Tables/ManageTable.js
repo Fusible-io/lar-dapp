@@ -14,8 +14,12 @@ import { ERC20_MAP } from "../core/constant/nftFiConfig";
 import { useLoan, useNFTFi } from "../core/store/store";
 
 import { useAccount } from "wagmi";
-const BASE_URL = "https://api-goerli.arcade.xyz/api/v2";
-const API_KEY = "4LFr808gFjR1XEQ4He2wwlF3IPrCEFgee7JjATN7jEEoes0F3";
+// const ARCADE_BASE_URL = "https://api-goerli.arcade.xyz/api/v2";
+const ARCADE_BASE_URL = "https://api-v2.arcade.xyz/api/v2";
+
+// const ARCADE_API_KEY = "4LFr808gFjR1XEQ4He2wwlF3IPrCEFgee7JjATN7jEEoes0F3";
+const ARCADE_API_KEY = "8oxZonLw41aVdBqJxvcHE4CbJKmlrX5yQXApYaOOAi0MIBxJi";
+const ARCADE_GET_LOAN_ACTIVITY_URL = `https://protocol-sg.arcade.xyz/subgraphs/name/arcade/protocol-v2`;
 
 const ManageTable = () => {
   const [loading, setLoading] = useState(false);
@@ -48,15 +52,15 @@ const ManageTable = () => {
     // https://goerli.arcade.xyz/terms/loan/0x398deeb51c56819880f2a2343705510a0c868747-61
     const url = `https://goerli.arcade.xyz/terms/loan/${loan.id}`;
     window.open(url, "_blank");
-  }
+  };
 
   const getNFTMetadata = async (contract, tokenId) => {
     // https://shuttle-goerli.arcade.xyz/api/v2/collections/0xf5de760f2e916647fd766b4ad9e85ff943ce3a2b/assets/2740179
 
-    const GET_NFT_METADATA_URL = `${BASE_URL}/collections/${contract}/assets/${tokenId}`;
-    const res = await fetch(GET_NFT_METADATA_URL, {
+    const ARCADE_GET_NFT_METADATA_URL = `${ARCADE_BASE_URL}/collections/${contract}/assets/${tokenId}`;
+    const res = await fetch(ARCADE_GET_NFT_METADATA_URL, {
       headers: {
-        "x-api-key": API_KEY,
+        "x-api-key": ARCADE_API_KEY,
       },
     });
     if (!res) return null;
@@ -69,7 +73,6 @@ const ManageTable = () => {
     setLoadingArcade(true);
     // https://goerli-sg.arcade.xyz/subgraphs/name/arcade/protocol-v2
 
-    const GET_LOAN_ACTIVITY_URL = `https://goerli-sg.arcade.xyz/subgraphs/name/arcade/protocol-v2`;
     const payload = {
       query:
         "\n  query GetActivity($id: String!) {\n    account(id: $id) {\n      loanAsBorrower {\n        id\n        state\n        createdAt\n        createdAtTx\n        loanCoreLoanId\n        lender {\n          id\n        }\n        borrower {\n          id\n        }\n        loanTerms {\n          collateralKind\n          loanCoreLoanId\n          principal\n          durationSecs\n          interestRate\n          payableCurrency\n          collateralBundleSnapshot {\n            tokenId\n            vaultAddress\n            collateral {\n              contract\n              tokenId\n              type\n            }\n          }\n          collateralSnapshot {\n            contract\n            tokenId\n            type\n            amount\n          }\n        }\n      }\n\n      loanAsLender {\n        id\n        state\n        createdAt\n        createdAtTx\n        loanCoreLoanId\n        borrower {\n          id\n        }\n        lender {\n          id\n        }\n        loanTerms {\n          collateralKind\n          loanCoreLoanId\n          principal\n          durationSecs\n          interestRate\n          payableCurrency\n          collateralBundleSnapshot {\n            tokenId\n            vaultAddress\n            collateral {\n              contract\n              tokenId\n              type\n            }\n          }\n          collateralSnapshot {\n            contract\n            tokenId\n            type\n            amount\n          }\n        }\n      }\n    }\n  }\n",
@@ -79,7 +82,7 @@ const ManageTable = () => {
       operationName: "GetActivity",
     };
 
-    const res = await fetch(GET_LOAN_ACTIVITY_URL, {
+    const res = await fetch(ARCADE_GET_LOAN_ACTIVITY_URL, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

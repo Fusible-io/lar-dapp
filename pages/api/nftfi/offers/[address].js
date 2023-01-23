@@ -18,7 +18,7 @@ const nftfi = await NFTfi.init({
   config: { api: { key: process.env.NFTFI_SDK_API_KEY } },
   ethereum: {
     account: { signer: wallet, address: wallet.address },
-    provider: { url: 'https://eth-goerli.g.alchemy.com/v2/I8sUm_xAMMW6ZacAhq97c-l2rqwChRh7' }
+    provider: { url: process.env.NFTFI_SDK_ETHEREUM_PROVIDER_URL }
   },
   web3: { provider: provider },
   logging: { verbose: true }
@@ -91,7 +91,7 @@ async function activeOffers(options) {
     //console.log(offers);
     return offers;
   }
-  catch (err) { console.log(err); return { error: 'fuck api' } }
+  catch (err) { return err; }
 }
 export default function handler(req, res) {
   if (req.method === 'GET') {

@@ -24,14 +24,16 @@ import CardComp from "../CardComp/CardComp";
 
 const { Panel } = Collapse;
 
-const BASE_URL = "https://api-goerli.arcade.xyz/api/v2";
-const GET_LISTING_URL = `${BASE_URL}/lend`;
-const API_KEY = "4LFr808gFjR1XEQ4He2wwlF3IPrCEFgee7JjATN7jEEoes0F3";
+// const ARCADE_BASE_URL = "https://api-goerli.arcade.xyz/api/v2";
+const ARCADE_BASE_URL = "https://api-v2.arcade.xyz/api/v2";
+const ARCADE_GET_LISTING_URL = `${ARCADE_BASE_URL}/lend`;
+// const ARCADE_API_KEY = "4LFr808gFjR1XEQ4He2wwlF3IPrCEFgee7JjATN7jEEoes0F3";
+const ARCADE_API_KEY = "8oxZonLw41aVdBqJxvcHE4CbJKmlrX5yQXApYaOOAi0MIBxJi";
 
-const X2Y2_BASE_URL = "https://loan-api.x2y2.org/v1";
-const X2Y2_GET_SYSTEM_PARAMS = `${X2Y2_BASE_URL}/sys/loanParam`;
-const X2Y2_API_KEY = "6e8d6ebbc1941f8345eb661de9997fd6";
-const X2Y2_ADDRESS = "0xC28F7Ee92Cd6619e8eEC6A70923079fBAFb86196";
+// const X2Y2_BASE_URL = "https://loan-api.x2y2.org/v1";
+// const X2Y2_GET_SYSTEM_PARAMS = `${X2Y2_BASE_URL}/sys/loanParam`;
+// const X2Y2_API_KEY = "6e8d6ebbc1941f8345eb661de9997fd6";
+// const X2Y2_ADDRESS = "0xC28F7Ee92Cd6619e8eEC6A70923079fBAFb86196";
 
 const BorrowTable = () => {
   const [listView, setListView] = useState(true);
@@ -95,18 +97,11 @@ const BorrowTable = () => {
     Router.push("/cardDetail");
   };
 
-  // const onX2Y2AcceptOffer = (nft) => {
-  //   const url = `https://x2y2.io/eth/${nft.contract.address}/${nft.tokenId}`;
-  //   window.open(url, "_blank");
-  // }
-
   const getNFTMetadata = async (contract, tokenId) => {
-    // https://shuttle-goerli.arcade.xyz/api/v2/collections/0xf5de760f2e916647fd766b4ad9e85ff943ce3a2b/assets/2740179
-
-    const GET_NFT_METADATA_URL = `${BASE_URL}/collections/${contract}/assets/${tokenId}`;
-    const res = await fetch(GET_NFT_METADATA_URL, {
+    const ARCADE_GET_NFT_METADATA_URL = `${ARCADE_BASE_URL}/collections/${contract}/assets/${tokenId}`;
+    const res = await fetch(ARCADE_GET_NFT_METADATA_URL, {
       headers: {
-        "x-api-key": API_KEY,
+        "x-api-key": ARCADE_API_KEY,
       },
     });
     if (!res) return null;
@@ -117,12 +112,12 @@ const BorrowTable = () => {
 
   const getAracadeListing = async () => {
     setLoadingArcade(true);
-    const url = `${GET_LISTING_URL}`;
+    const url = `${ARCADE_GET_LISTING_URL}`;
 
     const expiresAt = (Date.now() + 10 * 1000).toString();
     const res = await fetch(url, {
       headers: {
-        "x-api-key": API_KEY,
+        "x-api-key": ARCADE_API_KEY,
         "x-expires-at": expiresAt,
       },
     });
@@ -213,6 +208,9 @@ const BorrowTable = () => {
     if (isTokenValid && ownedNFTs.length > 0) {
       getOffersOnNFTs();
     }
+    else {
+      setLoading(false);
+    }
   }, [ownedNFTs]);
 
   // useEffect(() => {
@@ -245,35 +243,35 @@ const BorrowTable = () => {
   //   setLoadingX2Y2(false);
   // };
 
-  const getSystemParams = async () => {
-    const x_timestamp = Date.now();
-    const options = {
-      method: "GET",
-      headers: {
-        accept: "application/json",
-        "x-api-key": X2Y2_API_KEY,
-        "x-timestamp": x_timestamp,
-      },
-    };
+  // const getSystemParams = async () => {
+  //   const x_timestamp = Date.now();
+  //   const options = {
+  //     method: "GET",
+  //     headers: {
+  //       accept: "application/json",
+  //       "x-api-key": X2Y2_API_KEY,
+  //       "x-timestamp": x_timestamp,
+  //     },
+  //   };
 
-    const res = await fetch(`${X2Y2_GET_SYSTEM_PARAMS}`, options);
-    return res.json();
-  };
+  //   const res = await fetch(`${X2Y2_GET_SYSTEM_PARAMS}`, options);
+  //   return res.json();
+  // };
 
-  const getAllNFTS = async (contractAddressesList = []) => {
-    const res = await fetch("/api/nft", {
-      method: "POST", // or 'PUT'
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        address: X2Y2_ADDRESS,
-        contractAddresses: contractAddressesList.map((item) => item.nftAddress),
-        network: "mainnet",
-      }),
-    });
-    return res.json();
-  };
+  // const getAllNFTS = async (contractAddressesList = []) => {
+  //   const res = await fetch("/api/nft", {
+  //     method: "POST", // or 'PUT'
+  //     headers: {
+  //       "Content-Type": "application/json",
+  //     },
+  //     body: JSON.stringify({
+  //       address: X2Y2_ADDRESS,
+  //       contractAddresses: contractAddressesList.map((item) => item.nftAddress),
+  //       network: "mainnet",
+  //     }),
+  //   });
+  //   return res.json();
+  // };
 
   // const getOffersForAnNFT = async (nftAddress, tokenId) => {
   //   const options = {
@@ -294,7 +292,7 @@ const BorrowTable = () => {
     <div className="mx-10 mt-14">
       <div className="flex justify-between items-center">
         <h1 className="font-semibold text-[28px] leading-[44px] font-jakarta mb-5 text-white">
-          Borrow instantly
+          Borrow instantly NFTFi
         </h1>
 
         <div className="flex items-center rounded-2xl border border-darkGreenB px-[7px] py-[5px]">
@@ -595,7 +593,7 @@ const BorrowTable = () => {
       </div>
 
       <h1 className="font-semibold text-[28px] leading-[44px] font-jakarta mb-5 text-white">
-        Arcade List
+        Borrow instantly Arcade
       </h1>
       <div>
         <List

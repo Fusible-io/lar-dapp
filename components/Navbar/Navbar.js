@@ -32,11 +32,11 @@ const Navbar = () => {
 
   const initNFTFI = async () => {
     const initNFTFI = await NFTfi.init({
-      config: { api: { key: "AIzaSyC7ZjZ4mYLoyVmkl-Ch9yzfbMTgHqpy5iM" } },
+      config: { api: { key: "AIzaSyAQLPkbAFasaQroiWpqXwDnDIpSu3mSzY8" } },
       ethereum: {
         account: { signer, address },
         provider: {
-          url: "https://eth-goerli.g.alchemy.com/v2/I8sUm_xAMMW6ZacAhq97c-l2rqwChRh7",
+          url: provider.connection.url,
         },
       },
       web3: { provider },
@@ -49,6 +49,10 @@ const Navbar = () => {
   useEffect(() => {
     if (!window) return;
     if (!provider || !address || !signer) return;
+    console.log({
+      provider,
+    });
+
     var token = window.localStorage.getItem("sdkToken");
     if (nftfi !== null) {
       console.log("TOken is valid->", token, nftfi.auth._isTokenValid(token));

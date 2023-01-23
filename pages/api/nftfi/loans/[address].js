@@ -4,8 +4,8 @@ import { ethers as ethersjs } from "ethers";
 import { Alchemy, Network } from "alchemy-sdk";
 
 const config = {
-  apiKey: "ZO2K8B4HiXAgQbx0F5Eywmn6W6Srfxmf",
-  network: Network.ETH_GOERLI,
+  apiKey: process.env.ALCHEMY_API_KEY,
+  network: Network.MAINNET,
 };
 const alchemy = new Alchemy(config);
 // import dotenv from 'dotenv';
@@ -26,34 +26,13 @@ const nftfi = await NFTfi.init({
   ethereum: {
     account: { signer: wallet, address: wallet.address },
     provider: {
-      url: "https://eth-goerli.g.alchemy.com/v2/I8sUm_xAMMW6ZacAhq97c-l2rqwChRh7",
+      url: process.env.NFTFI_SDK_ETHEREUM_PROVIDER_URL,
     },
   },
   web3: { provider: provider },
   logging: { verbose: true },
 });
 
-async function run() {
-  // Init the NFTfi SDK
-  console.log(wallet.address);
-
-  //Get listings
-  const listings = await nftfi.listings.get({
-    pagination: {
-      limit: 5,
-      page: 1,
-    },
-  });
-  console.log(`[INFO] found ${listings.length} listing(s).`);
-  // Proceed if we find listings
-  // if (listings.length > 0) {
-  //   for (var i = 0; i < listings.length; i++) {
-  //     const listing = listings[i];
-  //     console.log(`[INFO] listing #${i + 1}: ${JSON.stringify(listing)}`);
-  //   }
-  // }
-  return listings;
-}
 /***
  * Get Active Loans of a given address
  * @param: address
@@ -116,7 +95,7 @@ async function activeOffers(options) {
     return offers;
   } catch (err) {
     console.log(err);
-    return { error: "fuck api" };
+    return err;
   }
 }
 export default async function handler(req, res) {

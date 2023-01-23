@@ -2,16 +2,14 @@ import { message } from "antd";
 import React from "react";
 import { useAccount } from "wagmi";
 
-// const BASE_URL = 'https://api-v2.arcade.xyz/api/v2'
-const BASE_URL = "https://api-goerli.arcade.xyz/api/v2";
-const GET_LISTING_URL = `${BASE_URL}/lend`;
-const GET_ACCOUNT_URL = `${BASE_URL}/accounts`;
-const GET_COLLECTION_URL = `${BASE_URL}/collections`;
+const ARCADE_BASE_URL = "https://api-v2.arcade.xyz/api/v2";
+// const ARCADE_BASE_URL = "https://api-goerli.arcade.xyz/api/v2";
+const ARCADE_GET_LISTING_URL = `${ARCADE_BASE_URL}/lend`;
+const ARCADE_GET_ACCOUNT_URL = `${ARCADE_BASE_URL}/accounts`;
+const ARCADE_GET_COLLECTION_URL = `${ARCADE_BASE_URL}/collections`;
+const GET_LOAN_ACTIVITY_URL = `https://protocol-sg.xyz/subgraphs/name/arcade/protocol-v2`;
 
-// /api/v2/accounts/0xF8a406465e9360E7a69f04b35c290891093E147b/loanterms
-
-// const API_KEY = '8oxZonLw41aVdBqJxvcHE4CbJKmlrX5yQXApYaOOAi0MIBxJi'
-const API_KEY = "4LFr808gFjR1XEQ4He2wwlF3IPrCEFgee7JjATN7jEEoes0F3";
+const API_KEY = "8oxZonLw41aVdBqJxvcHE4CbJKmlrX5yQXApYaOOAi0MIBxJi";
 
 export default function Arcade() {
   const { address } = useAccount();
@@ -28,7 +26,7 @@ export default function Arcade() {
   };
 
   const getAccountDetails = async () => {
-    const url = `${GET_ACCOUNT_URL}/${address}`;
+    const url = `${ARCADE_GET_ACCOUNT_URL}/${address}`;
 
     const expiresAt = (Date.now() + 10 * 1000).toString();
 
@@ -45,7 +43,7 @@ export default function Arcade() {
   };
 
   const getListing = async () => {
-    const url = `${GET_LISTING_URL}`;
+    const url = `${ARCADE_GET_LISTING_URL}`;
 
     const expiresAt = (Date.now() + 10 * 1000).toString();
     const res = await fetch(url, {
@@ -65,7 +63,7 @@ export default function Arcade() {
   };
 
   const getCollection = async () => {
-    const url = `${GET_COLLECTION_URL}`;
+    const url = `${ARCADE_GET_COLLECTION_URL}`;
 
     const expiresAt = (Date.now() + 10 * 1000).toString();
     const res = await fetch(url, {
@@ -79,9 +77,9 @@ export default function Arcade() {
   };
 
   const getLoanTerms = async () => {
-    const GET_LOAN_TERMS_URL = `${BASE_URL}/accounts/${address}/loanterms`;
+    const ARCADE_GET_COLLECTION_URL = `${ARCADE_BASE_URL}/accounts/${address}/loanterms`;
     const expiresAt = (Date.now() + 10 * 1000).toString();
-    const res = await fetch(GET_LOAN_TERMS_URL, {
+    const res = await fetch(ARCADE_GET_COLLECTION_URL, {
       headers: {
         "x-api-key": API_KEY,
         "x-expires-at": expiresAt,
@@ -93,7 +91,7 @@ export default function Arcade() {
 
   const getAssestsDetails = async () => {
     // https://shuttle-goerli.arcade.xyz/api/v2/accounts/0xF8a406465e9360E7a69f04b35c290891093E147b/assets
-    const GET_ASSETS_URL = `${BASE_URL}/accounts/${address}/assets`;
+    const GET_ASSETS_URL = `${ARCADE_BASE_URL}/accounts/${address}/assets`;
     const expiresAt = (Date.now() + 10 * 1000).toString();
     const res = await fetch(GET_ASSETS_URL, {
       headers: {
@@ -107,8 +105,8 @@ export default function Arcade() {
 
   const getLoanActivity = async () => {
     // https://goerli-sg.arcade.xyz/subgraphs/name/arcade/protocol-v2
+    // https://protocol-sg.arcade.xyz/subgraphs/name/arcade/protocol-v2
 
-    const GET_LOAN_ACTIVITY_URL = `https://goerli-sg.arcade.xyz/subgraphs/name/arcade/protocol-v2`;
     const payload = {
       query:
         "\n  query GetActivity($id: String!) {\n    account(id: $id) {\n      loanAsBorrower {\n        id\n        state\n        createdAt\n        createdAtTx\n        loanCoreLoanId\n        lender {\n          id\n        }\n        borrower {\n          id\n        }\n        loanTerms {\n          collateralKind\n          loanCoreLoanId\n          principal\n          durationSecs\n          interestRate\n          payableCurrency\n          collateralBundleSnapshot {\n            tokenId\n            vaultAddress\n            collateral {\n              contract\n              tokenId\n              type\n            }\n          }\n          collateralSnapshot {\n            contract\n            tokenId\n            type\n            amount\n          }\n        }\n      }\n\n      loanAsLender {\n        id\n        state\n        createdAt\n        createdAtTx\n        loanCoreLoanId\n        borrower {\n          id\n        }\n        lender {\n          id\n        }\n        loanTerms {\n          collateralKind\n          loanCoreLoanId\n          principal\n          durationSecs\n          interestRate\n          payableCurrency\n          collateralBundleSnapshot {\n            tokenId\n            vaultAddress\n            collateral {\n              contract\n              tokenId\n              type\n            }\n          }\n          collateralSnapshot {\n            contract\n            tokenId\n            type\n            amount\n          }\n        }\n      }\n    }\n  }\n",
@@ -131,9 +129,8 @@ export default function Arcade() {
   };
 
   const getNFTMetadata = async (contract, tokenId) => {
-    // https://shuttle-goerli.arcade.xyz/api/v2/collections/0xf5de760f2e916647fd766b4ad9e85ff943ce3a2b/assets/2740179
 
-    const GET_NFT_METADATA_URL = `${BASE_URL}/collections/${contract}/assets/${tokenId}`;
+    const GET_NFT_METADATA_URL = `${ARCADE_BASE_URL}/collections/${contract}/assets/${tokenId}`;
     const res = await fetch(GET_NFT_METADATA_URL, {
       headers: {
         "x-api-key": API_KEY,
@@ -141,7 +138,7 @@ export default function Arcade() {
     });
     const data = await res.json();
     console.log({ data });
-  }
+  };
 
   return (
     <>
