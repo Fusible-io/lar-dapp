@@ -37,10 +37,10 @@ const BorrowTable = () => {
   const [listView, setListView] = useState(true);
   const [loading, setLoading] = useState(true);
   const [loadingArcade, setLoadingArcade] = useState(true);
-  const [loadingX2Y2, setLoadingX2Y2] = useState(true);
+  // const [loadingX2Y2, setLoadingX2Y2] = useState(true);
   const [ownedNFTs, setOwnedNFTs] = useState([]);
   const [nftOffers, setNFTOffers] = useState([]);
-  const [X2Y2Offers, setX2Y2Offers] = useState([]);
+  // const [X2Y2Offers, setX2Y2Offers] = useState([]);
 
   const [offersArcade, setOffersArcade] = useState([]);
 
@@ -50,7 +50,7 @@ const BorrowTable = () => {
 
   const [activeKey, setActiveKey] = useState([]);
   const [activeKeyArcade, setActiveKeyArcade] = useState([]);
-  const [activeKeyX2Y2, setActiveKeyX2Y2] = useState([]);
+  // const [activeKeyX2Y2, setActiveKeyX2Y2] = useState([]);
 
   const handleCollapseActiveKey = (key) => {
     if (activeKey.includes(key)) {
@@ -68,13 +68,14 @@ const BorrowTable = () => {
     }
   };
 
-  const handleCollapseActiveKeyX2Y2 = (key) => {
-    if (activeKeyX2Y2.includes(key)) {
-      setActiveKeyX2Y2(activeKeyX2Y2.filter((item) => item !== key));
-    } else {
-      setActiveKeyX2Y2([...activeKeyX2Y2, key]);
-    }
-  };
+  // const handleCollapseActiveKeyX2Y2 = (key) => {
+  //   if (activeKeyX2Y2.includes(key)) {
+  //     setActiveKeyX2Y2(activeKeyX2Y2.filter((item) => item !== key));
+  //   } else {
+  //     setActiveKeyX2Y2([...activeKeyX2Y2, key]);
+  //   }
+  // };
+
   const isTokenValid = async () => {
     if (nftfi) {
       var token = await nftfi.auth.getToken();
@@ -86,7 +87,6 @@ const BorrowTable = () => {
   };
 
   const onAcceptOffer = (nft, offer) => {
-
     console.log("onaccept offer", offer);
     setOffer({
       nft,
@@ -95,10 +95,10 @@ const BorrowTable = () => {
     Router.push("/cardDetail");
   };
 
-  const onX2Y2AcceptOffer = (nft) => {
-    const url = `https://x2y2.io/eth/${nft.contract.address}/${nft.tokenId}`;
-    window.open(url, "_blank");
-  }
+  // const onX2Y2AcceptOffer = (nft) => {
+  //   const url = `https://x2y2.io/eth/${nft.contract.address}/${nft.tokenId}`;
+  //   window.open(url, "_blank");
+  // }
 
   const getNFTMetadata = async (contract, tokenId) => {
     // https://shuttle-goerli.arcade.xyz/api/v2/collections/0xf5de760f2e916647fd766b4ad9e85ff943ce3a2b/assets/2740179
@@ -215,35 +215,35 @@ const BorrowTable = () => {
     }
   }, [ownedNFTs]);
 
-  useEffect(() => {
-    getX2Y2Offers();
-  }, []);
+  // useEffect(() => {
+  //   getX2Y2Offers();
+  // }, []);
 
-  const getX2Y2Offers = async () => {
-    setLoadingX2Y2(true);
-    const sysParams = await getSystemParams();
-    console.log({
-      sysParams: sysParams.data.collections,
-    });
-    const NFTS = await getAllNFTS(sysParams.data.collections);
-    console.log({
-      NFTS,
-    });
+  // const getX2Y2Offers = async () => {
+  //   setLoadingX2Y2(true);
+  //   const sysParams = await getSystemParams();
+  //   console.log({
+  //     sysParams: sysParams.data.collections,
+  //   });
+  //   const NFTS = await getAllNFTS(sysParams.data.collections);
+  //   console.log({
+  //     NFTS,
+  //   });
 
-    const offers = await Promise.all(
-      NFTS.ownedNfts.map(async (item, idx) => {
-        const offers = await getOffersForAnNFT(
-          item.contract.address,
-          item.tokenId
-        );
-        NFTS.ownedNfts[idx].offers = offers.data?.list;
-        return offers;
-      })
-    );
+  //   const offers = await Promise.all(
+  //     NFTS.ownedNfts.map(async (item, idx) => {
+  //       const offers = await getOffersForAnNFT(
+  //         item.contract.address,
+  //         item.tokenId
+  //       );
+  //       NFTS.ownedNfts[idx].offers = offers.data?.list;
+  //       return offers;
+  //     })
+  //   );
 
-    setX2Y2Offers(NFTS.ownedNfts);
-    setLoadingX2Y2(false);
-  };
+  //   setX2Y2Offers(NFTS.ownedNfts);
+  //   setLoadingX2Y2(false);
+  // };
 
   const getSystemParams = async () => {
     const x_timestamp = Date.now();
@@ -275,20 +275,20 @@ const BorrowTable = () => {
     return res.json();
   };
 
-  const getOffersForAnNFT = async (nftAddress, tokenId) => {
-    const options = {
-      method: "GET",
-      headers: { accept: "application/json", "x-api-key": X2Y2_API_KEY },
-    };
+  // const getOffersForAnNFT = async (nftAddress, tokenId) => {
+  //   const options = {
+  //     method: "GET",
+  //     headers: { accept: "application/json", "x-api-key": X2Y2_API_KEY },
+  //   };
 
-    const response = await fetch(
-      `https://loan-api.x2y2.org/v1/offer/list?nftAddress=${nftAddress}&tokenId=${tokenId}&isSufficient=1&duration=0&page=1&pageSize=10&sortField=createTime&sortDirection=desc&hasCollection=1`,
-      options
-    );
-    const res = await response.json();
-    // console.log(res);
-    return res;
-  };
+  //   const response = await fetch(
+  //     `https://loan-api.x2y2.org/v1/offer/list?nftAddress=${nftAddress}&tokenId=${tokenId}&isSufficient=1&duration=0&page=1&pageSize=10&sortField=createTime&sortDirection=desc&hasCollection=1`,
+  //     options
+  //   );
+  //   const res = await response.json();
+  //   // console.log(res);
+  //   return res;
+  // };
 
   return (
     <div className="mx-10 mt-14">
@@ -836,8 +836,7 @@ const BorrowTable = () => {
         />
       </div>
 
-      {/* X2Y2 LIST */}
-      <h1 className="font-semibold text-[28px] leading-[44px] font-jakarta mb-5 text-white">
+      {/* <h1 className="font-semibold text-[28px] leading-[44px] font-jakarta mb-5 text-white">
         X2Y2 LIST
       </h1>
       <div>
@@ -975,10 +974,6 @@ const BorrowTable = () => {
                             />
                           </button>
                         )}
-
-                        {/* <button className="border-lightBorder border rounded-lg px-2 py-1 font-jakarta font-normal text-base text-lightBorder">
-                          Accept
-                        </button> */}
                       </div>
                     </div>
                   }
@@ -1059,7 +1054,7 @@ const BorrowTable = () => {
             );
           }}
         />
-      </div>
+      </div> */}
     </div>
   );
 };
