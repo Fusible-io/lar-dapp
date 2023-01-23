@@ -20,8 +20,8 @@ const Navbar = () => {
     // onConnect: () => {
     //   clearNFTFi();
     // },
-    onDisconnect: () => {
-      clearNFTFi();
+    onDisconnect: async () => {
+      await clearNFTFi();
     },
     // isConnecting: () => {
     //   clearNFTFi();
@@ -49,37 +49,31 @@ const Navbar = () => {
   useEffect(() => {
     if (!window) return;
     if (!provider || !address || !signer) return;
-    var token = window.localStorage.getItem("sdkToken");
-    if (nftfi !== null) {
-      console.log("TOken is valid->", token, nftfi.auth._isTokenValid(token));
-    }
     //if(!nftfi.auth._isTokenValid(token))
     // ToDo: intialize NFTfi when account is changes, or network is changed, or the account is disconnected
     initNFTFI();
   }, [provider, address, signer]);
 
   useEffect(() => {
-    var token = window.localStorage.getItem("sdkToken");
-    if (nftfi !== null && token) {
-      console.log("TOken", nftfi.auth._isTokenValid(token));
-      if (!nftfi.auth._isTokenValid(token)) clearNFTFi();
-    }
+    // console.log("entering useEffect");
+    // var token = window.localStorage.getItem("sdkToken");
+    // console.log('line 63 token', token)
+    // if (!nftfi && token && !nftfi.auth._isTokenValid(token)) {
+    //   console.log(
+    //     "nftfi !== null && token && !nftfi.auth._isTokenValid(token)"
+    //   );
+    //   nftfi.auth.getToken();
+    // }
 
-    console.log({
-      nftfi,
-    });
-  }, [nftfi]);
 
-  useEffect(() => {
-    if (address) {
-      //clearNFTFi();
-      var token = window.localStorage.getItem("sdkToken");
-      if (nftfi !== null && token) {
-        console.log("TOken", nftfi.auth._isTokenValid(token));
-      }
-      // setAddress(address);
+    if (!nftfi) return;
+
+    const token = window.localStorage.getItem("sdkToken");
+
+    if (!token || (token && !nftfi.auth._isTokenValid(token))) {
+      nftfi.auth.getToken();
     }
-  }, [address]);
+  }, [nftfi, address]);
 
   return (
     <div className="px-10 py-7 flex justify-between items-center mainContainer">

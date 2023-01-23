@@ -78,10 +78,11 @@ const BorrowTable = () => {
 
   const isTokenValid = async () => {
     if (nftfi) {
-      var token = await nftfi.auth.getToken();
+      var token = window.localStorage.getItem("sdkToken");
       if (token) {
         return nftfi.auth._isTokenValid(token);
       }
+      return false;
     }
     return false;
   };
@@ -160,7 +161,9 @@ const BorrowTable = () => {
 
   const getOffersOnNFTs = async () => {
     const response = ownedNFTs.map(async (nft) => {
-      const offers = await nftfi?.offers.get({
+      var token = window.localStorage.getItem("sdkToken");
+      if (!token || !nftfi.auth._isTokenValid(token)) return;
+      const offers = await nftfi.offers.get({
         filters: {
           nft: {
             id: nft.tokenId,
@@ -207,7 +210,7 @@ const BorrowTable = () => {
           console.log(res.ownedNfts);
         });
     }
-  }, []);
+  }, [address]);
 
   useEffect(() => {
     if (isTokenValid && ownedNFTs.length > 0) {
