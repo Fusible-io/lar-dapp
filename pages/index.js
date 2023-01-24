@@ -1,6 +1,6 @@
-import { useEffect } from "react";
+// import { useEffect } from "react";
 import Head from "next/head";
-import LoanDetails from "../components/LoanStatics/LoanDetails";
+// import LoanDetails from "../components/LoanStatics/LoanDetails";
 import ManageTable from "../components/Tables/ManageTable";
 import BorrowTable from "../components/Tables/BorrowTable";
 import { useNFTFi } from "../components/core/store/store";
@@ -9,16 +9,6 @@ import { useAccount } from "wagmi";
 export default function Home() {
   const { nftfi } = useNFTFi();
   const { address } = useAccount();
-
-  const isTokenValid = async () => {
-    if (nftfi) {
-      var token = await nftfi.auth.getToken();
-      if (token) {
-        return nftfi.auth._isTokenValid(token);
-      }
-    }
-    return false;
-  };
 
   return (
     <>
@@ -30,7 +20,7 @@ export default function Home() {
       </Head>
 
       <main className="mb-20">
-        {address && nftfi && isTokenValid ? (
+        {address && nftfi ? (
           <>
             <ManageTable />
             <BorrowTable />

@@ -5,7 +5,7 @@ import Logo from "/public/assets/logo.svg";
 import Image from "next/image";
 import { ConnectButton } from "@rainbow-me/rainbowkit";
 import { useProvider, useSigner, useAccount } from "wagmi";
-import { useNFTFi, useAddressStore } from "../core/store/store";
+import { useNFTFi } from "../core/store/store";
 import NFTfi from "@nftfi/js";
 
 const Navbar = () => {
@@ -20,8 +20,8 @@ const Navbar = () => {
     // onConnect: () => {
     //   clearNFTFi();
     // },
-    onDisconnect: () => {
-      clearNFTFi();
+    onDisconnect: async () => {
+      await clearNFTFi();
     },
     // isConnecting: () => {
     //   clearNFTFi();
@@ -49,41 +49,25 @@ const Navbar = () => {
   useEffect(() => {
     if (!window) return;
     if (!provider || !address || !signer) return;
-    console.log({
-      provider,
-    });
-
-    var token = window.localStorage.getItem("sdkToken");
-    if (nftfi !== null) {
-      console.log("TOken is valid->", token, nftfi.auth._isTokenValid(token));
-    }
-    //if(!nftfi.auth._isTokenValid(token))
-    // ToDo: intialize NFTfi when account is changes, or network is changed, or the account is disconnected
     initNFTFI();
   }, [provider, address, signer]);
 
   useEffect(() => {
     var token = window.localStorage.getItem("sdkToken");
-    if (nftfi !== null && token) {
-      console.log("TOken", nftfi.auth._isTokenValid(token));
-      if (!nftfi.auth._isTokenValid(token)) clearNFTFi();
+    if (nftfi !== null && token && !nftfi.auth._isTokenValid(token)) {
+      clearNFTFi();
     }
-
-    console.log({
-      nftfi,
-    });
   }, [nftfi]);
 
   useEffect(() => {
-    if (address) {
-      //clearNFTFi();
-      var token = window.localStorage.getItem("sdkToken");
-      if (nftfi !== null && token) {
-        console.log("TOken", nftfi.auth._isTokenValid(token));
-      }
-      // setAddress(address);
+    if (!nftfi) return;
+
+    const token = window.localStorage.getItem("sdkToken");
+
+    if (!token || (token && !nftfi.auth._isTokenValid(token))) {
+      nftfi.auth.getToken();
     }
-  }, [address]);
+  }, [nftfi, address]);
 
   return (
     <div className="px-10 py-7 flex justify-between items-center mainContainer">
